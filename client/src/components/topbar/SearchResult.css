@@ -1,0 +1,25 @@
+.resultListItem {
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    padding: 0 .5rem ;
+    cursor: pointer;
+}
+
+.resultText {
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 20rem;
+}
+
+.resultImg {
+    width: 40px;
+    height: 40px;
+}
+
+.resultImgContainer {
+    margin-right: 10px;
+}

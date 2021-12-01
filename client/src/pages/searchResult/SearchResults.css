@@ -1,0 +1,13 @@
+.loading {
+    font-weight: 600;
+    text-align: center;
+}
+
+.searchResultsHeader {
+    color: #7a8087;
+    font-weight: 600;
+}
+
+.searchResultsDivider {
+    margin: 20px 0
+}

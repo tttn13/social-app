@@ -1,0 +1,29 @@
+.CommentForm { 
+  display: flex;
+  font-family: Roboto;
+  width: 100%;
+}
+
+.UserAvatar { 
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.CommentInput { 
+  border-radius: 18px;
+  margin-left: 5px;
+  height: 35px;
+  border: none;
+  width: 100%;
+  padding-left: 8px;
+  background-color: #EEF0F3;
+}
+
+.CommentInput:focus {
+    outline: none;
+}
+
+.commentsModal {
+  padding-top: 15px;
+}

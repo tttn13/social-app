@@ -1,0 +1,119 @@
+.locationModalContent {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 60%;
+  height: 60%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.locationList {
+  padding: 15px
+}
+
+.locationListItem {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.locationModalTop {
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.locationModalTop > h3 {
+  font-size: 25px;
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.locationSearchInput {
+  border: none;
+  background-color: inherit;
+  width: 600px !important;
+}
+
+.friendList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.friendList li {
+  font-weight: 500;
+  padding: 15px 0;
+}
+
+.friendListHeader {
+  color: #5a5c60;
+  padding: 10px 0;
+}
+
+.locationModalSearch {
+  width: 90%;
+  height: 30px;
+  background-color: #eef0f3;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+} 
+
+.locationModalSearchBox {
+  padding-left: 15px;
+}
+
+.locationModalSearchIcon {
+  font-size: 20px !important;
+  margin-left: 10px;
+}
+
+.locationSearchInput:focus {
+  outline: none;
+}
+
+.locationModalCloseBtn {
+  color: gray;
+}
+
+.taggedBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* overflow: auto; */
+}
+
+.taggedUsersList {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  flex-wrap:wrap;
+  border: solid 1px #acacac;
+  min-width: 100%;
+  border-radius: 8px;
+}
+
+.taggedListItem {
+  padding: 10px;
+  margin: 10px ;
+  background-color: #e3f1ff;
+  color: #176bf0;
+  display: inline-flex;
+  border-radius: 5px;
+}
+
+.taggedProfile {
+  padding: 10px;
+  background-color: #e3f1ff;
+  color: #176bf0;
+  justify-content: center;
+}
