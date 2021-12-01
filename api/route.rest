@@ -1,0 +1,137 @@
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU1NmQ2MWIyMTg5N2YxNmE3OGI1NSIsImlhdCI6MTYzNzc0MDYxMCwiZXhwIjoxNjM3NzQwNjMwfQ.gfe-gUkkm-hU_7Adhe5Fcg077laVhv2roVQaOBzzbTM
+
+###
+# @name get comment
+GET http://localhost:8800/api/comments/619adcbf848a6984ef279e72
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+###
+# @name get comment
+GET http://localhost:8800/api/comments/619adcbb848a6984ef279e6d
+Content-Type: application/json
+
+# @name register user
+POST http://localhost:8800/api/auth/register
+content-type: application/json
+
+{
+    "username": "test6",
+    "email": "test6@gmail.com",
+    "password": "123456"
+}
+
+###
+# @name login user
+POST http://localhost:8800/api/auth/login
+content-type: application/json
+
+{
+    "email": "Birdperson@gmail.com",
+    "password": "123456"
+}
+
+###
+# @refresh token
+POST http://localhost:8800/api/auth/refresh
+content-type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU1NmQ2MWIyMTg5N2YxNmE3OGI1NSIsImlhdCI6MTYzNzE4NjA3OSwiZXhwIjoxNjM3MTg2MTA5fQ.nIfYY5R60WOvjfIdWkQMH-WKVO8U4PKLFxcJO0BpjuU"
+}
+###
+# @name get user
+GET http://localhost:8800/api/posts/timeline/614e541b1b21897f16a78b3e
+Authorization: Bearer {{authToken}}
+
+### 
+# @name update user
+PUT http://localhost:8800/api/users/614e56b21b21897f16a78b51/follow
+content-type: application/json
+
+{
+    "userId": "614e541b1b21897f16a78b3e"
+}
+### 
+# @name create post
+POST http://localhost:8800/api/posts/
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "userId": "614e56d61b21897f16a78b55",
+    "desc": "today is wednesday ahha !"
+}
+###
+# @name delete post
+DELETE http://localhost:8800/api/posts/61675523fdff589d0cf063fe
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "userId": "614e541b1b21897f16a78b3e1"
+}
+
+###
+# @name update a post
+PUT http://localhost:8800/api/posts/616760c7c6579c1f97f04c54
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{   
+    "userId": "614e541b1b21897f16a78b3e",
+    "desc": "today is not wednesday haaa"
+}
+###
+GET http://localhost:8800/api/posts/614e562f1b21897f16a78b4c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU1NjJmMWIyMTg5N2YxNmE3OGI0YyIsImlhdCI6MTYzMjk0OTc5MSwiZXhwIjoxNjMyOTUzMzkxfQ.ioblXwQwC-SROLvcM4_4MctBBqyTBz_h6Cd-AitF1_I
+
+###
+put http://localhost:8800/api/users/614e541b1b21897f16a78b3e
+content-type: application/json
+
+{
+    "userId": "614e541b1b21897f16a78b3e",
+    "email": "person/10.png"
+}
+
+###
+# @name create comment
+POST http://localhost:8800/api/comments/61675523fdff589d0cf063fe
+Authorization: Bearer {{authToken}}
+content-type: application/json
+
+{   
+    "userId": "614e56d61b21897f16a78b55",
+    "body": "yes you are right"
+}
+
+
+###
+# @name delete comment
+DELETE http://localhost:8800/api/comments/616cfd892e9e48c6b9dfc1a8
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "userId": "614e541b1b21897f16a78b3e"
+}
+###
+# @name update comment
+PUT http://localhost:8800/api/comments/616dbcd6ab0818473dd8226b
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "userId": "614e541b1b21897f16a78b3e",
+    "body": "lala land or not"
+}
+###
+# @name log out user
+POST http://localhost:8800/api/auth/logout 
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzcwNDQzNTd9.YFmWfW8kN4pTtekAMdpkMEg8Do90d-yR7ZwKyp-ZBi8"
+}
