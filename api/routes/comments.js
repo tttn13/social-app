@@ -5,7 +5,7 @@ const User = require("../models/User");
 const auth = require("../middleware/auth")
 
 //get comment
-router.get("/:commentId", auth, async(req, res) => {
+router.get("/:commentId", async(req, res) => {
   try {
     const comment = await Comment.findById(req.params.commentId)
     res.status(200).json(comment)
@@ -15,7 +15,7 @@ router.get("/:commentId", auth, async(req, res) => {
 })
 
 //create comment on a post
-router.post("/:id", auth, async (req, res) => {
+router.post("/:id", async (req, res) => {
   try {
     //check for existing user
     const userCreator = await User.findById(req.body.userId)
@@ -44,7 +44,7 @@ router.post("/:id", auth, async (req, res) => {
 })
 
 //delete a comment
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const comment = await Comment.findById(req.params.id);
     if (!comment) throw Error("Comment not found")
@@ -69,7 +69,7 @@ router.delete("/:id", auth, async (req, res) => {
 })
 
 //update comment
-router.put("/:id",auth, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {    
     //check for existing comment
     const comment = await Comment.findById(req.params.id);

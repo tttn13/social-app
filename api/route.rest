@@ -1,10 +1,3 @@
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU1NmQ2MWIyMTg5N2YxNmE3OGI1NSIsImlhdCI6MTYzNzc0MDYxMCwiZXhwIjoxNjM3NzQwNjMwfQ.gfe-gUkkm-hU_7Adhe5Fcg077laVhv2roVQaOBzzbTM
-
-###
-# @name get comment
-GET http://localhost:8800/api/comments/619adcbf848a6984ef279e72
-Authorization: Bearer {{authToken}}
-Content-Type: application/json
 
 ###
 # @name get comment
@@ -27,40 +20,30 @@ POST http://localhost:8800/api/auth/login
 content-type: application/json
 
 {
-    "email": "Birdperson@gmail.com",
+    "email": "SummerSmith@gmail.com",
     "password": "123456"
 }
 
 ###
-# @refresh token
-POST http://localhost:8800/api/auth/refresh
-content-type: application/json
 
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU1NmQ2MWIyMTg5N2YxNmE3OGI1NSIsImlhdCI6MTYzNzE4NjA3OSwiZXhwIjoxNjM3MTg2MTA5fQ.nIfYY5R60WOvjfIdWkQMH-WKVO8U4PKLFxcJO0BpjuU"
-}
-###
-# @name get user
-GET http://localhost:8800/api/posts/timeline/614e541b1b21897f16a78b3e
-Authorization: Bearer {{authToken}}
 
-### 
 # @name update user
-PUT http://localhost:8800/api/users/614e56b21b21897f16a78b51/follow
+PUT http://localhost:8800/api/users/614e564a1b21897f16a78b4e/follow
 content-type: application/json
 
 {
-    "userId": "614e541b1b21897f16a78b3e"
+    "userId": "614e56d61b21897f16a78b55"
 }
 ### 
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU1NmM1MWIyMTg5N2YxNmE3OGI1MyIsImlhdCI6MTYzODkwMzAyMywiZXhwIjoxNjM4OTg5NDIzfQ.Sty_Yr7votBitGNSbhwk-d_DrS-NCBBynCZ75J7Y65o
 # @name create post
 POST http://localhost:8800/api/posts/
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "userId": "614e56d61b21897f16a78b55",
-    "desc": "today is wednesday ahha !"
+    "userId": "614e56c51b21897f16a78b53",
+    "desc": "oh high school adada!"
 }
 ###
 # @name delete post
@@ -87,12 +70,12 @@ GET http://localhost:8800/api/posts/614e562f1b21897f16a78b4c
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU1NjJmMWIyMTg5N2YxNmE3OGI0YyIsImlhdCI6MTYzMjk0OTc5MSwiZXhwIjoxNjMyOTUzMzkxfQ.ioblXwQwC-SROLvcM4_4MctBBqyTBz_h6Cd-AitF1_I
 
 ###
-put http://localhost:8800/api/users/614e541b1b21897f16a78b3e
+put http://localhost:8800/api/users/614e56ea1b21897f16a78b57
 content-type: application/json
 
 {
-    "userId": "614e541b1b21897f16a78b3e",
-    "email": "person/10.png"
+    "userId": "614e56ea1b21897f16a78b57",
+    "relationship": 1
 }
 
 ###

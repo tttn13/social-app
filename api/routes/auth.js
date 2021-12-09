@@ -2,13 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const {
-  generateAccessToken,
-  generateRefreshToken,
-} = require("../middleware/generateToken");
+const { generateAccessToken } = require("../middleware/generateToken");
 require("dotenv").config();
-                                                                                                                                       
-let refreshTokens = [];
 
 //Register new user
 router.post("/register", async (req, res) => {
@@ -42,9 +37,9 @@ router.post("/register", async (req, res) => {
     const savedUser = await newUser.save();
     if (!savedUser) throw Error("Something went wrong saving the user");
 
-    const token = generateAccessToken(savedUser._id);
+    const generatedToken = generateAccessToken(savedUser._id);
     res.status(200).json({
-      token,
+      token: generatedToken,
       user: {
         username: savedUser.username,
         email: savedUser.email,
@@ -82,12 +77,8 @@ router.post("/login", async (req, res) => {
   const token = generateAccessToken(user._id);
   if (!token) throw Error("Couldn't sign the token");
 
-  const refToken = generateRefreshToken(user._id);
-  refreshTokens.push(String(refToken));
-
   return res.status(200).send({
     token: token,
-    refreshToken: refToken,
     user: user,
   });
 });
@@ -95,51 +86,10 @@ router.post("/login", async (req, res) => {
 //log out
 router.post("/logout", async (req, res) => {
   try {
-    console.log("logging out on back end")
-    refreshTokens = []
+    console.log("logging out on back end");
     res.status(200).send({ msg: "You logged out successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
-  }
-});
-
-//refresh
-router.post("/refresh", async (req, res) => {
-  //take refresh token from user
-  const { refreshToken } = req.body;
-  console.log("refreshTokens",refreshTokens, "and refresh token is", refreshToken)
-
-  //send error if there's no token or token invalid
-  if (!refreshToken)
-    return res.status(403).json({ message: "Refresh Token is required!" });
-  if (!refreshTokens.includes(String(refreshToken))) {
-    return res.status(403).json("Refresh token doesn't exist!");
-  }
-  try {
-    jwt.verify(
-      refreshToken,
-      process.env.REFRESH_TOKEN_SECRET,
-      (err, user) => {
-        if (err) {
-          console.log("this is error when verifying refresh Token");
-          return res.status(401).send({ 
-            message: "Unauthorized! Access Token is expired!", 
-            error: err });
-        }
-
-        // refreshTokens = refreshTokens.filter((token) => String(token) !== String(refreshToken));
-        // const newRefreshToken = generateRefreshToken(user._id);
-        // refreshTokens.push(newRefreshToken);
-        const newAccessToken = generateAccessToken(user._id);
-
-        return res.status(200).json({
-          token: newAccessToken,
-          refreshToken: refreshToken,
-        });
-      }
-    );
-  } catch (error) {
-    return res.status(500).send({ message: error, failed: "this failed completely" });
   }
 });
 

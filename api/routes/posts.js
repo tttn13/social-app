@@ -16,7 +16,7 @@ router.post("/", auth, async (req, res) => {
 })
 //@desc update a post 
 //@access Private
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
         if (!post) throw Error("Comment not found");
@@ -35,7 +35,7 @@ router.put("/:id", auth, async (req, res) => {
 })
 //@desc delete a post 
 //@access Private
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
         if (post.userId === req.body.userId) {
@@ -51,7 +51,7 @@ router.delete("/:id", auth, async (req, res) => {
 })
 //@desc get timeline posts 
 //@access Private
-router.get("/timeline/:userId", auth, async (req, res) => {
+router.get("/timeline/:userId", async (req, res) => {
     try {
         const currentUser = await User.findById(req.params.userId)
         const userPosts = await Post.find({ userId: currentUser._id })
@@ -67,7 +67,7 @@ router.get("/timeline/:userId", auth, async (req, res) => {
 })
 //@desc like a post 
 //@access Public
-router.put("/:id/like", auth, async (req, res) => {
+router.put("/:id/like", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
         if (!post.likes.includes(req.body.userId)) {
@@ -83,7 +83,7 @@ router.put("/:id/like", auth, async (req, res) => {
 })
 //@desc get a post 
 //@access Public
-router.get("/:id", auth, async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
         res.status(200).json(post)
@@ -93,7 +93,7 @@ router.get("/:id", auth, async (req, res) => {
 })
 //@desc get an user's posts 
 //@access Public
-router.get("/profile/:username", auth, async (req, res) => {
+router.get("/profile/:username", async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.username })
         const posts = await Post.find({ userId: user._id })

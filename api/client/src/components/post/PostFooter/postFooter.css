@@ -1,0 +1,60 @@
+.postBottomStats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postBottomStatsLeft {
+  display: flex;
+  align-items: center;
+}
+
+.likeIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.postLikeCounter {
+  font-size: 15px;
+  color: #7a8087;
+}
+
+.commentsModalShow {
+  cursor: pointer;
+  font-size: 15px;
+  color: #7a8087;
+}
+
+.postHr {
+  margin: 20px 0;
+}
+
+.commentsButton,
+.likeButton {
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  color: #7a8087;
+  font-weight: 500;
+}
+
+.postBottomActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.thumbIcon,
+.commentIcon {
+  padding: 0 5px;
+  color: #7a8087;
+}
+
+.liked {
+  color: #6292F7;
+}

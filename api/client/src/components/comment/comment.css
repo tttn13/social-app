@@ -1,0 +1,99 @@
+.CommentContainer {
+  display: flex;
+  position: relative;
+  align-items: center;
+  min-height: 75px;
+  padding-bottom: 2px;
+}
+
+.CommentAvatar {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.BodyContainer {
+  margin: 0 5px; 
+}
+
+.BodyContainerWrapper {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: 18px;
+  width: auto;
+  padding: 8px 12px;
+  background-color: #EEF0F3;
+
+}
+
+.Username {
+  color: black;
+  text-decoration: none ;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.Comment-Form {
+  display: flex;
+}
+
+.Comment-Body {
+  word-break: break-word;
+  border:none;
+  background-color: inherit;
+  overflow: auto;
+  min-width: 5rem;
+}
+
+.Comment-Body:focus-visible {
+  outline: none !important;
+}
+
+.Comment-Body:active {
+  border: none;
+}
+
+.editedStatus {
+  font-size: 12px ;
+  color: #7a8087;
+  padding-left: 12px;
+}
+
+.Comment-Body {
+  font-size: 14px;
+}
+
+.PopButton {
+  position: relative;
+  padding: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+.PopButton:hover {
+  border-radius: 50%;
+  background-color:  rgb(211, 211, 211)
+}
+
+.commentActionsList {
+  display: none;
+  list-style-type: none;
+  padding: 2px 5px 5px 5px;
+  position: absolute;
+  z-index: 2;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  width: 10rem;
+  box-shadow: -3px 2px 28px 1px rgba(102,102,102,1);
+}
+
+.commentActionsList > li {
+  cursor: pointer;
+  padding: 6px 10px;
+  font-weight: 500;
+  color: #4E5052;
+}
+
