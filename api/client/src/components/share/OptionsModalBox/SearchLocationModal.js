@@ -29,7 +29,6 @@ const SearchLocationModal = ({
   };
   
   const handleClick = ({ place_id, description }) => {
-    console.log("place_id, description", place_id, description)
     setLocationModalActive(false);
     updateLocation(description.toString());
     clearSuggestions();
