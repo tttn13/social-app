@@ -1,9 +1,11 @@
 import jwt_decode from "jwt-decode";
 import { getToken } from "./token.service";
 import axios from "axios";
+import dotenv from 'dotenv';
 
+dotenv.config();
 const axiosJWT = axios.create({
-  baseURL = "https://mysocialappmsa.herokuapp.com/api/"
+  baseURL : process.env.REACT_APP_BASE_URL
 });
 axiosJWT.interceptors.request.use(
   async (config) => {

@@ -1,0 +1,17 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute!important;
+    bottom: 0;
+}
+
+.footer_row {
+    padding: 5px
+}
+
+.footer_link {
+    text-decoration: none;
+    color:#176Cf0
+}

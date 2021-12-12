@@ -1,5 +1,5 @@
 import React from "react";
-import config from "../../config";
+import env_config from "../../config/index";
 
 const ProfilePicture = ({
   userImage,
@@ -8,7 +8,7 @@ const ProfilePicture = ({
   postImage,
   handleClickFn,
 }) => {
-  const { PF } = config;
+  const { PF } = env_config;
 
   const userImageSrc = (source) => {
     return source ? PF + source : PF + "person/noAvatar.png";
