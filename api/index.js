@@ -24,7 +24,9 @@ mongoose.connect(
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 //middleware
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);

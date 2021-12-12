@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { register } from "../../../services/auth.service"
 import { loginUser } from "../../../context/AsyncActions";
+import Footer from "../footer/Footer";
 
 const Register = () => {
   const { isFetching, dispatch } = useContext(AuthContext);
@@ -56,7 +57,6 @@ const Register = () => {
         <div className="loginRight">
           <form 
           className="loginBox" 
-          // onSubmit={handleClick}
           >
             <input
               placeholder="Username"
@@ -111,6 +111,7 @@ const Register = () => {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
