@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { lazy, Suspense, useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import {
   BrowserRouter as Router,
@@ -6,47 +6,59 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Login from "./pages/account/login/Login";
-import Register from "./pages/account/register/Register";
-import SessionExpired from "./pages/account/sessionExpired/SessionExpired";
-import Profile from "./pages/profile/Profile";
-import SearchResults from "./pages/searchResult/SearchResults";
 import AuthVerify from "./utils/AuthVerify";
 import history from "./utils/history";
+import PrivateRoute from "./components/common/PrivateRoute";
+import Loading from "./pages/Loading";
 
 function App() {
   const store = useContext(AuthContext);
   const { user: userContext, isLoggedIn, isFetching } = store;
-
+  const Home = lazy(() => import("./pages/home/Home"));
+  const Login = lazy(() => import("./pages/account/login/Login"));
+  const Register = lazy(() => import("./pages/account/register/Register"));
+  const SessionExpired = lazy(() => import("./pages/account/sessionExpired/SessionExpired"));
+  const Profile = lazy(() => import("./pages/profile/Profile"));
+  const SearchResults = lazy(() => import("./pages/searchResult/SearchResults"));
+  
   return (
     <Router>
-      <AuthVerify history={history} store={store} />
-
-      <Switch>       
-        <Route exact path="/">
-          {userContext ? <Home /> : <Redirect to="/login" />}
-        </Route>
-        <Route path="/login">
-          {userContext ? <Redirect to="/" /> : <Login />}
-        </Route>
-        <Route path="/register">
-          {userContext ? <Redirect to="/" /> : <Register />}
-        </Route>
-        <Route path="/profile/:username">
-          {userContext ? <Profile /> : <Redirect to="/login" />}
-        </Route>
-        <Route path="/searchresults">
-          {userContext ? <SearchResults /> : <Redirect to="/login" />}
-        </Route>
-        <Route path="/logout">
-          {userContext ? <Redirect to="/" /> : <SessionExpired />}
-        </Route>
-        <Route path="/session_expired">
-          {userContext ? <Redirect to="/" /> : <SessionExpired />}
-        </Route>
-        {!isLoggedIn && !isFetching && <Redirect to="/login" />}
-      </Switch>
+      <Suspense
+        fallback={ <Loading/>}
+      >
+        <AuthVerify history={history} store={store} />
+        <Switch>
+          <PrivateRoute
+            exact
+            path="/"
+            userContext={userContext}
+            component={Home}
+          />
+          <Route path="/login">
+            {userContext ? <Redirect to="/" /> : <Login />}
+          </Route>
+          <Route path="/register">
+            {userContext ? <Redirect to="/" /> : <Register />}
+          </Route>
+          <PrivateRoute
+            path="/profile/:username"
+            userContext={userContext}
+            component={Profile}
+          />
+          <PrivateRoute
+            path="/searchresults"
+            userContext={userContext}
+            component={SearchResults}
+          />
+          <Route path="/logout">
+            {userContext ? <Redirect to="/" /> : <SessionExpired />}
+          </Route>
+          <Route path="/session_expired">
+            {userContext ? <Redirect to="/" /> : <SessionExpired />}
+          </Route>
+          {!isLoggedIn && !isFetching && <Redirect to="/login" />}
+        </Switch>
+      </Suspense>
     </Router>
   );
 }
