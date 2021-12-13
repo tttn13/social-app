@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { useFetchSearchResults } from "../../components/customHooks/useFetchSearchResults";
 import CloseFriend from "../../components/closeFriend/CloseFriend";
-import Loading from "../../components/Loading";
+import Loading from "../Loading";
 
 const SearchResults = () => {
   const user = useContext(AuthContext).user.user;

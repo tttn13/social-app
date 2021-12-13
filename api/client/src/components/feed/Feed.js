@@ -9,7 +9,7 @@ import {
   createPost,
   uploadFile,
 } from "../../services/user.service";
-import Loading from "../Loading";
+import Loading from "../../pages/Loading";
 import { useParams } from "react-router-dom";
 
 const Feed = ({ currentUser }) => {

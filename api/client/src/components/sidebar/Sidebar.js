@@ -10,7 +10,7 @@ import {
   School,
 } from "@mui/icons-material";
 import CloseFriend from "../closeFriend/CloseFriend";
-import Loading from "../Loading";
+import Loading from "../../pages/Loading";
 import { useGetFriends } from "../customHooks/useGetFriends";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
