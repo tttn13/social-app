@@ -161,7 +161,7 @@ const Share = ({ user, addNewPost }) => {
               )}
               <SearchLocationModal
                 setLocationModalActive={setLocationModalActive}
-                setCheckInLocation={setCheckInLocation}
+                updateLocation={setCheckInLocation}
                 locationModalActive={locationModalActive}
               />
             </div>
