@@ -1,5 +1,5 @@
 import "./share.css";
-import { useContext, useState } from "react";
+import { lazy, Suspense, useContext, useState } from "react";
 import {
   PermMedia,
   Label,
@@ -8,14 +8,12 @@ import {
   Cancel,
 } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import SearchLocationModal from "./OptionsModalBox/SearchLocationModal";
-import TagModal from "./OptionsModalBox/TagModal";
-import EmojiModal from "./OptionsModalBox/EmojiModal";
 import TaggedUsers from "./TaggedUsers/TaggedUsers";
 import ProfilePicture from "../profilePicture/ProfilePicture";
 import { checkToken } from "../../services/auth.service";
 import history from "../../utils/history";
 import { AuthContext } from "../../context/AuthContext";
+import Loading from "../../pages/Loading";
 
 const Share = ({ user, addNewPost }) => {
   const [emojiModalActive, setEmojiModalActive] = useState(false);
@@ -26,6 +24,9 @@ const Share = ({ user, addNewPost }) => {
   const [file, setFile] = useState(null);
   const [taggedList, setTaggedList] = useState([]);
   const { dispatch } = useContext(AuthContext);
+  const SearchLocationModal = lazy(() => import("./OptionsModalBox/SearchLocationModal"))
+  const TagModal = lazy(() => import("./OptionsModalBox/TagModal"))
+  const EmojiModal = lazy(() => import("./OptionsModalBox/EmojiModal"))
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -106,6 +107,7 @@ const Share = ({ user, addNewPost }) => {
         )}
         <form className="shareBottom" onSubmit={handleSubmit}>
           <div className="shareOptions">
+            <Suspense fallback={<Loading/>}> 
             <label htmlFor="file" className="shareOption">
               <PermMedia htmlColor="tomato" className="shareIcon" />
               <span className="shareOptionText">Photo or Video</span>
@@ -182,6 +184,7 @@ const Share = ({ user, addNewPost }) => {
                 />
               )}
             </div>
+            </Suspense>
           </div>
 
           <button className="shareButton" type="submit" value="Submit">
