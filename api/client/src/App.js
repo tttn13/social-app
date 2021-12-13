@@ -9,7 +9,6 @@ import {
 import AuthVerify from "./utils/AuthVerify";
 import history from "./utils/history";
 import PrivateRoute from "./components/common/PrivateRoute";
-import { CircularProgress } from "@mui/material";
 import Loading from "./pages/Loading";
 
 function App() {
@@ -25,12 +24,7 @@ function App() {
   return (
     <Router>
       <Suspense
-        fallback={ <Loading/>
-          // <div>
-          //   Loading...
-          //   <CircularProgress color="success" />
-          // </div>
-        }
+        fallback={ <Loading/>}
       >
         <AuthVerify history={history} store={store} />
         <Switch>
