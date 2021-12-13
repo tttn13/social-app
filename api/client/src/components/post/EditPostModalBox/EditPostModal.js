@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, lazy, Suspense } from "react";
 import "./editPostModal.css";
 import {
   PermMedia,
@@ -9,11 +9,9 @@ import {
   Public,
 } from "@mui/icons-material";
 import { updatePost, uploadFile } from "../../../services/user.service";
-import TagModal from "../../share/OptionsModalBox/TagModal";
-import SearchLocationModal from "../../share/OptionsModalBox/SearchLocationModal";
-import EmojiModal from "../../share/OptionsModalBox/EmojiModal";
 import TaggedUsers from "../../share/TaggedUsers/TaggedUsers";
 import ProfilePicture from "../../profilePicture/ProfilePicture";
+import Loading from "../../../pages/Loading";
 
 const EditPostModal = ({
   currentPost,
@@ -21,12 +19,23 @@ const EditPostModal = ({
   setModalActive,
   setPostIsBeingEdited,
 }) => {
+  const SearchLocationModal = lazy(() =>
+    import("../../share/OptionsModalBox/SearchLocationModal")
+  );
+  const TagModal = lazy(() => import("../../share/OptionsModalBox/TagModal"));
+  const EmojiModal = lazy(() =>
+    import("../../share/OptionsModalBox/EmojiModal")
+  );
   const postBodyRef = useRef();
   const [currentImage, setCurrentImage] = useState(currentPost?.img);
   const [imageFile, setImageFile] = useState(null);
   const [postBody, setPostBody] = useState(currentPost?.desc);
-  const [taggedFriends, setTaggedFriends] = useState(currentPost?.taggedFriends);
-  const [checkInLocation, setCheckInLocation] = useState(currentPost?.postLocation);
+  const [taggedFriends, setTaggedFriends] = useState(
+    currentPost?.taggedFriends
+  );
+  const [checkInLocation, setCheckInLocation] = useState(
+    currentPost?.postLocation
+  );
   const [tagModalActive, setTagModalActive] = useState(false);
   const [locationModalActive, setLocationModalActive] = useState(false);
   const [emojiModalActive, setEmojiModalActive] = useState(false);
@@ -50,14 +59,14 @@ const EditPostModal = ({
       await updatePost(currentPost._id, user, updatedPost);
       window.location.reload();
     } catch (err) {
-      console.error({err: err, msg: "this is error in saving post"});
+      console.error({ err: err, msg: "this is error in saving post" });
     }
   };
 
   const addEmojiToPost = (value) => {
     setPostBody(postBody + value);
   };
- 
+
   return (
     <div className="EditPostModal">
       <div className="EditPostModalContent">
@@ -110,7 +119,10 @@ const EditPostModal = ({
             <div className="editPostImageContainer">
               {currentImage && (
                 <div className="editPostImageWrapper">
-                  <ProfilePicture postImage={currentImage} classname="editPostImage" />
+                  <ProfilePicture
+                    postImage={currentImage}
+                    classname="editPostImage"
+                  />
                   <Close
                     className="deleteImageBadge"
                     fontSize="small"
@@ -138,60 +150,59 @@ const EditPostModal = ({
             <div className="AddOns">
               <h4 className="AddOnsText">Add to your post</h4>
               <div className="AddOnsOptions">
-                <label htmlFor="editImagefile" className="AddOnOption">
-                  <PermMedia color="success" className="AddOnIcon" />
-                  <input
-                    style={{ display: "none" }}
-                    type="file"
-                    id="editImagefile"
-                    accept=".png,.jpeg,.jpg"
-                    onClick={(e) => setCurrentImage(null)}
-                    onChange={(e) => 
-                      setImageFile(e.target.files[0])
-                    }
-                  />
-                </label>
+                <Suspense fallback={<Loading />}>
+                  <label htmlFor="editImagefile" className="AddOnOption">
+                    <PermMedia color="success" className="AddOnIcon" />
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      id="editImagefile"
+                      accept=".png,.jpeg,.jpg"
+                      onClick={(e) => setCurrentImage(null)}
+                      onChange={(e) => setImageFile(e.target.files[0])}
+                    />
+                  </label>
 
-                <label htmlFor="tag" className="addOnOption">
-                  <PersonAdd
-                    color="warning"
-                    className="AddOnIcon TagIcon"
-                    onClick={() => setTagModalActive(true)}
-                  />
-                  <TagModal
-                    addTaggedList={setTaggedFriends}
-                    tagModalActive={tagModalActive}
-                    setTagModalActive={setTagModalActive}
-                    storedList={currentPost.taggedFriends}
-                  />
-                </label>
+                  <label htmlFor="tag" className="addOnOption">
+                    <PersonAdd
+                      color="warning"
+                      className="AddOnIcon TagIcon"
+                      onClick={() => setTagModalActive(true)}
+                    />
+                    <TagModal
+                      addTaggedList={setTaggedFriends}
+                      tagModalActive={tagModalActive}
+                      setTagModalActive={setTagModalActive}
+                      storedList={currentPost.taggedFriends}
+                    />
+                  </label>
 
-                <label htmlFor="emoji" className="addOnOption">
-                  <Mood
-                    className="AddOnIcon"
-                    onClick={() => setEmojiModalActive(true)}
-                  />
-                  {emojiModalActive && 
-                  <EmojiModal
-                    emojiModalActive={emojiModalActive}
-                    setEmojiModalActive={setEmojiModalActive}
-                    addEmojiToPost={addEmojiToPost}
-                  />}
-                </label>
+                  <label htmlFor="emoji" className="addOnOption">
+                    <Mood
+                      className="AddOnIcon"
+                      onClick={() => setEmojiModalActive(true)}
+                    />
+                    {emojiModalActive && (
+                      <EmojiModal
+                        emojiModalActive={emojiModalActive}
+                        setEmojiModalActive={setEmojiModalActive}
+                        addEmojiToPost={addEmojiToPost}
+                      />
+                    )}
+                  </label>
 
-                <label htmlFor="location" className="addOnOption">
-                  <LocationOn
-                    className="AddOnIcon LocationIcon"
-                    onClick={() => 
-                      setLocationModalActive(true)
-                    }
-                  />
-                  <SearchLocationModal
-                    setLocationModalActive={setLocationModalActive}
-                    updateLocation={setCheckInLocation}
-                    locationModalActive={locationModalActive}
-                  />
-                </label>
+                  <label htmlFor="location" className="addOnOption">
+                    <LocationOn
+                      className="AddOnIcon LocationIcon"
+                      onClick={() => setLocationModalActive(true)}
+                    />
+                    <SearchLocationModal
+                      setLocationModalActive={setLocationModalActive}
+                      updateLocation={setCheckInLocation}
+                      locationModalActive={locationModalActive}
+                    />
+                  </label>
+                </Suspense>
               </div>
             </div>
           </div>
