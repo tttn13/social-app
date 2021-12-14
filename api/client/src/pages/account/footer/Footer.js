@@ -1,7 +1,8 @@
-import React from "react";
-import { IconButton } from "@mui/material";
-import { Person, GitHub, LinkedIn } from "@mui/icons-material";
 import "./footer.css";
+
+import { GitHub, LinkedIn, Person } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
+import React from "react";
 
 const Footer = () => {
   return (

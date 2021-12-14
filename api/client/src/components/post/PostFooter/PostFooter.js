@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
-import "./postFooter.css";
-import { ChatBubbleOutline, ThumbUp } from "@mui/icons-material";
-import Comment from "../../comment/Comment";
-import CreateComment from "../../comment/CreateComment";
+import './postFooter.css';
+
+import { ChatBubbleOutline, ThumbUp } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
+
 import {
   createComment,
-  getComment,
-  updateComment,
-  likePost,
   deleteComment,
-} from "../../../services/user.service";
-import IconImage from "../../profilePicture/IconImage";
+  getComment,
+  likePost,
+  updateComment,
+} from '../../../services/user.service';
+import Comment from '../../comment/Comment';
+import CreateComment from '../../comment/CreateComment';
+import IconImage from '../../profilePicture/IconImage';
 
 const PostFooter = ({ post, currentUser }) => {
   const { _id: postId, likes, comments: commentsIds } = post;
@@ -40,7 +42,7 @@ const PostFooter = ({ post, currentUser }) => {
         body: cmtText,
         userId: currentUser._id,
       });
-      console.log("res.data", res.data)
+      console.log('res.data', res.data);
       setCommentsList([...commentsList, res.data]);
     } catch (error) {
       console.error({ error: error, msg: "Can't creating comment" });
@@ -75,7 +77,7 @@ const PostFooter = ({ post, currentUser }) => {
       const cmts = await fetchComments(commentsIds);
       setCommentsList(cmts);
     };
-    commentsIds.length > 0 && commentsIds !== "undefined" && fetchData();
+    commentsIds.length > 0 && commentsIds !== 'undefined' && fetchData();
   }, [commentsIds]);
 
   return (
@@ -83,7 +85,7 @@ const PostFooter = ({ post, currentUser }) => {
       <div className="postBottomStats">
         <div
           className="postBottomStatsLeft"
-          style={likeCount > 0 ? { display: "flex" } : { visibility: "hidden" }}
+          style={likeCount > 0 ? { display: 'flex' } : { visibility: 'hidden' }}
         >
           <IconImage
             imageSrc="like.png"
@@ -112,8 +114,8 @@ const PostFooter = ({ post, currentUser }) => {
 
       <div className="postBottomActions">
         <button className="likeButton" onClick={likeHandler}>
-          <ThumbUp className={`thumbIcon ${isLiked && "liked"} `} />
-          {isLiked ? "Liked" : "Like"}
+          <ThumbUp className={`thumbIcon ${isLiked && 'liked'} `} />
+          {isLiked ? 'Liked' : 'Like'}
         </button>
         <button
           className="commentsButton"
@@ -126,7 +128,7 @@ const PostFooter = ({ post, currentUser }) => {
 
       <div
         className="commentsModal"
-        style={{ display: `${commentModalActive ? "block" : "none"}` }}
+        style={{ display: `${commentModalActive ? 'block' : 'none'}` }}
       >
         {commentsList &&
           commentsList.length > 0 &&

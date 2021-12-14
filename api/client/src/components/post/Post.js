@@ -1,22 +1,23 @@
-import { useState, useContext, useRef } from "react";
-import "./post.css";
+import './post.css';
 import {
-  MoreHoriz,
-  Edit,
-  Delete,
   CancelPresentation,
-} from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { useFetchUser } from "../customHooks/useFetchUser";
-import PostFooter from "./PostFooter/PostFooter";
-import ReactTimeAgo from "react-time-ago";
-import { Public } from "@mui/icons-material";
-import ModalBoxContainer from "./EditPostModalBox/ModalBoxContainer";
-import TaggedUsers from "../share/TaggedUsers/TaggedUsers";
-import { isEmpty } from "../../utils/utils";
-import { useOutsideAlerter } from "../customHooks/useOutsideAlerter";
-import ProfilePicture from "../profilePicture/ProfilePicture";
+  Delete,
+  Edit,
+  MoreHoriz,
+  Public,
+} from '@mui/icons-material';
+import { lazy, Suspense, useContext, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import ReactTimeAgo from 'react-time-ago';
+
+import { AuthContext } from '../../context/AuthContext';
+import Loading from '../../pages/Loading';
+import { isEmpty } from '../../utils/utils';
+import { useFetchUser } from '../customHooks/useFetchUser';
+import { useOutsideAlerter } from '../customHooks/useOutsideAlerter';
+import ProfilePicture from '../profilePicture/ProfilePicture';
+import TaggedUsers from '../share/TaggedUsers/TaggedUsers';
+import PostFooter from './PostFooter/PostFooter';
 
 const Post = ({ post, handleDeletePost }) => {
   const {
@@ -28,6 +29,7 @@ const Post = ({ post, handleDeletePost }) => {
     taggedFriends,
     postLocation,
   } = post;
+  const EditPostModal = lazy(() => import('./EditPostModalBox/EditPostModal'));
   const currentUser = useContext(AuthContext).user.user;
   const { user } = useFetchUser({ userId: userId });
   const postSettingsMenu = useRef();
@@ -42,7 +44,7 @@ const Post = ({ post, handleDeletePost }) => {
         ref={postSettingsMenu}
         className="PostSettings"
         style={{
-          display: `${postSettingsActive ? "flex" : "none"}`,
+          display: `${postSettingsActive ? 'flex' : 'none'}`,
         }}
       >
         {String(currentUser?._id) !== String(userId) ? (
@@ -65,13 +67,24 @@ const Post = ({ post, handleDeletePost }) => {
               Edit post
             </li>
 
-            <ModalBoxContainer
-              currentPost={post}
-              user={currentUser}
-              setModalActive={setPostSettingsActive}
-              setPostIsBeingEdited={setPostIsBeingEdited}
-              postIsBeingEdited={postIsBeingEdited}
-            />
+            {postIsBeingEdited && (
+              <div
+                className="ModalBoxContainer"
+                style={{
+                  display: `${postIsBeingEdited ? 'flex' : 'none'}`,
+                }}
+              >
+                <Suspense fallback={<Loading />}>
+                  <EditPostModal
+                    currentPost={post}
+                    user={currentUser}
+                    setModalActive={setPostSettingsActive}
+                    setPostIsBeingEdited={setPostIsBeingEdited}
+                  />
+                </Suspense>
+              </div>
+            )}
+
             <li
               className="settingItem"
               onClick={() => {
@@ -98,7 +111,7 @@ const Post = ({ post, handleDeletePost }) => {
       className="post"
       id={`post-${postId}`}
       style={{
-        display: `${postDisplayed ? "block" : "none"}`,
+        display: `${postDisplayed ? 'block' : 'none'}`,
       }}
     >
       <div className="postWrapper">
@@ -133,7 +146,7 @@ const Post = ({ post, handleDeletePost }) => {
                 <span className="postLocation">
                   <Public fontSize="small" />
                   <span className="location">
-                    {postLocation.split(",")[0]}{" "}
+                    {postLocation.split(',')[0]}{' '}
                   </span>
                 </span>
               )}

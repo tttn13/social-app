@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
-import NoteIcon from "@mui/icons-material/Note";
 import "./SearchResult.css";
+
+import NoteIcon from "@mui/icons-material/Note";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import ProfilePicture from "../profilePicture/ProfilePicture";
 
 const SearchResult = ({ res, closeDropDown }) => {

@@ -1,3 +1,7 @@
+import { login, logout } from "../services/auth.service";
+import { removeUserFromStorage } from "../services/token.service";
+import { handleFollowsAPI } from "../services/user.service";
+
 import {
   LoginFailure,
   LoginStart,
@@ -6,9 +10,6 @@ import {
   updateFollows,
   updateUnfollows,
 } from "./AuthActions";
-import { login, logout } from "../services/auth.service";
-import { removeUserFromStorage } from "../services/token.service";
-import { handleFollowsAPI } from "../services/user.service";
 
 export const loginUser = async (userCredentials, dispatch) => {
   removeUserFromStorage();

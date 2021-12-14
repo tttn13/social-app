@@ -1,13 +1,16 @@
 import "./topbar.css";
-import { Person, Chat, Notifications, Logout } from "@mui/icons-material";
-import { Link, useHistory } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+
+import { Chat, Logout, Notifications, Person } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
-import SearchBarDropdown from "./SearchBarDropdown";
-import { useFetchSearchResults } from "../customHooks/useFetchSearchResults";
+import { Link, useHistory } from "react-router-dom";
+
 import { logoutUser } from "../../context/AsyncActions";
+import { AuthContext } from "../../context/AuthContext";
 import { pause } from "../../utils/utils";
+import { useFetchSearchResults } from "../customHooks/useFetchSearchResults";
 import ProfilePicture from "../profilePicture/ProfilePicture";
+
+import SearchBarDropdown from "./SearchBarDropdown";
 import SearchForm from "./SearchForm";
 
 const Topbar = () => {

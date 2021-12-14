@@ -1,9 +1,11 @@
-import usePlacesAutocomplete from "use-places-autocomplete";
-import { Combobox, ComboboxInput, ComboboxList } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import { useRef } from "react";
-import { Search, Cancel, LocationOn } from "@mui/icons-material";
 import "./SearchLocationModal.css";
+
+import { Cancel, LocationOn, Search } from "@mui/icons-material";
+import { Combobox, ComboboxInput, ComboboxList } from "@reach/combobox";
+import { useRef } from "react";
+import usePlacesAutocomplete from "use-places-autocomplete";
+
 import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
 
 const SearchLocationModal = ({
