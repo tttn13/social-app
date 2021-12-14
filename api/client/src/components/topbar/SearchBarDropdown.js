@@ -1,10 +1,7 @@
-import "./SearchBarDropdown.css";
-
-import { useRef } from "react";
-
-import { useOutsideAlerter } from "../customHooks/useOutsideAlerter";
-
 import SearchResult from "./SearchResult";
+import "./SearchBarDropdown.css";
+import { useOutsideAlerter } from "../customHooks/useOutsideAlerter";
+import { useRef } from "react";
 
 const SearchBarDropdown = ({ searchResults, setResultsModalActive }) => {
   const noResult = {

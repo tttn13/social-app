@@ -1,16 +1,14 @@
-import "./SearchResults.css";
-
 import { useContext } from "react";
-import { useLocation } from "react-router-dom";
-
-import CloseFriend from "../../components/closeFriend/CloseFriend";
-import { useFetchSearchResults } from "../../components/customHooks/useFetchSearchResults";
-import Post from "../../components/post/Post";
+import "./SearchResults.css";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
+import Post from "../../components/post/Post";
+import { isEmpty, extractSearchQuery } from "../../utils/utils";
 import { AuthContext } from "../../context/AuthContext";
-import { extractSearchQuery, isEmpty } from "../../utils/utils";
+import { useLocation } from "react-router-dom";
+import { useFetchSearchResults } from "../../components/customHooks/useFetchSearchResults";
+import CloseFriend from "../../components/closeFriend/CloseFriend";
 import Loading from "../Loading";
 
 const SearchResults = () => {

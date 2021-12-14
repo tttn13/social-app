@@ -1,8 +1,7 @@
+import jwt_decode from "jwt-decode";
+import { getToken } from "./token.service";
 import axios from "axios";
 import dotenv from 'dotenv';
-import jwt_decode from "jwt-decode";
-
-import { getToken } from "./token.service";
 
 dotenv.config();
 const axiosJWT = axios.create({

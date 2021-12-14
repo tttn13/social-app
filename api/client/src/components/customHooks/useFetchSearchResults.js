@@ -1,7 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-
+import { useState, useEffect, useCallback } from "react";
 import { combineAllResults, isEmpty } from "../../utils/utils";
-
 import { useFetchPosts } from "./useFetchPosts";
 import { useGetFriends } from "./useGetFriends";
 

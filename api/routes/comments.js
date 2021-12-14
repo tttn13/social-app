@@ -1,27 +1,28 @@
-const router = require('express').Router();
-const Comment = require('../models/Comment');
-const Post = require('../models/Post');
-const User = require('../models/User');
+const router = require("express").Router();
+const Comment = require("../models/Comment");
+const Post = require("../models/Post");
+const User = require("../models/User");
+const auth = require("../middleware/auth")
 
-// get comment
-router.get('/:commentId', async (req, res) => {
+//get comment
+router.get("/:commentId", async(req, res) => {
   try {
-    const comment = await Comment.findById(req.params.commentId);
-    res.status(200).json(comment);
+    const comment = await Comment.findById(req.params.commentId)
+    res.status(200).json(comment)
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+})
 
-// create comment on a post
-router.post('/:id', async (req, res) => {
+//create comment on a post
+router.post("/:id", async (req, res) => {
   try {
-    // check for existing user
-    const userCreator = await User.findById(req.body.userId);
+    //check for existing user
+    const userCreator = await User.findById(req.body.userId)
 
-    // check for existing post
+    //check for existing post
     const post = await Post.findById(req.params.id);
-    if (!post) throw Error('Post not found');
+    if (!post) throw Error("Post not found");
 
     const newComment = new Comment({
       postId: req.params.id,
@@ -29,9 +30,9 @@ router.post('/:id', async (req, res) => {
       userId: req.body.userId,
     });
 
-    // save comment and return response
+    //save comment and return response
     const savedComment = await newComment.save();
-    if (!savedComment) throw Error('Something went wrong saving the comment');
+    if (!savedComment) throw Error("Something went wrong saving the comment");
 
     post.comments.push(savedComment._id);
     await post.save();
@@ -40,51 +41,53 @@ router.post('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-});
+})
 
-// delete a comment
-router.delete('/:id', async (req, res) => {
+//delete a comment
+router.delete("/:id", async (req, res) => {
   try {
     const comment = await Comment.findById(req.params.id);
-    if (!comment) throw Error('Comment not found');
+    if (!comment) throw Error("Comment not found")
 
     const post = await Post.findById(comment.postId);
-    if (!post) throw Error('Post not found');
-
+    if (!post) throw Error("Post not found");
+    
     if (
-      comment.userId.toString() === req.body.userId
-      || post.userId.toString() === req.body.userId
+      comment.userId.toString() === req.body.userId ||
+      post.userId.toString() === req.body.userId
     ) {
       post.comments = post.comments.filter((commentId) => commentId.toString() !== req.params.id);
       await Comment.findById(req.params.id).deleteOne();
       await post.save();
       return res.status(200).json(comment);
+    } else {
+      throw Error("Action not allowed");
     }
-    throw Error('Action not allowed');
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+})
 
-// update comment
-router.put('/:id', async (req, res) => {
-  try {
-    // check for existing comment
+//update comment
+router.put("/:id", async (req, res) => {
+  try {    
+    //check for existing comment
     const comment = await Comment.findById(req.params.id);
-    if (!comment) throw Error('Comment not found');
-
+    if (!comment) throw Error("Comment not found");
+  
     if (String(comment.userId) === String(req.body.userId)) {
       comment.isEdited = true;
-      comment.body = req.body.body;
-      await comment.save();
+      comment.body = req.body.body
+      await comment.save()
 
       const editedComment = await Comment.findById(req.params.id);
-      return res.status(200).json(editedComment);
+      return res.status(200).json(editedComment)
+    } else {
+      res.status(403).json("You can update your Comment only")
     }
-    res.status(403).json('You can update your Comment only');
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-});
+})
 
 module.exports = router;

@@ -1,34 +1,31 @@
-import { lazy, Suspense, useContext } from 'react';
+import { lazy, Suspense, useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 import {
   BrowserRouter as Router,
-  Redirect,
-  Route,
   Switch,
-} from 'react-router-dom';
-
-import PrivateRoute from './components/common/PrivateRoute';
-import { AuthContext } from './context/AuthContext';
-import Loading from './pages/Loading';
-import AuthVerify from './utils/AuthVerify';
-import history from './utils/history';
+  Route,
+  Redirect,
+} from "react-router-dom";
+import AuthVerify from "./utils/AuthVerify";
+import history from "./utils/history";
+import PrivateRoute from "./components/common/PrivateRoute";
+import Loading from "./pages/Loading";
 
 function App() {
   const store = useContext(AuthContext);
   const { user: userContext, isLoggedIn, isFetching } = store;
-  const Home = lazy(() => import('./pages/home/Home'));
-  const Login = lazy(() => import('./pages/account/login/Login'));
-  const Register = lazy(() => import('./pages/account/register/Register'));
-  const SessionExpired = lazy(() =>
-    import('./pages/account/sessionExpired/SessionExpired')
-  );
-  const Profile = lazy(() => import('./pages/profile/Profile'));
-  const SearchResults = lazy(() =>
-    import('./pages/searchResult/SearchResults')
-  );
-
+  const Home = lazy(() => import("./pages/home/Home"));
+  const Login = lazy(() => import("./pages/account/login/Login"));
+  const Register = lazy(() => import("./pages/account/register/Register"));
+  const SessionExpired = lazy(() => import("./pages/account/sessionExpired/SessionExpired"));
+  const Profile = lazy(() => import("./pages/profile/Profile"));
+  const SearchResults = lazy(() => import("./pages/searchResult/SearchResults"));
+  
   return (
     <Router>
-      <Suspense fallback={<Loading />}>
+      <Suspense
+        fallback={ <Loading/>}
+      >
         <AuthVerify history={history} store={store} />
         <Switch>
           <PrivateRoute

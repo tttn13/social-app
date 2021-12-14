@@ -1,10 +1,9 @@
-import { CircularProgress } from "@mui/material";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
-import env_config from "../../config/index";
-import { loginUser } from "../../context/AsyncActions";
+import { CircularProgress } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
+import { loginUser } from "../../context/AsyncActions";
+import env_config from "../../config/index";
 
 const LoginBox = () => {
   const { demoUser } = env_config;

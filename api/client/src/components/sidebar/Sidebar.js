@@ -1,22 +1,19 @@
 import "./sidebar.css";
-
 import {
-  Bookmark,
-  Event,
-  Group,
-  HelpOutline,
-  PlayCircleFilledOutlined,
   RssFeed,
-  School,
+  PlayCircleFilledOutlined,
+  Group,
+  Bookmark,
+  HelpOutline,
   WorkOutline,
+  Event,
+  School,
 } from "@mui/icons-material";
-import { useContext } from "react";
-
-import { AuthContext } from "../../context/AuthContext";
-import Loading from "../../pages/Loading";
 import CloseFriend from "../closeFriend/CloseFriend";
+import Loading from "../../pages/Loading";
 import { useGetFriends } from "../customHooks/useGetFriends";
-
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 const Sidebar = () => {
   const { user } = useContext(AuthContext).user;

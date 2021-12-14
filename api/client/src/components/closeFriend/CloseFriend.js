@@ -1,8 +1,6 @@
 import "./closeFriend.css";
-
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 import ProfilePicture from "../profilePicture/ProfilePicture";
 
 const CloseFriend = ({ user, style }) => {

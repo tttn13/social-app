@@ -1,8 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-
-import { checkToken } from "../services/auth.service";
 import { getUserFromStorage } from "../services/token.service";
+import { checkToken } from "../services/auth.service";
 
 const AuthVerify = ({ history, store }) => {
   const { dispatch } = store;

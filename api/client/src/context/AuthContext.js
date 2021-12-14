@@ -1,11 +1,9 @@
 import { createContext, useEffect, useReducer } from "react";
-
-import { checkToken } from "../services/auth.service";
-import { getUserFromStorage } from "../services/token.service";
-import history from "../utils/history";
-import { isEmpty } from "../utils/utils";
-
 import AuthReducer from "./AuthReducer";
+import { isEmpty } from "../utils/utils";
+import { getUserFromStorage } from "../services/token.service";
+import { checkToken } from "../services/auth.service";
+import history from "../utils/history";
 
 let userFromStorage = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user"))

@@ -1,6 +1,5 @@
 //a service for accessing data aka Data service
 import axiosInstance from "../config/config"
-
 import axiosJWT from "./axiosJwtInterceptors";
 //User services
 export const getUser = async ({ userId, username }) => {

@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-
+import { useState, useEffect, useCallback } from "react";
 import { getUserById, getUserByName } from "../../services/user.service";
 
 export const useFetchUser = ({ userId, username }) => {

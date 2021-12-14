@@ -1,18 +1,16 @@
-import "./feed.css";
-
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import { useFetchPosts } from "../../components/customHooks/useFetchPosts";
-import Loading from "../../pages/Loading";
+import { isEmpty, sortByDate } from "../../utils/utils";
+import "./feed.css";
+import Share from "../share/Share";
+import Post from "../post/Post";
 import {
-  createPost,
   deletePost,
+  createPost,
   uploadFile,
 } from "../../services/user.service";
-import { isEmpty, sortByDate } from "../../utils/utils";
-import Post from "../post/Post";
-import Share from "../share/Share";
+import Loading from "../../pages/Loading";
+import { useParams } from "react-router-dom";
 
 const Feed = ({ currentUser }) => {
   const selectedUsername = useParams().username;

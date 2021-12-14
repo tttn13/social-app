@@ -1,40 +1,41 @@
-const router = require('express').Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const { generateAccessToken } = require('../middleware/generateToken');
-require('dotenv').config();
+const router = require("express").Router();
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { generateAccessToken } = require("../middleware/generateToken");
+require("dotenv").config();
 
-// Register new user
-router.post('/register', async (req, res) => {
+//Register new user
+router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 
-  // simple validation
+  //simple validation
   if (!username || !email || !password) {
-    return res.status(400).json({ msg: 'Must enter all fields' });
+    return res.status(400).json({ msg: "Must enter all fields" });
   }
 
   try {
-    // check for existing user
-    const existingUser = await User.findOne({ email });
-    if (existingUser) throw Error('User already exists');
+    //check for existing user
+    const existingUser = await User.findOne({ email: email });
+    if (existingUser) throw Error("User already exists");
 
-    // create new user
-    // generate new password
+    //create new user
+    //generate new password
     const salt = await bcrypt.genSalt(10);
-    if (!salt) throw Error('Something went wrong with bcrypt');
+    if (!salt) throw Error("Something went wrong with bcrypt");
 
     const hashedPassword = await bcrypt.hash(password, salt);
-    if (!hashedPassword) throw Error('Something went wrong hashing the password');
+    if (!hashedPassword)
+      throw Error("Something went wrong hashing the password");
 
     const newUser = new User({
-      username,
-      email,
+      username: username,
+      email: email,
       password: hashedPassword,
     });
-    // save user and return response
+    //save user and return response
     const savedUser = await newUser.save();
-    if (!savedUser) throw Error('Something went wrong saving the user');
+    if (!savedUser) throw Error("Something went wrong saving the user");
 
     const generatedToken = generateAccessToken(savedUser._id);
     res.status(200).json({
@@ -49,25 +50,25 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login
-router.post('/login', async (req, res) => {
+//Login
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  // simple validation
+  //simple validation
   if (!email || !password) {
-    return res.status(400).json({ msg: 'Please enter all fields' });
+    return res.status(400).json({ msg: "Please enter all fields" });
   }
 
-  // check for existing user
-  const user = await User.findOne({ email });
-  !user && res.status(404).send('User does not exist');
+  //check for existing user
+  const user = await User.findOne({ email: email });
+  !user && res.status(404).send("User does not exist");
 
-  // validate password
+  //validate password
   try {
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) throw Error('Invalid credentials');
+    if (!isMatch) throw Error("Invalid credentials");
   } catch (err) {
     const response = {
-      msg: `Can't compare password: ${err.message}`,
+      msg: "Can't compare password: " + err.message,
       error: err,
     };
     return res.status(500).json(response);
@@ -77,16 +78,16 @@ router.post('/login', async (req, res) => {
   if (!token) throw Error("Couldn't sign the token");
 
   return res.status(200).send({
-    token,
-    user,
+    token: token,
+    user: user,
   });
 });
 
-// log out
-router.post('/logout', async (req, res) => {
+//log out
+router.post("/logout", async (req, res) => {
   try {
-    console.log('logging out on back end');
-    res.status(200).send({ msg: 'You logged out successfully' });
+    console.log("logging out on back end");
+    res.status(200).send({ msg: "You logged out successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

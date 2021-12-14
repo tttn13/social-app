@@ -1,5 +1,4 @@
 import React from "react";
-
 import env_config from "../../config/index";
 
 const IconImage = ({ imageSrc, classname, handleClick }) => {

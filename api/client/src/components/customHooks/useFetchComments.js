@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-
+import { useState, useEffect, useCallback } from "react";
 import { getComment } from "../../services/user.service";
 
 export const useFetchComments = (commentsIds) => {

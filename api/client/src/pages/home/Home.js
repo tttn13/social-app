@@ -1,14 +1,12 @@
-import "./home.css";
-
-import { useContext } from "react";
-
-import { useFetchPosts } from "../../components/customHooks/useFetchPosts";
-import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
-import { AuthContext } from "../../context/AuthContext";
+import Feed from "../../components/feed/Feed";
+import "./home.css";
 import { isEmpty } from "../../utils/utils";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useFetchPosts } from "../../components/customHooks/useFetchPosts";
 
 const Home = () => {
   const { user } = useContext(AuthContext).user;

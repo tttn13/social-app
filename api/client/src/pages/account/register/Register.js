@@ -1,12 +1,10 @@
 import "./register.css";
-
-import { useContext, useRef } from "react";
+import { useRef, useContext } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-
-import { loginUser } from "../../../context/AsyncActions";
 import { AuthContext } from "../../../context/AuthContext";
 import { register } from "../../../services/auth.service"
+import { loginUser } from "../../../context/AsyncActions";
 import Footer from "../footer/Footer";
 
 const Register = () => {

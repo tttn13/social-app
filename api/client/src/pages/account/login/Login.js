@@ -1,5 +1,4 @@
 import "./login.css";
-
 import LoginBox from "../../../components/loginBox/LoginBox";
 import Footer from "../footer/Footer";
 

@@ -1,21 +1,18 @@
-import './tagModal.css';
-
-import { Cancel, Close, Search } from '@mui/icons-material';
-import { useContext, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import { AuthContext } from '../../../context/AuthContext';
+import { useState, useEffect, useRef, useContext } from "react";
+import "./tagModal.css";
+import { Link } from "react-router-dom";
+import { Search, Cancel, Close } from "@mui/icons-material";
 import {
   containsObject,
   getMatches,
   removeOverlappedUsers,
   removeUserFromList,
-} from '../../../utils/utils';
-import { useDetectInputChange } from '../../customHooks/useDetectInputChange';
-import { useGetFriends } from '../../customHooks/useGetFriends';
-import { useOutsideAlerter } from '../../customHooks/useOutsideAlerter';
-import ProfilePicture from '../../profilePicture/ProfilePicture';
-import { useDetectInputChange } from '../../customHooks/useDetectInputChange';
+} from "../../../utils/utils";
+import { useGetFriends } from "../../customHooks/useGetFriends";
+import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
+import { AuthContext } from "../../../context/AuthContext";
+import ProfilePicture from "../../profilePicture/ProfilePicture";
+import { useDetectInputChange } from "../../customHooks/useDetectInputChange";
 
 const TagModal = ({
   addTaggedList,
@@ -27,14 +24,14 @@ const TagModal = ({
   const tagModalContent = useRef();
   const searchInput = useRef();
   const [suggestionsList, setSuggestionsList] = useState([]);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [taggedList, setTaggedList] = useState([]);
   const { friends: frs } = useGetFriends(user);
   const [friends, setFriends] = useState([]);
 
   const selectFriend = (taggedUser) => {
     if (!containsObject(taggedUser, taggedList)) {
-      setValue('');
+      setValue("");
       setTaggedList([...taggedList, taggedUser]);
       const removeFromSuggestions = removeUserFromList(
         suggestionsList,
@@ -102,7 +99,7 @@ const TagModal = ({
   return (
     <div
       className="tagModal"
-      style={{ display: `${tagModalActive ? 'flex' : 'none'}` }}
+      style={{ display: `${tagModalActive ? "flex" : "none"}` }}
     >
       <div ref={tagModalContent} className="tagModalContent">
         <div className="tagModalTop">
@@ -133,7 +130,7 @@ const TagModal = ({
 
         <div
           className="taggedBox"
-          style={{ display: `${taggedList.length > 0 ? 'flex' : 'none'}` }}
+          style={{ display: `${taggedList.length > 0 ? "flex" : "none"}` }}
         >
           <h5 className="friendListHeader">TAGGED</h5>
           <ul className="taggedUsersList">
@@ -143,11 +140,11 @@ const TagModal = ({
                 <li className="taggedListItem" key={idx} user={u}>
                   <Link
                     to={`/profile/${u.username}`}
-                    style={{ textDecoration: 'none' }}
+                    style={{ textDecoration: "none" }}
                   >
                     <span
                       className="taggedProfile"
-                      style={{ fontSize: '16px' }}
+                      style={{ fontSize: "16px" }}
                     >
                       {u.username}
                     </span>
@@ -174,7 +171,7 @@ const TagModal = ({
                     <span className="sidebarFriendName">{u.username}</span>
                   </li>
                 ))
-              : 'No searches found'}
+              : "No searches found"}
           </ul>
         </div>
       </div>

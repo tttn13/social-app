@@ -1,16 +1,14 @@
-import "./profile.css";
-
 import { useContext } from "react";
-import { useParams } from "react-router";
-
-import { useFetchUser } from "../../components/customHooks/useFetchUser";
-import Feed from "../../components/feed/Feed";
-import ProfilePicture from "../../components/profilePicture/ProfilePicture";
+import "./profile.css";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
+import Feed from "../../components/feed/Feed";
+import { useParams } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import { useFetchUser } from "../../components/customHooks/useFetchUser";
 import { isEmpty } from "../../utils/utils";
+import ProfilePicture from "../../components/profilePicture/ProfilePicture";
 
 const Profile = () => {
   const currentUser = useContext(AuthContext).user.user;
