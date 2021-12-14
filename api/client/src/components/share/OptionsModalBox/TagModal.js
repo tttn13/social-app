@@ -11,8 +11,8 @@ import {
 import { useGetFriends } from "../../customHooks/useGetFriends";
 import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
 import { AuthContext } from "../../../context/AuthContext";
-import ProfilePicture from "../../profilePicture/ProfilePicture";
 import { useDetectInputChange } from "../../customHooks/useDetectInputChange";
+import ProfilePicture from "../../profilePicture/ProfilePicture";
 
 const TagModal = ({
   addTaggedList,

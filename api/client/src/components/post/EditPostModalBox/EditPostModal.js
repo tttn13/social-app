@@ -9,9 +9,9 @@ import {
   Public,
 } from "@mui/icons-material";
 import { updatePost, uploadFile } from "../../../services/user.service";
-import TaggedUsers from "../../share/TaggedUsers/TaggedUsers";
 import ProfilePicture from "../../profilePicture/ProfilePicture";
 import Loading from "../../../pages/Loading";
+import TaggedUsers from "../../share/TaggedUsers/TaggedUsers";
 
 const EditPostModal = ({
   currentPost,

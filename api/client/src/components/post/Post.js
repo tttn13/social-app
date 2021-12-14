@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, lazy, Suspense } from "react";
 import "./post.css";
 import {
   MoreHoriz,
@@ -12,11 +12,11 @@ import { useFetchUser } from "../customHooks/useFetchUser";
 import PostFooter from "./PostFooter/PostFooter";
 import ReactTimeAgo from "react-time-ago";
 import { Public } from "@mui/icons-material";
-import ModalBoxContainer from "./EditPostModalBox/ModalBoxContainer";
-import TaggedUsers from "../share/TaggedUsers/TaggedUsers";
 import { isEmpty } from "../../utils/utils";
 import { useOutsideAlerter } from "../customHooks/useOutsideAlerter";
 import ProfilePicture from "../profilePicture/ProfilePicture";
+import Loading from "../../pages/Loading";
+import TaggedUsers from "../share/TaggedUsers/TaggedUsers";
 
 const Post = ({ post, handleDeletePost }) => {
   const {
@@ -28,6 +28,7 @@ const Post = ({ post, handleDeletePost }) => {
     taggedFriends,
     postLocation,
   } = post;
+  const EditPostModal = lazy(() => import("./EditPostModalBox/EditPostModal"));
   const currentUser = useContext(AuthContext).user.user;
   const { user } = useFetchUser({ userId: userId });
   const postSettingsMenu = useRef();
@@ -65,13 +66,24 @@ const Post = ({ post, handleDeletePost }) => {
               Edit post
             </li>
 
-            <ModalBoxContainer
-              currentPost={post}
-              user={currentUser}
-              setModalActive={setPostSettingsActive}
-              setPostIsBeingEdited={setPostIsBeingEdited}
-              postIsBeingEdited={postIsBeingEdited}
-            />
+            {postIsBeingEdited && (
+              <div
+                className="ModalBoxContainer"
+                style={{
+                  display: `${postIsBeingEdited ? "flex" : "none"}`,
+                }}
+              >
+                <Suspense fallback={<Loading />}>
+                  <EditPostModal
+                    currentPost={post}
+                    user={currentUser}
+                    setModalActive={setPostSettingsActive}
+                    setPostIsBeingEdited={setPostIsBeingEdited}
+                  />
+                </Suspense>
+              </div>
+            )}
+
             <li
               className="settingItem"
               onClick={() => {

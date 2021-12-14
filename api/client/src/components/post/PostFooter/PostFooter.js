@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import "./postFooter.css";
 import { ChatBubbleOutline, ThumbUp } from "@mui/icons-material";
-import Comment from "../../comment/Comment";
-import CreateComment from "../../comment/CreateComment";
 import {
   createComment,
   getComment,
@@ -10,6 +8,8 @@ import {
   likePost,
   deleteComment,
 } from "../../../services/user.service";
+import Comment from "../../comment/Comment";
+import CreateComment from "../../comment/CreateComment";
 import IconImage from "../../profilePicture/IconImage";
 
 const PostFooter = ({ post, currentUser }) => {

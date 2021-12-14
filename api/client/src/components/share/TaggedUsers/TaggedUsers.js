@@ -1,6 +1,6 @@
+import "./taggedUsers.css";
 import { HighlightOff } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import "./taggedUsers.css";
 
 const TaggedUsers = ({
   classname,

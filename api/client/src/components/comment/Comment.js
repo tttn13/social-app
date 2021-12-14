@@ -5,7 +5,6 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ReactTimeAgo from "react-time-ago";
 import { useOutsideAlerter } from "../customHooks/useOutsideAlerter";
 import { useFetchUser } from "../customHooks/useFetchUser";
-
 import ProfilePicture from "../profilePicture/ProfilePicture";
 
 const Comment = ({ comment, currentUser, handleDeleteUI, editComment }) => {

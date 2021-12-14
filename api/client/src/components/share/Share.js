@@ -8,12 +8,12 @@ import {
   Cancel,
 } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import TaggedUsers from "./TaggedUsers/TaggedUsers";
-import ProfilePicture from "../profilePicture/ProfilePicture";
 import { checkToken } from "../../services/auth.service";
 import history from "../../utils/history";
 import { AuthContext } from "../../context/AuthContext";
+import ProfilePicture from "../profilePicture/ProfilePicture";
 import Loading from "../../pages/Loading";
+import TaggedUsers from "./TaggedUsers/TaggedUsers";
 
 const Share = ({ user, addNewPost }) => {
   const [emojiModalActive, setEmojiModalActive] = useState(false);
@@ -24,9 +24,11 @@ const Share = ({ user, addNewPost }) => {
   const [file, setFile] = useState(null);
   const [taggedList, setTaggedList] = useState([]);
   const { dispatch } = useContext(AuthContext);
-  const SearchLocationModal = lazy(() => import("./OptionsModalBox/SearchLocationModal"))
-  const TagModal = lazy(() => import("./OptionsModalBox/TagModal"))
-  const EmojiModal = lazy(() => import("./OptionsModalBox/EmojiModal"))
+  const SearchLocationModal = lazy(() =>
+    import("./OptionsModalBox/SearchLocationModal")
+  );
+  const TagModal = lazy(() => import("./OptionsModalBox/TagModal"));
+  const EmojiModal = lazy(() => import("./OptionsModalBox/EmojiModal"));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,19 +52,19 @@ const Share = ({ user, addNewPost }) => {
       try {
         await addNewPost(newPost, file);
       } catch (error) {
-        console.error({ err: error, msg: "Can't create post"})
+        console.error({ err: error, msg: "Can't create post" });
       }
-      resetForm()
+      resetForm();
     }
   };
 
   const resetForm = () => {
-    setCheckInLocation("")
+    setCheckInLocation("");
     setPostDescValue("");
-    setFile(null)
-    setTaggedList([])
-  }
-  
+    setFile(null);
+    setTaggedList([]);
+  };
+
   const removeTaggedUsers = () => {
     setTaggedList([]);
   };
@@ -107,83 +109,83 @@ const Share = ({ user, addNewPost }) => {
         )}
         <form className="shareBottom" onSubmit={handleSubmit}>
           <div className="shareOptions">
-            <Suspense fallback={<Loading/>}> 
-            <label htmlFor="file" className="shareOption">
-              <PermMedia htmlColor="tomato" className="shareIcon" />
-              <span className="shareOptionText">Photo or Video</span>
-              <input
-                style={{ display: "none" }}
-                type="file"
-                id="file"
-                accept=".png,.jpeg,.jpg"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-            </label>
-
-            <div className="shareOption">
-              <Label htmlColor="tomato" className="shareIcon" />
-              <span
-                className="shareOptionText TagIcon"
-                onClick={() => setTagModalActive(!tagModalActive)}
-              >
-                Tag
-              </span>
-
-              <TagModal
-                addTaggedList={setTaggedList}
-                setTagModalActive={setTagModalActive}
-                tagModalActive={tagModalActive}
-              />
-            </div>
-
-            <div
-              className="shareOption locationOption "
-              style={{
-                alignItems: `${
-                  checkInLocation.length > 0 ? "start" : "center"
-                }`,
-              }}
-            >
-              <Room htmlColor="tomato" className="shareIcon LocationIcon" />
-              <span
-                className="shareOptionText LocationIcon"
-                onClick={() => setLocationModalActive(!locationModalActive)}
-              >
-                {checkInLocation.length > 0 ? checkInLocation : "Location"}
-               
-              </span>
-              {checkInLocation.length > 0 && (
-                <IconButton
-                  size="xsmall"
-                  className="deleteLocation"
-                  aria-label="Delete"
-                  onClick={() => setCheckInLocation("")}
-                >&times;
-                </IconButton>
-              )}
-              <SearchLocationModal
-                setLocationModalActive={setLocationModalActive}
-                updateLocation={setCheckInLocation}
-                locationModalActive={locationModalActive}
-              />
-            </div>
-
-            <div className="shareOption">
-              <EmojiEmotions htmlColor="tomato" className="shareIcon" />
-              <span
-                className="shareOptionText emojiModalBtn"
-                onClick={() => setEmojiModalActive(!emojiModalActive)}
-              >
-                Feelings
-              </span>
-              {emojiModalActive && (
-                <EmojiModal
-                  emojiModalActive={emojiModalActive}
-                  setEmojiModalActive={setEmojiModalActive}
-                  addEmojiToPost={addEmojiToPost}
+            <Suspense fallback={<Loading />}>
+              <label htmlFor="file" className="shareOption">
+                <PermMedia htmlColor="tomato" className="shareIcon" />
+                <span className="shareOptionText">Photo or Video</span>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  id="file"
+                  accept=".png,.jpeg,.jpg"
+                  onChange={(e) => setFile(e.target.files[0])}
                 />
-              )}
-            </div>
+              </label>
+
+              <div className="shareOption">
+                <Label htmlColor="tomato" className="shareIcon" />
+                <span
+                  className="shareOptionText TagIcon"
+                  onClick={() => setTagModalActive(!tagModalActive)}
+                >
+                  Tag
+                </span>
+
+                <TagModal
+                  addTaggedList={setTaggedList}
+                  setTagModalActive={setTagModalActive}
+                  tagModalActive={tagModalActive}
+                />
+              </div>
+
+              <div
+                className="shareOption locationOption "
+                style={{
+                  alignItems: `${
+                    checkInLocation.length > 0 ? "start" : "center"
+                  }`,
+                }}
+              >
+                <Room htmlColor="tomato" className="shareIcon LocationIcon" />
+                <span
+                  className="shareOptionText LocationIcon"
+                  onClick={() => setLocationModalActive(!locationModalActive)}
+                >
+                  {checkInLocation.length > 0 ? checkInLocation : "Location"}
+                </span>
+                {checkInLocation.length > 0 && (
+                  <IconButton
+                    size="xsmall"
+                    className="deleteLocation"
+                    aria-label="Delete"
+                    onClick={() => setCheckInLocation("")}
+                  >
+                    &times;
+                  </IconButton>
+                )}
+                <SearchLocationModal
+                  setLocationModalActive={setLocationModalActive}
+                  updateLocation={setCheckInLocation}
+                  locationModalActive={locationModalActive}
+                />
+              </div>
+
+              <div className="shareOption">
+                <EmojiEmotions htmlColor="tomato" className="shareIcon" />
+                <span
+                  className="shareOptionText emojiModalBtn"
+                  onClick={() => setEmojiModalActive(!emojiModalActive)}
+                >
+                  Feelings
+                </span>
+                {emojiModalActive && (
+                  <EmojiModal
+                    emojiModalActive={emojiModalActive}
+                    setEmojiModalActive={setEmojiModalActive}
+                    addEmojiToPost={addEmojiToPost}
+                  />
+                )}
+              </div>
             </Suspense>
           </div>
 
