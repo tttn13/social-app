@@ -4,11 +4,11 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 'latest', // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
+    ecmaVersion: 12,
+    sourceType: 'module',
   },
   plugins: ['simple-import-sort', 'import'],
-  root: true, // For configuration cascading.
+  root: true,
   rules: {
     'simple-import-sort/imports': 'warn',
     'sort-imports': [
