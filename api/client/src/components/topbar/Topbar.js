@@ -1,20 +1,22 @@
-import "./topbar.css";
-import { Person, Chat, Notifications, Logout } from "@mui/icons-material";
-import { Link, useHistory } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { useContext, useEffect, useState } from "react";
-import SearchBarDropdown from "./SearchBarDropdown";
-import { useFetchSearchResults } from "../customHooks/useFetchSearchResults";
-import { logoutUser } from "../../context/AsyncActions";
-import { pause } from "../../utils/utils";
-import ProfilePicture from "../profilePicture/ProfilePicture";
-import SearchForm from "./SearchForm";
+import './topbar.css';
+
+import { Chat, Logout, Notifications, Person } from '@mui/icons-material';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
+import { logoutUser } from '../../context/AsyncActions';
+import { AuthContext } from '../../context/AuthContext';
+import { pause } from '../../utils/utils';
+import { useFetchSearchResults } from '../customHooks/useFetchSearchResults';
+import ProfilePicture from '../profilePicture/ProfilePicture';
+import SearchBarDropdown from './SearchBarDropdown';
+import SearchForm from './SearchForm';
 
 const Topbar = () => {
   const user = useContext(AuthContext).user.user;
   const { dispatch } = useContext(AuthContext);
   const [resultsModalActive, setResultsModalActive] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [dropdownActive, setDropdownActive] = useState(false);
   const history = useHistory();
   const { results: searchResults } = useFetchSearchResults({
@@ -36,7 +38,7 @@ const Topbar = () => {
     e.preventDefault(e);
     setResultsModalActive(false);
     history.push({
-      pathname: "/searchresults",
+      pathname: '/searchresults',
       search: `?query=${searchTerm}`,
       state: {
         params: searchTerm,
@@ -52,8 +54,8 @@ const Topbar = () => {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">MySocial</span>{" "}
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <span className="logo">MySocial</span>{' '}
         </Link>
       </div>
 
@@ -96,11 +98,11 @@ const Topbar = () => {
             <div
               className="ProfileDropdown-Content"
               id="ProfileDropdown"
-              style={{ display: `${dropdownActive ? "flex" : "none"}` }}
+              style={{ display: `${dropdownActive ? 'flex' : 'none'}` }}
             >
               <Link
                 to={`/profile/${user?.username}`}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: 'none' }}
               >
                 <button>
                   <Person /> Show profile

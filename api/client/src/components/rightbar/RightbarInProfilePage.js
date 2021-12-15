@@ -1,11 +1,12 @@
 import { Add, Remove } from "@mui/icons-material";
+import { useContext, useEffect,useState } from "react";
 import { Link } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { useGetFriends } from "../customHooks/useGetFriends";
+
 import { handleFollow } from "../../context/AsyncActions";
-import ProfilePicture from "../profilePicture/ProfilePicture";
+import { AuthContext } from "../../context/AuthContext";
 import { useFetchUser } from "../customHooks/useFetchUser";
+import { useGetFriends } from "../customHooks/useGetFriends";
+import ProfilePicture from "../profilePicture/ProfilePicture";
 
 const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
   const { dispatch } = useContext(AuthContext);

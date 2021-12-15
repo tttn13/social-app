@@ -1,34 +1,36 @@
-import "./share.css";
-import { lazy, Suspense, useContext, useState } from "react";
+import './share.css';
+
 import {
-  PermMedia,
-  Label,
-  Room,
-  EmojiEmotions,
   Cancel,
-} from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import { checkToken } from "../../services/auth.service";
-import history from "../../utils/history";
-import { AuthContext } from "../../context/AuthContext";
-import ProfilePicture from "../profilePicture/ProfilePicture";
-import Loading from "../../pages/Loading";
-import TaggedUsers from "./TaggedUsers/TaggedUsers";
+  EmojiEmotions,
+  Label,
+  PermMedia,
+  Room,
+} from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import { lazy, Suspense, useContext, useState } from 'react';
+
+import { AuthContext } from '../../context/AuthContext';
+import Loading from '../../pages/Loading';
+import { checkToken } from '../../services/auth.service';
+import history from '../../utils/history';
+import ProfilePicture from '../profilePicture/ProfilePicture';
+import TaggedUsers from './TaggedUsers/TaggedUsers';
 
 const Share = ({ user, addNewPost }) => {
   const [emojiModalActive, setEmojiModalActive] = useState(false);
   const [tagModalActive, setTagModalActive] = useState(false);
   const [locationModalActive, setLocationModalActive] = useState(false);
-  const [checkInLocation, setCheckInLocation] = useState("");
-  const [postDescValue, setPostDescValue] = useState("");
+  const [checkInLocation, setCheckInLocation] = useState('');
+  const [postDescValue, setPostDescValue] = useState('');
   const [file, setFile] = useState(null);
   const [taggedList, setTaggedList] = useState([]);
   const { dispatch } = useContext(AuthContext);
   const SearchLocationModal = lazy(() =>
-    import("./OptionsModalBox/SearchLocationModal")
+    import('./OptionsModalBox/SearchLocationModal')
   );
-  const TagModal = lazy(() => import("./OptionsModalBox/TagModal"));
-  const EmojiModal = lazy(() => import("./OptionsModalBox/EmojiModal"));
+  const TagModal = lazy(() => import('./OptionsModalBox/TagModal'));
+  const EmojiModal = lazy(() => import('./OptionsModalBox/EmojiModal'));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,8 +61,8 @@ const Share = ({ user, addNewPost }) => {
   };
 
   const resetForm = () => {
-    setCheckInLocation("");
-    setPostDescValue("");
+    setCheckInLocation('');
+    setPostDescValue('');
     setFile(null);
     setTaggedList([]);
   };
@@ -114,7 +116,7 @@ const Share = ({ user, addNewPost }) => {
                 <PermMedia htmlColor="tomato" className="shareIcon" />
                 <span className="shareOptionText">Photo or Video</span>
                 <input
-                  style={{ display: "none" }}
+                  style={{ display: 'none' }}
                   type="file"
                   id="file"
                   accept=".png,.jpeg,.jpg"
@@ -142,7 +144,7 @@ const Share = ({ user, addNewPost }) => {
                 className="shareOption locationOption "
                 style={{
                   alignItems: `${
-                    checkInLocation.length > 0 ? "start" : "center"
+                    checkInLocation.length > 0 ? 'start' : 'center'
                   }`,
                 }}
               >
@@ -151,14 +153,14 @@ const Share = ({ user, addNewPost }) => {
                   className="shareOptionText LocationIcon"
                   onClick={() => setLocationModalActive(!locationModalActive)}
                 >
-                  {checkInLocation.length > 0 ? checkInLocation : "Location"}
+                  {checkInLocation.length > 0 ? checkInLocation : 'Location'}
                 </span>
                 {checkInLocation.length > 0 && (
                   <IconButton
                     size="xsmall"
                     className="deleteLocation"
                     aria-label="Delete"
-                    onClick={() => setCheckInLocation("")}
+                    onClick={() => setCheckInLocation('')}
                   >
                     &times;
                   </IconButton>

@@ -1,9 +1,11 @@
-import { useState } from "react";
-import "./createComment.css";
-import ProfilePicture from "../profilePicture/ProfilePicture";
+import './createComment.css';
+
+import { useState } from 'react';
+
+import ProfilePicture from '../profilePicture/ProfilePicture';
 
 const CreateComment = ({ user, handleSubmit }) => {
-  const [currentValue, setCurrentValue] = useState("");
+  const [currentValue, setCurrentValue] = useState('');
 
   return (
     <>
@@ -12,7 +14,7 @@ const CreateComment = ({ user, handleSubmit }) => {
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(currentValue);
-          setCurrentValue("");
+          setCurrentValue('');
         }}
       >
         <ProfilePicture

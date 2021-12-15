@@ -1,8 +1,10 @@
 import "./rightbar.css";
-import RightbarInProfilePage from "./RightbarInProfilePage";
-import RightbarInHomePage from "./RightbarInHomePage";
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import RightbarInHomePage from "./RightbarInHomePage";
+import RightbarInProfilePage from "./RightbarInProfilePage";
 
 const Rightbar = ({ currentUser }) => {
   const selectedUsername = useParams().username;

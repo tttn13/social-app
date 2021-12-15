@@ -1,6 +1,7 @@
-import "./taggedUsers.css";
-import { HighlightOff } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import './taggedUsers.css';
+
+import { HighlightOff } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 
 const TaggedUsers = ({
   classname,
@@ -10,13 +11,13 @@ const TaggedUsers = ({
   removeUsersFn,
 }) => {
   const names = taggedList.map((u) => u.username);
-  const namesString = names.join(" and ");
+  const namesString = names.join(' and ');
   return (
     <span
       className={classname}
       style={{
-        display: `${taggedList.length > 0 ? "flex" : "none"}`,
-        fontSize: "13px" 
+        display: `${taggedList.length > 0 ? 'flex' : 'none'}`,
+        fontSize: '13px',
       }}
     >
       {taggedUsersForPost ? (
@@ -29,7 +30,7 @@ const TaggedUsers = ({
         </>
       ) : (
         <div style={{ fontWeight: 500 }}>
-          <span style={{ paddingRight: "5px" }}>{currentUser.username}</span>
+          <span style={{ paddingRight: '5px' }}>{currentUser.username}</span>
           is with
           <span> {namesString}</span>
         </div>

@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import "./EmojiModal.css";
+
 import { Close } from "@mui/icons-material";
 import Picker from "emoji-picker-react";
-import "./EmojiModal.css";
+import { useRef } from "react";
+
 import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
 
 const EmojiModal = ({

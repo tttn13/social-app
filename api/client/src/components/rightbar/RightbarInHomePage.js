@@ -1,5 +1,5 @@
-import { useGetFriends } from "../customHooks/useGetFriends";
 import Loading from "../../pages/Loading";
+import { useGetFriends } from "../customHooks/useGetFriends";
 import OnlineFriends from "../online/OnlineFriends";
 import IconImage from "../profilePicture/IconImage";
 
