@@ -1,5 +1,7 @@
 import "./createComment.css";
+
 import { useState } from "react";
+
 import ProfilePicture from "../profilePicture/ProfilePicture";
 
 const CreateComment = ({ user, handleSubmit }) => {

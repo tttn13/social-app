@@ -1,13 +1,16 @@
-import { useState, useEffect, useCallback } from "react";
-import { combineAllResults, isEmpty } from "../../utils/utils";
-import { useFetchPosts } from "./useFetchPosts";
-import { useGetFriends } from "./useGetFriends";
+import { useCallback, useEffect, useState } from 'react';
+
+import { combineAllResults, isEmpty } from '../../utils/utils';
+import { useFetchPosts } from './useFetchPosts';
+import { useGetFriends } from './useGetFriends';
 
 export const useFetchSearchResults = ({ user, searchQuery }) => {
   const [results, setResults] = useState([]);
 
   const { getFriends } = useGetFriends(user);
-  const { fetchCurrentUserPosts: getAllPosts } = useFetchPosts({currentUserId: user?._id});
+  const { fetchCurrentUserPosts: getAllPosts } = useFetchPosts({
+    currentUserId: user?._id,
+  });
 
   const fetchRes = useCallback(
     async (user, searchQuery) => {
@@ -25,7 +28,7 @@ export const useFetchSearchResults = ({ user, searchQuery }) => {
     const fetchData = async (user, searchQuery) => {
       const allRes = await fetchRes(user, String(searchQuery));
       isEmpty(allRes)
-        ? setResults([{ _id: -100, desc: "No results found " }])
+        ? setResults([{ _id: -100, desc: 'No results found ' }])
         : setResults(allRes);
     };
 
@@ -33,7 +36,7 @@ export const useFetchSearchResults = ({ user, searchQuery }) => {
       fetchData(user, searchQuery);
     }
     return () => {
-      console.log("clean up in use fetch search res");
+      console.log('clean up in use fetch search res');
     };
   }, [user, searchQuery, fetchRes]);
 

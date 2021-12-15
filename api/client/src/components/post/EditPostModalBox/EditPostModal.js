@@ -1,17 +1,19 @@
-import { useState, useRef, lazy, Suspense } from "react";
-import "./editPostModal.css";
+import './editPostModal.css';
+
 import {
-  PermMedia,
-  PersonAdd,
+  Close,
   LocationOn,
   Mood,
-  Close,
+  PermMedia,
+  PersonAdd,
   Public,
-} from "@mui/icons-material";
-import { updatePost, uploadFile } from "../../../services/user.service";
-import TaggedUsers from "../../share/TaggedUsers/TaggedUsers";
-import ProfilePicture from "../../profilePicture/ProfilePicture";
-import Loading from "../../../pages/Loading";
+} from '@mui/icons-material';
+import { lazy, Suspense, useRef, useState } from 'react';
+
+import Loading from '../../../pages/Loading';
+import { updatePost, uploadFile } from '../../../services/user.service';
+import ProfilePicture from '../../profilePicture/ProfilePicture';
+import TaggedUsers from '../../share/TaggedUsers/TaggedUsers';
 
 const EditPostModal = ({
   currentPost,
@@ -20,11 +22,11 @@ const EditPostModal = ({
   setPostIsBeingEdited,
 }) => {
   const SearchLocationModal = lazy(() =>
-    import("../../share/OptionsModalBox/SearchLocationModal")
+    import('../../share/OptionsModalBox/SearchLocationModal')
   );
-  const TagModal = lazy(() => import("../../share/OptionsModalBox/TagModal"));
+  const TagModal = lazy(() => import('../../share/OptionsModalBox/TagModal'));
   const EmojiModal = lazy(() =>
-    import("../../share/OptionsModalBox/EmojiModal")
+    import('../../share/OptionsModalBox/EmojiModal')
   );
   const postBodyRef = useRef();
   const [currentImage, setCurrentImage] = useState(currentPost?.img);
@@ -59,7 +61,7 @@ const EditPostModal = ({
       await updatePost(currentPost._id, user, updatedPost);
       window.location.reload();
     } catch (err) {
-      console.error({ err: err, msg: "this is error in saving post" });
+      console.error({ err: err, msg: 'this is error in saving post' });
     }
   };
 
@@ -100,7 +102,7 @@ const EditPostModal = ({
                 {checkInLocation && (
                   <div className="editLocation">
                     <Public fontSize="x-small" />
-                    <span>{checkInLocation.split(",")[0]} </span>
+                    <span>{checkInLocation.split(',')[0]} </span>
                   </div>
                 )}
               </div>
@@ -154,7 +156,7 @@ const EditPostModal = ({
                   <label htmlFor="editImagefile" className="AddOnOption">
                     <PermMedia color="success" className="AddOnIcon" />
                     <input
-                      style={{ display: "none" }}
+                      style={{ display: 'none' }}
                       type="file"
                       id="editImagefile"
                       accept=".png,.jpeg,.jpg"
@@ -211,7 +213,7 @@ const EditPostModal = ({
               className="EditModalSaveButton"
               type="submit"
               value="Submit"
-              style={{ backgroundColor: "#176cf0", color: "white" }}
+              style={{ backgroundColor: '#176cf0', color: 'white' }}
             >
               Save
             </button>

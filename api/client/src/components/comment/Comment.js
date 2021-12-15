@@ -1,11 +1,12 @@
-import { useState, useRef, useEffect } from "react";
 import "./comment.css";
-import { Link } from "react-router-dom";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import ReactTimeAgo from "react-time-ago";
-import { useOutsideAlerter } from "../customHooks/useOutsideAlerter";
-import { useFetchUser } from "../customHooks/useFetchUser";
 
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useEffect,useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import ReactTimeAgo from "react-time-ago";
+
+import { useFetchUser } from "../customHooks/useFetchUser";
+import { useOutsideAlerter } from "../customHooks/useOutsideAlerter";
 import ProfilePicture from "../profilePicture/ProfilePicture";
 
 const Comment = ({ comment, currentUser, handleDeleteUI, editComment }) => {

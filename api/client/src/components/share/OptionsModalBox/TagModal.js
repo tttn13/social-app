@@ -1,18 +1,20 @@
-import { useState, useEffect, useRef, useContext } from "react";
 import "./tagModal.css";
+
+import { Cancel, Close,Search } from "@mui/icons-material";
+import { useContext,useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, Cancel, Close } from "@mui/icons-material";
+
+import { AuthContext } from "../../../context/AuthContext";
 import {
   containsObject,
   getMatches,
   removeOverlappedUsers,
   removeUserFromList,
 } from "../../../utils/utils";
+import { useDetectInputChange } from "../../customHooks/useDetectInputChange";
 import { useGetFriends } from "../../customHooks/useGetFriends";
 import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
-import { AuthContext } from "../../../context/AuthContext";
 import ProfilePicture from "../../profilePicture/ProfilePicture";
-import { useDetectInputChange } from "../../customHooks/useDetectInputChange";
 
 const TagModal = ({
   addTaggedList,

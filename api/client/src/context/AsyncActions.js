@@ -1,3 +1,6 @@
+import { login, logout } from '../services/auth.service';
+import { removeUserFromStorage } from '../services/token.service';
+import { handleFollowsAPI } from '../services/user.service';
 import {
   LoginFailure,
   LoginStart,
@@ -5,10 +8,7 @@ import {
   LogOut,
   updateFollows,
   updateUnfollows,
-} from "./AuthActions";
-import { login, logout } from "../services/auth.service";
-import { removeUserFromStorage } from "../services/token.service";
-import { handleFollowsAPI } from "../services/user.service";
+} from './AuthActions';
 
 export const loginUser = async (userCredentials, dispatch) => {
   removeUserFromStorage();
@@ -26,12 +26,12 @@ export const logoutUser = async (dispatch) => {
     dispatch(LogOut());
     removeUserFromStorage();
   } catch (error) {
-    console.log("dispatching logging out failed", { err: error });
+    console.log('dispatching logging out failed', { err: error });
   }
   try {
     await logout();
   } catch (error) {
-    console.log("calling logging out api failed", { err: error });
+    console.log('calling logging out api failed', { err: error });
   }
 };
 
@@ -54,12 +54,12 @@ export const handleFollow = async ({
 };
 
 export const logOutOnExpired = async (dispatch) => {
-  console.log("logOutOnExpired async action");
+  console.log('logOutOnExpired async action');
   try {
     await logout();
     dispatch(LogOut());
     removeUserFromStorage();
   } catch (error) {
-    console.log("calling logging out api failed", { err: error });
+    console.log('calling logging out api failed', { err: error });
   }
 };

@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback,useEffect, useState } from "react";
+
+import { getPosts,getTimeline } from "../../services/user.service";
 import { sortByDate } from "../../utils/utils";
-import { getTimeline, getPosts } from "../../services/user.service";
 
 export const useFetchPosts = ({ currentUserId, selectedUserUsername }) => {
   const [posts, setPosts] = useState([]);

@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
 import "./postFooter.css";
+
 import { ChatBubbleOutline, ThumbUp } from "@mui/icons-material";
-import Comment from "../../comment/Comment";
-import CreateComment from "../../comment/CreateComment";
+import { useEffect,useState } from "react";
+
 import {
   createComment,
-  getComment,
-  updateComment,
-  likePost,
   deleteComment,
+  getComment,
+  likePost,
+  updateComment,
 } from "../../../services/user.service";
+import Comment from "../../comment/Comment";
+import CreateComment from "../../comment/CreateComment";
 import IconImage from "../../profilePicture/IconImage";
 
 const PostFooter = ({ post, currentUser }) => {

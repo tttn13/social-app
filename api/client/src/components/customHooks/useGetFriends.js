@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
-import { isEmpty } from "../../utils/utils";
+import { useCallback,useEffect, useState } from "react";
+
 import { getFriendsAPI } from "../../services/user.service";
+import { isEmpty } from "../../utils/utils";
 
 export const useGetFriends = (currentUser) => {
   const [friends, setFriends] = useState([]);
