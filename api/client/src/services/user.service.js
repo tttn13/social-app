@@ -1,6 +1,6 @@
 //a service for accessing data aka Data service
-import axiosInstance from "../config/config"
-import axiosJWT from "./axiosJwtInterceptors";
+import axiosInstance from '../config/config';
+import axiosJWT from './axiosJwtInterceptors';
 //User services
 export const getUser = async ({ userId, username }) => {
   // console.log("calling get user api");
@@ -44,7 +44,7 @@ export const getPosts = async (selectedUsername) => {
 
 export const createPost = async (post) => {
   // console.log("calling createPost");
-  return axiosJWT.post("/posts", post);
+  return axiosJWT.post('/posts', post);
 };
 
 export const updatePost = async (postId, user, newPost) => {
@@ -73,11 +73,11 @@ export const likePost = async (postId, currUserId) => {
 export const uploadFile = async (file, newPost) => {
   const data = new FormData();
   const fileName = Date.now() + file.name;
-  data.append("name", fileName);
-  data.append("file", file);
+  data.append('name', fileName);
+  data.append('file', file);
   newPost.img = fileName;
   try {
-    await axiosInstance.post("/upload", data);
+    await axiosInstance.post('/upload', data);
   } catch (err) {
     console.error(err);
   }

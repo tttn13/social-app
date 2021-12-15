@@ -1,22 +1,24 @@
-import { useState, useContext, useRef, lazy, Suspense } from 'react';
 import './post.css';
+
 import {
-  MoreHoriz,
-  Edit,
-  Delete,
   CancelPresentation,
+  Delete,
+  Edit,
+  MoreHoriz,
+  Public,
 } from '@mui/icons-material';
+import { lazy, Suspense, useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-import { useFetchUser } from '../customHooks/useFetchUser';
-import PostFooter from './PostFooter/PostFooter';
 import ReactTimeAgo from 'react-time-ago';
-import { Public } from '@mui/icons-material';
-import TaggedUsers from '../share/TaggedUsers/TaggedUsers';
+
+import { AuthContext } from '../../context/AuthContext';
+import Loading from '../../pages/Loading';
 import { isEmpty } from '../../utils/utils';
+import { useFetchUser } from '../customHooks/useFetchUser';
 import { useOutsideAlerter } from '../customHooks/useOutsideAlerter';
 import ProfilePicture from '../profilePicture/ProfilePicture';
-import Loading from '../../pages/Loading';
+import TaggedUsers from '../share/TaggedUsers/TaggedUsers';
+import PostFooter from './PostFooter/PostFooter';
 
 const Post = ({ post, handleDeletePost }) => {
   const {

@@ -1,6 +1,7 @@
-import React from 'react'
-import { hasWhiteSpace } from '../../utils/utils'
 import { Search } from "@mui/icons-material";
+import React from 'react'
+
+import { hasWhiteSpace } from '../../utils/utils'
 
 const SearchForm = ({ resultsModalActive, handleSubmit, setSearchTerm }) => {
     

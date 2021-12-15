@@ -1,5 +1,7 @@
 import "./online.css";
+
 import { Link } from "react-router-dom";
+
 import ProfilePicture from "../profilePicture/ProfilePicture";
 
 const Online = ({ user }) => {

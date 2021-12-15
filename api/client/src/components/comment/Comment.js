@@ -1,11 +1,13 @@
-import { useState, useRef, useEffect } from "react";
-import "./comment.css";
-import { Link } from "react-router-dom";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import ReactTimeAgo from "react-time-ago";
-import { useOutsideAlerter } from "../customHooks/useOutsideAlerter";
-import { useFetchUser } from "../customHooks/useFetchUser";
-import ProfilePicture from "../profilePicture/ProfilePicture";
+import './comment.css';
+
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import ReactTimeAgo from 'react-time-ago';
+
+import { useFetchUser } from '../customHooks/useFetchUser';
+import { useOutsideAlerter } from '../customHooks/useOutsideAlerter';
+import ProfilePicture from '../profilePicture/ProfilePicture';
 
 const Comment = ({ comment, currentUser, handleDeleteUI, editComment }) => {
   const [settingsActive, setSettingsActive] = useState(false);
@@ -26,7 +28,7 @@ const Comment = ({ comment, currentUser, handleDeleteUI, editComment }) => {
         ref={commentActionsMenu}
         className="commentActionsList"
         style={{
-          display: `${settingsActive ? "flex" : "none"}`,
+          display: `${settingsActive ? 'flex' : 'none'}`,
         }}
       >
         <li
@@ -77,8 +79,8 @@ const Comment = ({ comment, currentUser, handleDeleteUI, editComment }) => {
           <Link
             to={`profile/${user.username}`}
             style={{
-              color: "black",
-              textDecoration: "none",
+              color: 'black',
+              textDecoration: 'none',
             }}
           >
             <span className="Username">{user.username}</span>
@@ -113,7 +115,7 @@ const Comment = ({ comment, currentUser, handleDeleteUI, editComment }) => {
           )}
         </span>
         <span className="editedStatus">
-          {comment?.isEdited || commentIsBeingEdited === false ? "Edited" : ""}
+          {comment?.isEdited || commentIsBeingEdited === false ? 'Edited' : ''}
         </span>
       </div>
       {currentUser._id === user._id && (

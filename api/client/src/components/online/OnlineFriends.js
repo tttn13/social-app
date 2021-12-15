@@ -1,4 +1,5 @@
 import "./online.css"
+
 import Online from "./Online";
 
 const OnlineFriends = ({ friends }) => {
