@@ -221,3 +221,7 @@ textarea {
 .settingItem > * {
   padding-right: 3px;
 }
+
+.ModalBoxContainer{
+  display: none;
+}
