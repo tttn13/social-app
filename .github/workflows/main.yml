@@ -9,10 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Setup heroku remote
         run: |
           git remote add heroku ${{secrets.HEROKU_STAGING_GIT_URL}}
-      - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_STAGING_API_KEY}}
