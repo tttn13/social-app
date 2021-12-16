@@ -16,4 +16,3 @@ jobs:
           heroku_app_name: 'immense-chamber-72842'
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           appdir: 'api'
-          dontautocreate: true
