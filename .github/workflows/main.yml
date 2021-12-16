@@ -1,9 +1,9 @@
-name: Deploy
+name: Deploy to Heroku Staging
 
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   build:
@@ -13,6 +13,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: immense-chamber-72842
+          heroku_app_name: 'immense-chamber-72842'
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          appdir: api
+          appdir: 'api'
+          dontautocreate: true
