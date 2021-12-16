@@ -2,7 +2,6 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const axiosInstance = createAxiosInstance();
 
 const createAxiosInstance = () => {
   console.log(
@@ -12,4 +11,6 @@ const createAxiosInstance = () => {
     baseURL: process.env.REACT_APP_BASE_URL,
   });
 };
+const axiosInstance = createAxiosInstance();
+
 export default axiosInstance;
