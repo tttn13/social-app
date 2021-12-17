@@ -65,6 +65,8 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 
 
 ### Navbar
+
+<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/search-demo.gif' width = "500" height= '550'>
 - You can `search` for users and posts.
 - All the matching results will be displayed after hitting `Enter`
 - You can view your Profile Page or `log out` of the account by clicking on your avatar image at the top right corner of Navbar
