@@ -73,7 +73,7 @@ const Post = ({ post, handleDeletePost }) => {
                   <EditPostModal
                     currentPost={post}
                     user={currentUser}
-                    setModalActive={setPostSettingsActive}
+                    setModalActive={setModalActive}
                     setPostIsBeingEdited={setPostIsBeingEdited}
                   />
                 </Suspense>
