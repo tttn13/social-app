@@ -34,7 +34,6 @@ const Post = ({ post, handleDeletePost }) => {
   const currentUser = useContext(AuthContext).user.user;
   const { user } = useFetchUser({ userId: userId });
   const postSettingsMenu = useRef();
-  const EditPostModal = lazy(() => import('./EditPostModalBox/EditPostModal'));
   const [postSettingsActive, setPostSettingsActive] = useState(false);
   const [postIsBeingEdited, setPostIsBeingEdited] = useState(null);
   const [postDisplayed, setPostDisplayed] = useState(true);
@@ -49,12 +48,7 @@ const Post = ({ post, handleDeletePost }) => {
         }}
       >
         {String(currentUser?._id) !== String(userId) ? (
-          <li
-            className="settingItem"
-            onClick={() => {
-              setPostDisplayed(false);
-            }}
-          >
+          <li className="settingItem" onClick={() => setPostDisplayed(false)}>
             <CancelPresentation />
             Hide post
           </li>
@@ -173,5 +167,4 @@ const Post = ({ post, handleDeletePost }) => {
     </div>
   );
 };
-
 export default Post;
