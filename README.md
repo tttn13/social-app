@@ -58,12 +58,19 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 
 ### Post
 
+<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/create-post.gif' width = "500" height= '500'>
+<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/edit-post.gif' width = "500" height= '500'>
+
 - Certain CRUD actions can only be performed with a valid token such as `creating, editing and deleting a post`.
 - On the Home Page, you can create a post in which you can also `upload an image, tag friend(s), check in to a location, and add an emoji` that represents your feeling.
 - There are options to edit and delete the post if you are the owner of the post. You can `hide` anyone's post from your Feed.
+  <img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/del-post.gif' width = "500" height= '500'>
+
 - You can leave `likes` and comments on a post. You can also unlike the post.
 
 ### Comment
+
+<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/comment.gif' width = "500" height= '550'>
 
 - You can leave comments on a post. You can also delete it.
 - You can `edit or delete` anyone's comment as long as you are the post creator
@@ -77,6 +84,7 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 ### Navbar
 
 <img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/search-demo.gif' width = "500" height= '550'>
+
 - You can `search` for users and posts.
 - All the matching results will be displayed after hitting `Enter`
 - You can view your Profile Page or `log out` of the account by clicking on your avatar image at the top right corner of Navbar
