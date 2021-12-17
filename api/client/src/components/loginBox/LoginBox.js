@@ -1,15 +1,15 @@
-import { CircularProgress } from "@mui/material";
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { CircularProgress } from '@mui/material';
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import env_config from "../../config/index";
-import { loginUser } from "../../context/AsyncActions";
-import { AuthContext } from "../../context/AuthContext";
+import env_config from '../../config/index';
+import { loginUser } from '../../context/AsyncActions';
+import { AuthContext } from '../../context/AuthContext';
 
 const LoginBox = () => {
   const { demoUser } = env_config;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { isFetching, dispatch } = useContext(AuthContext);
 
   const handleClick = async (e) => {
@@ -21,10 +21,6 @@ const LoginBox = () => {
   const handleDemoAccount = async (e) => {
     e.preventDefault();
     await loginUser(demoUser, dispatch);
-  };
-
-  const handleForgotPasswod = (e) => {
-    e.preventDefault();
   };
 
   return (
@@ -51,7 +47,7 @@ const LoginBox = () => {
         disabled={isFetching}
         onClick={handleClick}
       >
-        {isFetching ? <CircularProgress size="20px" /> : "Log In"}
+        {isFetching ? <CircularProgress size="20px" /> : 'Log In'}
       </button>
       <button
         className="loginDemoButton"
@@ -61,16 +57,13 @@ const LoginBox = () => {
         {isFetching ? (
           <CircularProgress size="20px" />
         ) : (
-          "Log Into Demo Account"
+          'Log Into Demo Account'
         )}
       </button>
 
-      <span className="loginForgot" onClick={handleForgotPasswod}>
-        Forgot Password?
-      </span>
       <Link to="/register" className="loginRegisterButtonLink">
         <button className="loginRegisterButton">
-          {isFetching ? <CircularProgress size="20px" /> : "Create New Account"}
+          {isFetching ? <CircularProgress size="20px" /> : 'Create New Account'}
         </button>
       </Link>
     </form>
