@@ -11,12 +11,9 @@ jobs:
     environment: heroku
     steps:
       - uses: actions/checkout@v2
-      - name: Setup heroku remote
-        run: |
-          git remote add heroku '${{secrets.HEROKU_PRODUCTION_GIT_URL}}'
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          heroku_api_key: ${{secrets.HEROKU_PRODUCTION_API_KEY}}
+          heroku_api_key: ${{secrets.HEROKU_STAGING_API_KEY}}
           heroku_app_name: 'mysocialappmsa'
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           appdir: 'api'
