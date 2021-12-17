@@ -48,12 +48,7 @@ const Post = ({ post, handleDeletePost }) => {
         }}
       >
         {String(currentUser?._id) !== String(userId) ? (
-          <li
-            className="settingItem"
-            onClick={() => {
-              setPostDisplayed(false);
-            }}
-          >
+          <li className="settingItem" onClick={() => setPostDisplayed(false)}>
             <CancelPresentation />
             Hide post
           </li>
@@ -78,7 +73,7 @@ const Post = ({ post, handleDeletePost }) => {
                   <EditPostModal
                     currentPost={post}
                     user={currentUser}
-                    setModalActive={setModalActive}
+                    setModalActive={setPostSettingsActive}
                     setPostIsBeingEdited={setPostIsBeingEdited}
                   />
                 </Suspense>
