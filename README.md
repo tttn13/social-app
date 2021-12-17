@@ -58,12 +58,18 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 
 ### Post
 
+![create-post](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/create-post.gif)
+
+![edit-post](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/edit-post.gif)
+
 <img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/create-post.gif' width = "500" height= '500'>
 <img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/edit-post.gif' width = "500" height= '500'>
 
 - Certain CRUD actions can only be performed with a valid token such as `creating, editing and deleting a post`.
 - On the Home Page, you can create a post in which you can also `upload an image, tag friend(s), check in to a location, and add an emoji` that represents your feeling.
 - There are options to edit and delete the post if you are the owner of the post. You can `hide` anyone's post from your Feed.
+![del](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/del-post.gif)
+
   <img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/del-post.gif' width = "500" height= '500'>
 
 - You can leave `likes` and comments on a post. You can also unlike the post.
