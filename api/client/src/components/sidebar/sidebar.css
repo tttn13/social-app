@@ -10,7 +10,7 @@
   /* width: 5px; */
 }
 
-::-webkit-scrollbar-track {
+.sidebar::-webkit-scrollbar-track {
   background-color: whitesmoke;
 }
 
