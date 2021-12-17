@@ -34,7 +34,6 @@ const Post = ({ post, handleDeletePost }) => {
   const currentUser = useContext(AuthContext).user.user;
   const { user } = useFetchUser({ userId: userId });
   const postSettingsMenu = useRef();
-  const EditPostModal = lazy(() => import('./EditPostModalBox/EditPostModal'));
   const [postSettingsActive, setPostSettingsActive] = useState(false);
   const [postIsBeingEdited, setPostIsBeingEdited] = useState(null);
   const [postDisplayed, setPostDisplayed] = useState(true);
