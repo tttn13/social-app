@@ -1,16 +1,21 @@
+import './loginBox.css';
+
 import { CircularProgress } from '@mui/material';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import env_config from '../../config/index';
 import { loginUser } from '../../context/AsyncActions';
+import { ResetError } from '../../context/AuthActions';
 import { AuthContext } from '../../context/AuthContext';
+import { useErrorMessage } from '../customHooks/useErrorMessage';
 
 const LoginBox = () => {
   const { demoUser } = env_config;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { isFetching, dispatch } = useContext(AuthContext);
+  const { isFetching, dispatch, error_response } = useContext(AuthContext);
+  const { errorMessage } = useErrorMessage({ errorResponse: error_response });
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -21,6 +26,10 @@ const LoginBox = () => {
   const handleDemoAccount = async (e) => {
     e.preventDefault();
     await loginUser(demoUser, dispatch);
+  };
+
+  const handleLinkClick = () => {
+    if (error_response) dispatch(ResetError());
   };
 
   return (
@@ -42,6 +51,8 @@ const LoginBox = () => {
         required
         autoComplete="new-password"
       />
+      {errorMessage && <span className="error_msg">{errorMessage}</span>}
+
       <button
         className="loginButton"
         disabled={isFetching}
@@ -61,7 +72,11 @@ const LoginBox = () => {
         )}
       </button>
 
-      <Link to="/register" className="loginRegisterButtonLink">
+      <Link
+        to="/register"
+        className="loginRegisterButtonLink"
+        onClick={() => handleLinkClick()}
+      >
         <button className="loginRegisterButton">
           {isFetching ? <CircularProgress size="20px" /> : 'Create New Account'}
         </button>

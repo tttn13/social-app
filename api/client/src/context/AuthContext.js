@@ -15,6 +15,7 @@ const INITIAL_STATE = {
   isLoggedIn: false,
   isFetching: false,
   error: false,
+  error_response: null,
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
@@ -48,6 +49,7 @@ export const AuthContextProvider = ({ children }) => {
         isLoggedIn: state.isLoggedIn,
         isFetching: state.isFetching,
         error: state.error,
+        error_response: state.error_response,
         dispatch,
       }}
     >

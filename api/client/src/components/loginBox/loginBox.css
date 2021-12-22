@@ -1,39 +1,5 @@
-.login {
-  width: 100vw;
-  height: 100vh;
-  background-color: #f0f2f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loginWrapper {
-  width: 70%;
-  height: 70%;
-  display: flex;
-}
-
-.loginLeft,
-.loginRight {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.loginLogo {
-  font-size: 50px;
-  font-weight: 800;
-  color: #176cf0;
-  margin-bottom: 10px;
-}
-
-.loginDesc {
-  font-size: 24px;
-}
-
-.loginBoxRegister {
-  height: 400px;
+.loginBox {
+  height: 300px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
@@ -54,7 +20,8 @@
   outline: none;
 }
 
-.loginButton {
+.loginButton,
+.loginDemoButton {
   height: 50px;
   border-radius: 10px;
   border: none;
@@ -63,11 +30,6 @@
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
-}
-
-.loginForgot {
-  text-align: center;
-  color: #176cf0;
 }
 
 .loginRegisterButtonLink {
@@ -89,18 +51,8 @@
   cursor: pointer;
 }
 
-.loginDemo {
-  text-decoration: none;
-  align-self: center;
-}
-
-.invalid {
-  /* margin-bottom: 20px; */
-  border-width: 1px 1px 1px 10px;
-  border-style: solid;
-  border-color: rgb(191, 22, 80) rgb(191, 22, 80) rgb(191, 22, 80)
-    rgb(236, 89, 144);
-  background: rgb(251, 236, 242);
+.css-18lrjg1-MuiCircularProgress-root {
+  color: white !important;
 }
 
 .error_msg {
