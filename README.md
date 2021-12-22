@@ -87,7 +87,7 @@ An error message will show up
 
 ### Comment
 
-<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/comment.gif' width = "500" height= '550'>
+<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/comment.gif' width = "430" height= '550'>
 
 - You can leave comments on a post. You can also delete it.
 - You can `edit or delete` anyone's comment as long as you are the post creator

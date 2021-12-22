@@ -2,7 +2,7 @@ import './register.css';
 
 import { useContext, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { useErrorMessage } from '../../../components/customHooks/useErrorMessage';
 import env_config from '../../../config';
@@ -23,6 +23,7 @@ const Register = () => {
   password.current = watch('password', '');
   const { isFetching, dispatch, error_response } = useContext(AuthContext);
   const { errorMessage } = useErrorMessage({ errorResponse: error_response });
+  const history = useHistory();
 
   const onSubmit = async (data) => {
     const user = {
