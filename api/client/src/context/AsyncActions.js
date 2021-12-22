@@ -1,4 +1,4 @@
-import { login, logout } from '../services/auth.service';
+import { login, logout, register } from '../services/auth.service';
 import { removeUserFromStorage } from '../services/token.service';
 import { handleFollowsAPI } from '../services/user.service';
 import {
@@ -17,7 +17,16 @@ export const loginUser = async (userCredentials, dispatch) => {
     const res = await login(userCredentials);
     dispatch(LoginSuccess(res));
   } catch (error) {
-    dispatch(LoginFailure());
+    dispatch(LoginFailure({ error_response: error.response }));
+  }
+};
+
+export const registerUser = async ({ user, dispatch, history }) => {
+  try {
+    await register(user);
+    history.push('/login');
+  } catch (error) {
+    dispatch(LoginFailure({ error_response: error.response }));
   }
 };
 
@@ -54,7 +63,6 @@ export const handleFollow = async ({
 };
 
 export const logOutOnExpired = async (dispatch) => {
-  console.log('logOutOnExpired async action');
   try {
     await logout();
     dispatch(LogOut());
