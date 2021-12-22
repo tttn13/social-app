@@ -45,6 +45,7 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 - CRUD actions
 - Authentication and authorization of user
 - Logged out user when session is expired or token is invalid
+- Form validation
 - Redirect to an user's profile page when clicking on their avatar image.
 - Loading spinners for relevant fetching processes
 - Fetching location from Google Maps Places API
@@ -55,6 +56,19 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 ### Login / Register
 
 - You can `login` or `register`. The form is validated, then if the user is authenticated or registration is successful, the user is navigated to the Home Page.
+
+![register-form](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/register-form.gif)
+
+### Error Handling at Login/Register
+
+![register-error](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/register-error.gif)
+![login-error](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/login-error.gif)
+
+An error message will show up
+
+- when user signs up with an email already existed in MySocial's database
+- logged in with incorrect credentials
+- internal network is not responding
 
 ### Post
 
