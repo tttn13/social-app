@@ -125,3 +125,63 @@ An error message will show up
 - Navbar
 - Profile Header
 - A timeline which contains posts made by that user's friends.
+
+## Usage
+
+#### Env variables:
+
+Set a `.env` file in server directory and add the following:
+
+```
+MONGO_URL = "Your Mongo URI"
+ACCESS_TOKEN_SECRET = "Your JWT access token secret"
+REACT_APP_MAPS_API_KEY="Your Google Maps API Key"
+REACT_APP_BASE_URL=http://localhost:8800/api/
+REACT_APP_PF=http://localhost:8800/images/
+```
+
+#### Server:
+
+```
+npm install
+node index
+```
+
+#### Client:
+
+- Add `proxy` in `client/package.json`
+
+```
+"proxy": "http://localhost:8800/api"
+```
+
+- Run commands
+
+```
+cd api/client
+npm install
+npm run start
+```
+
+#### Notes
+
+To run Server and Client commands simultaneously and subscribe the app to any changes :
+
+- Have [nodemon](https://www.npmjs.com/package/nodemon) and [concurrently](https://www.npmjs.com/package/concurrently) packages installed on Server side.
+- Replace `scripts` in `api/package.json` with following:
+
+```
+"scripts": {
+    "start": "nodemon index.js",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix ../client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  }
+```
+
+- Run commands
+
+```
+npm install
+npm run dev
+```
