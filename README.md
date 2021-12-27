@@ -165,7 +165,7 @@ npm run start
 
 #### Notes
 
-To run Server and Client commands simultaneously and subscribe the app to any changes :
+To run Server and Client commands simultaneously and subscribe the app to code or file changes :
 
 - Have [nodemon](https://www.npmjs.com/package/nodemon) and [concurrently](https://www.npmjs.com/package/concurrently) packages installed on Server side.
 - Replace `scripts` in `api/package.json` with following:
