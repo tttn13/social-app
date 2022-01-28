@@ -74,13 +74,16 @@ const Share = ({ user, addNewPost }) => {
   const addEmojiToPost = (value) => {
     setPostDescValue(postDescValue + value);
   };
-
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
           <ProfilePicture
-            userImage={user?.profilePicture}
+            userImage={
+              user?.profilePicture.length > 0
+                ? user.profilePicture
+                : 'person/noAvatar.png'
+            }
             classname="shareProfileImg"
           />
 

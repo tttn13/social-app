@@ -71,7 +71,9 @@ const Comment = ({ comment, currentUser, handleDeleteUI, editComment }) => {
   return (
     <div className="CommentContainer">
       <ProfilePicture
-        userImage={user?.profilePicture}
+        userImage={
+          user?.profilePicture ? user.profilePicture : 'person/noAvatar.png'
+        }
         classname="CommentAvatar"
       />
       <div className="BodyContainer">

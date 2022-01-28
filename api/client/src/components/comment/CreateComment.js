@@ -18,7 +18,9 @@ const CreateComment = ({ user, handleSubmit }) => {
         }}
       >
         <ProfilePicture
-          userImage={user?.profilePicture}
+          userImage={
+            user?.profilePicture ? user.profilePicture : 'person/noAvatar.png'
+          }
           classname="postProfileImg"
         />
         <input

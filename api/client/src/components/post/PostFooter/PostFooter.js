@@ -21,11 +21,13 @@ const PostFooter = ({ post, currentUser }) => {
   const [commentsList, setCommentsList] = useState([]);
   const [commentModalActive, setCommentModalActive] = useState(false);
 
-  const fetchComments = (idsList) => {
+  const fetchComments = async (idsList) => {
     let newList = [];
     idsList.map(async (id) => {
       const res = await getComment(id);
-      newList.push(res.data);
+      if (res.data !== null) {
+        newList.push(res.data);
+      }
     });
     return newList;
   };
@@ -42,7 +44,6 @@ const PostFooter = ({ post, currentUser }) => {
         body: cmtText,
         userId: currentUser._id,
       });
-      console.log('res.data', res.data);
       setCommentsList([...commentsList, res.data]);
     } catch (error) {
       console.error({ error: error, msg: "Can't creating comment" });

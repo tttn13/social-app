@@ -88,7 +88,11 @@ const EditPostModal = ({
           <div className="EditCenter">
             <div className="EditModalUserInfo">
               <ProfilePicture
-                userImage={user?.profilePicture}
+                userImage={
+                  user?.profilePicture
+                    ? user.profilePicture
+                    : 'person/noAvatar.png'
+                }
                 classname="shareProfileImg"
               />
               <div>

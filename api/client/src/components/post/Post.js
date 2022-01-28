@@ -114,7 +114,11 @@ const Post = ({ post, handleDeletePost }) => {
             <div className="postHeader">
               <Link to={`profile/${user.username}`}>
                 <ProfilePicture
-                  userImage={user?.profilePicture}
+                  userImage={
+                    user?.profilePicture
+                      ? user.profilePicture
+                      : 'person/noAvatar.png'
+                  }
                   classname="postProfileImg"
                 />
               </Link>

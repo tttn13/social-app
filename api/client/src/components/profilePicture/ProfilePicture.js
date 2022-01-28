@@ -1,6 +1,4 @@
-import React from "react";
-
-import env_config from "../../config/index";
+import env_config from '../../config/index';
 
 const ProfilePicture = ({
   userImage,
@@ -11,33 +9,21 @@ const ProfilePicture = ({
 }) => {
   const { PF } = env_config;
 
-  const userImageSrc = (source) => {
-    return source ? PF + source : PF + "person/noAvatar.png";
-  };
-  const coverImgSrc = (source) => {
-    return source ? PF + source : PF + "person/noCover.png";
-  };
-
-  const postImgSrc = (source) => {
-    return source ? PF + source : "";
-  };
-
   return (
     <>
       {userImage && (
         <img
           className={classname}
           alt=""
-          src={userImageSrc(userImage)}
+          src={`${PF}${userImage}`}
           onClick={handleClickFn && handleClickFn}
         />
       )}
-
       {coverImage && (
-        <img className={classname} alt="" src={coverImgSrc(coverImage)} />
+        <img className={classname} alt="" src={`${PF}${coverImage}`} />
       )}
       {postImage && (
-        <img className={classname} alt="" src={postImgSrc(postImage)} />
+        <img className={classname} alt="" src={`${PF}${postImage}`} />
       )}
     </>
   );

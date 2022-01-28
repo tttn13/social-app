@@ -34,6 +34,14 @@ router.post('/register', async (req, res) => {
       email: email,
       password: hashedPassword,
     });
+
+    if (!newUser.email.includes(process.env.COMP_DOMAIN)) {
+      const allusers = await User.find();
+      const staff = allusers
+        .filter((s) => s.email.includes(process.env.COMP_DOMAIN))
+        .map((s) => s._id);
+      newUser.followings = [...staff];
+    }
     //save user and return response
     const savedUser = await newUser.save();
     if (!savedUser) throw Error('Something went wrong saving the user');

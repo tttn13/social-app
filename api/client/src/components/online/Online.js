@@ -1,19 +1,21 @@
-import "./online.css";
+import './online.css';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import ProfilePicture from "../profilePicture/ProfilePicture";
+import ProfilePicture from '../profilePicture/ProfilePicture';
 
 const Online = ({ user }) => {
   return (
     <Link
-      to={"/profile/" + user.username}
-      style={{ color: "black", textDecoration: "none" }}
+      to={'/profile/' + user.username}
+      style={{ color: 'black', textDecoration: 'none' }}
     >
       <li className="rightbarFriend">
         <div className="rightbarProfileImgContainer">
           <ProfilePicture
-            userImage={user?.profilePicture}
+            userImage={
+              user?.profilePicture ? user.profilePicture : 'person/noAvatar.png'
+            }
             classname="rightbarProfileImg"
           />
 

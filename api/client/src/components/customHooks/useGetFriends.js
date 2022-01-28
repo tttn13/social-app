@@ -1,19 +1,19 @@
-import { useCallback,useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-import { getFriendsAPI } from "../../services/user.service";
-import { isEmpty } from "../../utils/utils";
+import { getFriendsAPI } from '../../services/user.service';
+import { isEmpty } from '../../utils/utils';
 
 export const useGetFriends = (currentUser) => {
   const [friends, setFriends] = useState([]);
 
   const getFriends = useCallback(async (user) => {
     try {
-      const res = await getFriendsAPI(user);
+      const res = await getFriendsAPI(user._id);
       return res.data;
     } catch (err) {
       console.log({
         err: err,
-        msg: "error in calling get friends api in useGetFriends",
+        msg: 'error in calling get friends api in useGetFriends',
       });
     }
   }, []);
@@ -21,17 +21,17 @@ export const useGetFriends = (currentUser) => {
   useEffect(() => {
     const fetchData = async (currentUser) => {
       try {
-        const res = await getFriends(currentUser);
-        setFriends(res);
+        const frs = await getFriends(currentUser);
+        setFriends(frs);
       } catch (error) {
         console.log({
           err: error,
-          msg: "error in fetchData friends api in useGetFriends",
+          msg: 'error in fetchData friends api in useGetFriends',
         });
       }
     };
 
-    if (currentUser && currentUser !== null  && !isEmpty(currentUser)) {
+    if (currentUser && currentUser !== null && !isEmpty(currentUser)) {
       fetchData(currentUser);
     }
 

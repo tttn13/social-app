@@ -1,14 +1,14 @@
-import "./closeFriend.css";
+import './closeFriend.css';
 
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import ProfilePicture from "../profilePicture/ProfilePicture";
+import ProfilePicture from '../profilePicture/ProfilePicture';
 
 const CloseFriend = ({ user, style }) => {
   const [defaultStyle, setDefaultStyle] = useState({
-    color: "black",
-    textDecoration: "none",
+    color: 'black',
+    textDecoration: 'none',
   });
 
   useEffect(() => {
@@ -18,10 +18,14 @@ const CloseFriend = ({ user, style }) => {
   }, [style]);
 
   return (
-    <Link to={"/profile/" + user?.username} style={defaultStyle}>
+    <Link to={'/profile/' + user?.username} style={defaultStyle}>
       <li className="sidebarFriend">
         <ProfilePicture
-          userImage={user?.profilePicture}
+          userImage={
+            user?.profilePicture.length > 0
+              ? user.profilePicture
+              : 'person/noAvatar.png'
+          }
           classname="sidebarFriendImg"
         />
         <span className="sidebarFriendName">{user?.username}</span>

@@ -1,7 +1,7 @@
-import Loading from "../../pages/Loading";
-import { useGetFriends } from "../customHooks/useGetFriends";
-import OnlineFriends from "../online/OnlineFriends";
-import IconImage from "../profilePicture/IconImage";
+import Loading from '../../pages/Loading';
+import { useGetFriends } from '../customHooks/useGetFriends';
+import OnlineFriends from '../online/OnlineFriends';
+import IconImage from '../profilePicture/IconImage';
 
 const RightbarInHomePage = ({ currentUser }) => {
   const { friends: currentUserFriends } = useGetFriends(currentUser);
@@ -17,8 +17,11 @@ const RightbarInHomePage = ({ currentUser }) => {
             </span>
           </div>
           <div className="rightBarAdContainer">
-            <h4 className="rightbarTitle">Ad</h4>
-            <IconImage imageSrc="adContent.png" classname="rightbarAd" />
+            <h4 className="rightbarTitle">Other Content</h4>
+            <IconImage
+              imageSrc="otherContent.png"
+              classname="rightbarContent"
+            />
           </div>
 
           <OnlineFriends friends={currentUserFriends} />

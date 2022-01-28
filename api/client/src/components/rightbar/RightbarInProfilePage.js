@@ -1,12 +1,12 @@
-import { Add, Remove } from "@mui/icons-material";
-import { useContext, useEffect,useState } from "react";
-import { Link } from "react-router-dom";
+import { Add, Remove } from '@mui/icons-material';
+import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { handleFollow } from "../../context/AsyncActions";
-import { AuthContext } from "../../context/AuthContext";
-import { useFetchUser } from "../customHooks/useFetchUser";
-import { useGetFriends } from "../customHooks/useGetFriends";
-import ProfilePicture from "../profilePicture/ProfilePicture";
+import { handleFollow } from '../../context/AsyncActions';
+import { AuthContext } from '../../context/AuthContext';
+import { useFetchUser } from '../customHooks/useFetchUser';
+import { useGetFriends } from '../customHooks/useGetFriends';
+import ProfilePicture from '../profilePicture/ProfilePicture';
 
 const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
   const { dispatch } = useContext(AuthContext);
@@ -16,9 +16,9 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
 
   useEffect(() => {
     if (currentUser.followings.includes(selectedUser?._id)) {
-      setFollowedSelectedUser(true)
+      setFollowedSelectedUser(true);
     }
-  }, [selectedUser, currentUser])
+  }, [selectedUser, currentUser]);
 
   const handleClick = async () => {
     await handleFollow({
@@ -41,7 +41,7 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
             handleClick(e);
           }}
         >
-          {followedSelectedUser ? "Unfollow" : "Follow"}
+          {followedSelectedUser ? 'Unfollow' : 'Follow'}
           {followedSelectedUser ? <Remove /> : <Add />}
         </button>
       )}
@@ -59,26 +59,31 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
           <span className="rightbarInfoKey">Relationship:</span>
           <span className="rightbarInfoValue">
             {selectedUser.relationship === 1
-              ? "Single"
+              ? 'Single'
               : selectedUser.relationship === 2
-              ? "Married"
-              : "-"}
+              ? 'Married'
+              : '-'}
           </span>
         </div>
       </div>
 
       <h4 className="rightbarTitle">User Friends</h4>
       <div className="rightbarFollowings">
-        {userFriends && userFriends.length > 0 &&
+        {userFriends &&
+          userFriends.length > 0 &&
           userFriends.map((friend) => (
             <Link
-              to={"/profile/" + friend.username}
-              style={{ textDecoration: "none" }}
+              to={'/profile/' + friend.username}
+              style={{ textDecoration: 'none' }}
               key={friend._id}
             >
               <div className="rightbarFollowing">
                 <ProfilePicture
-                  userImage={friend?.profilePicture}
+                  userImage={
+                    friend?.profilePicture
+                      ? friend.profilePicture
+                      : 'person/noAvatar.png'
+                  }
                   classname="rightbarFollowingImg"
                 />
                 <span className="rightbarFollowingName">{friend.username}</span>

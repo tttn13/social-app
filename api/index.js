@@ -61,5 +61,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(process.env.PORT || 8800, () => {
-  console.log('backend server is running !');
+  console.log('backend server is running ! on port', process.env.PORT || 8800);
 });

@@ -90,7 +90,11 @@ const Topbar = () => {
           <div className="topbarIconItem ">
             <button className="topbarImgBtn">
               <ProfilePicture
-                userImage={user?.profilePicture}
+                userImage={
+                  user?.profilePicture.length > 0
+                    ? user.profilePicture
+                    : 'person/noAvatar.png'
+                }
                 classname="topbarImg dropbtn"
                 handleClickFn={() => setDropdownActive(!dropdownActive)}
               />
