@@ -56,6 +56,7 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 ### Login / Register
 
 - You can `login` or `register`. The form is validated, then if the user is authenticated or registration is successful, the user is navigated to the Home Page.
+- For demonstration purpose, newly registered users are friends with existing accounts in database. Users can choose to unfollow them.
 
 ![register-form](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/register-form.gif)
 
@@ -160,7 +161,7 @@ node index
 ```
 cd api/client
 npm install
-npm run start
+npm start
 ```
 
 #### Notes
@@ -183,5 +184,5 @@ To run Server and Client commands simultaneously and subscribe the app to code o
 
 ```
 npm install
-npm run dev
+npm dev
 ```
