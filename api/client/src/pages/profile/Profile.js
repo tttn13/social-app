@@ -16,7 +16,6 @@ const Profile = () => {
   const currentUser = useContext(AuthContext).user.user;
   const usernameFromParams = useParams().username;
   const { user: selectedUser } = useFetchUser({ username: usernameFromParams });
-
   return (
     <>
       <Topbar />
