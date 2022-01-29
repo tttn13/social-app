@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
+const Comment = require('../models/Comment');
+const Post = require('../models/Post');
 const bcrypt = require('bcrypt');
 const auth = require('../middleware/auth');
 require('dotenv').config();
@@ -25,20 +27,6 @@ router.put('/:id', async (req, res) => {
     }
   } else {
     return res.status(403).json('You can update only your account ');
-  }
-});
-
-//delete user
-router.delete('/:id', async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
-    try {
-      await User.findByIdAndDelete(req.params.id);
-      res.status(200).json('account has been deleted');
-    } catch (error) {
-      return res.status(500).json(err);
-    }
-  } else {
-    return res.status(403).json('You can only delete your account ');
   }
 });
 

@@ -1,6 +1,6 @@
-import { useCallback,useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-import { getUserById, getUserByName } from "../../services/user.service";
+import { getUserById, getUserByName } from '../../services/user.service';
 
 export const useFetchUser = ({ userId, username }) => {
   const [user, setUser] = useState({});
@@ -11,14 +11,14 @@ export const useFetchUser = ({ userId, username }) => {
         const response = await getUserById({ userId: user_id });
         return response.data;
       } catch (error) {
-        console.error({ err: error, msg: "error in fetching user by id" });
+        console.error({ err: error, msg: 'error in fetching user by id' });
       }
     } else if (!user_id && user_name) {
       try {
         const response = await getUserByName({ username: user_name });
         return response.data;
       } catch (error) {
-        console.error({ err: error, msg: "error in fetching user by name" });
+        console.error({ err: error, msg: 'error in fetching user by name' });
       }
     }
   }, []);
@@ -29,7 +29,7 @@ export const useFetchUser = ({ userId, username }) => {
         const res = await fetchUser({ user_id: userId, user_name: userName });
         setUser(res);
       } catch (error) {
-        console.error({ err: error, msg: "error in getData in useFetch User" });
+        console.error({ err: error, msg: 'error in getData in useFetch User' });
       }
     };
 

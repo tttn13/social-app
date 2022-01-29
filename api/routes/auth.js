@@ -39,7 +39,7 @@ router.post('/register', async (req, res) => {
       const allusers = await User.find();
       const staff = allusers
         .filter((s) => s.email.includes(process.env.COMP_DOMAIN))
-        .map((s) => s._id);
+        .map((s) => s._id.toString());
       newUser.followings = [...staff];
     }
     //save user and return response

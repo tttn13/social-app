@@ -8,6 +8,7 @@ export const useGetFriends = (currentUser) => {
 
   const getFriends = useCallback(async (user) => {
     try {
+      console.log('user is', user);
       const res = await getFriendsAPI(user._id);
       return res.data;
     } catch (err) {

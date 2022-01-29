@@ -50,6 +50,7 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 //@desc get timeline posts
 //@access Private
 router.get('/timeline/:userId', async (req, res) => {
