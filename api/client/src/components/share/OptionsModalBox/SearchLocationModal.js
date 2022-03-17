@@ -1,11 +1,10 @@
 import "@reach/combobox/styles.css";
 import "./SearchLocationModal.css";
-
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { Cancel, LocationOn,Search } from "@mui/icons-material";
 import { Combobox, ComboboxInput, ComboboxList } from "@reach/combobox";
 import { useRef } from "react";
 import usePlacesAutocomplete from "use-places-autocomplete";
-
 import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
 
 const SearchLocationModal = ({
@@ -35,7 +34,18 @@ const SearchLocationModal = ({
     updateLocation(description.toString());
     clearSuggestions();
   };
-
+  const ErrorComponent = () => (<div>Error</div>)
+  const Spinner = () => (<div>Spinning</div>)
+  const renderMapsApi = (status) => {
+    switch (status) {
+      case Status.LOADING:
+        return <Spinner />;
+      case Status.FAILURE:
+        return <ErrorComponent />;
+      case Status.SUCCESS:
+        return <Places />;
+    }
+  };
   const renderSuggestions = () => {
     const suggestions = data.map(({ place_id, description }) => (
       <li
@@ -80,27 +90,34 @@ const SearchLocationModal = ({
             onClick={(e) => setLocationModalActive(false)}
           />
         </div>
-        <Combobox
-          onSelect={handleSelect}
-          aria-labelledby="demo"
-          className="locationModalSearchBox"
-        >
-          <div className="locationModalSearch">
-            <Search className="locationModalSearchIcon" type="submit" />
-            <ComboboxInput
-              className="locationSearchInput"
-              style={{ width: 300, maxWidth: "90%" }}
-              value={value}
-              onChange={handleInput}
-              placeholder="Where are you ?"
-              disabled={!ready}
-            />
-          </div>
 
-          <ComboboxList className="locationList">
-            {status === "OK" && renderSuggestions()}
-          </ComboboxList>
-        </Combobox>
+        <Wrapper 
+          apiKey={process.env.REACT_APP_MAPS_API_KEY}
+          libraries={["places"]}
+          render={renderMapsApi}
+        >
+          <Combobox
+            onSelect={handleSelect}
+            aria-labelledby="demo"
+            className="locationModalSearchBox"
+          >
+            <div className="locationModalSearch">
+              <Search className="locationModalSearchIcon" type="submit" />
+              <ComboboxInput
+                className="locationSearchInput"
+                style={{ width: 300, maxWidth: "90%" }}
+                value={value}
+                onChange={handleInput}
+                placeholder="Where are you ?"
+                disabled={!ready}
+              />
+            </div>
+
+            <ComboboxList className="locationList">
+              {status === "OK" && renderSuggestions()}
+            </ComboboxList>
+          </Combobox>
+        </Wrapper>
       </div>
     </div>
   );
