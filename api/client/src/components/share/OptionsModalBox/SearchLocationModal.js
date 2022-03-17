@@ -40,15 +40,17 @@ const SearchLocationModal = ({
   const ErrorComponent = () => <div>Error</div>;
   const Spinner = () => <div>Spinning</div>;
   const renderMapsApi = (scriptStatus) => {
-    console.log("rendering maps api")
+    
     switch (scriptStatus) {
       case Status.LOADING:
+        console.log("rendering maps api loading")
         return <Spinner />;
       case Status.FAILURE:
+        console.log("rendering maps api failed")
         return <ErrorComponent />;
       case Status.SUCCESS:
-        console.log("status is success, init-ing")
-        init()
+        console.log("rendering maps api is success")
+        
         const results = {
           value: value,
           ready: ready,
@@ -82,7 +84,7 @@ const SearchLocationModal = ({
           />
         </div>
 
-        {locationModalActive && (
+        {locationModalActive && console.log("init") && init() && (
           <Wrapper
             apiKey={process.env.REACT_APP_MAPS_API_KEY}
             libraries={["places"]}
