@@ -24,7 +24,6 @@ const Feed = ({ currentUser }) => {
   const { fetchSelectedUserPosts: getUserPosts } = useFetchPosts({
     selectedUserUsername: selectedUsername,
   });
-  console.log('currentUserTimeline', currentUserTimeline);
   useEffect(() => {
     const fetchData = async (userId, selectedUsername) => {
       let posts = [];
