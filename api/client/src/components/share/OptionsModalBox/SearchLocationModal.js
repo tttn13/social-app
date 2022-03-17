@@ -2,7 +2,7 @@ import "@reach/combobox/styles.css";
 import "./SearchLocationModal.css";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { Cancel } from "@mui/icons-material";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
 import PlacesSuggestions from "./PlacesSuggestions";
@@ -50,7 +50,6 @@ const SearchLocationModal = ({
         return <ErrorComponent />;
       case Status.SUCCESS:
         console.log("rendering maps api is success")
-        
         const results = {
           value: value,
           ready: ready,
@@ -64,6 +63,11 @@ const SearchLocationModal = ({
     }
   };
 
+  useEffect(() => {
+    console.log("init in use effect")
+    init()
+  }, [])
+  
   useOutsideAlerter({
     ref: locationModalContent,
     setModalActive: setLocationModalActive,
@@ -84,7 +88,7 @@ const SearchLocationModal = ({
           />
         </div>
 
-        {locationModalActive && console.log("init") && init() && (
+        {locationModalActive && (
           <Wrapper
             apiKey={process.env.REACT_APP_MAPS_API_KEY}
             libraries={["places"]}
