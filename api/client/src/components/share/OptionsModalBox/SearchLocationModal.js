@@ -6,13 +6,13 @@ import { Combobox, ComboboxInput, ComboboxList } from "@reach/combobox";
 import { useRef } from "react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
+import PlacesSuggestions from "./PlacesSuggestions";
 
 const SearchLocationModal = ({
   setLocationModalActive,
   updateLocation,
   locationModalActive,
 }) => {
-  
   const {
     ready,
     value,
@@ -20,61 +20,71 @@ const SearchLocationModal = ({
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete();
-  const locationModalContent = useRef()
+
+  const locationModalContent = useRef();
   const handleInput = (e) => {
     setValue(e.target.value);
   };
-  
+
   const handleSelect = (val) => {
     setValue(val, false);
   };
-  
+
   const handleClick = ({ place_id, description }) => {
     setLocationModalActive(false);
     updateLocation(description.toString());
     clearSuggestions();
   };
-  const ErrorComponent = () => (<div>Error</div>)
-  const Spinner = () => (<div>Spinning</div>)
-  const renderMapsApi = (status) => {
-    switch (status) {
+  const ErrorComponent = () => <div>Error</div>;
+  const Spinner = () => <div>Spinning</div>;
+  const renderMapsApi = (scriptStatus) => {
+    switch (scriptStatus) {
       case Status.LOADING:
         return <Spinner />;
       case Status.FAILURE:
         return <ErrorComponent />;
       case Status.SUCCESS:
-        return <Places />;
+        const results = {
+          value: value,
+          ready: ready,
+          status: status,
+          data: data,
+          handleInput,
+          handleSelect,
+          handleClick,
+        };
+        return <PlacesSuggestions results={results} />;
     }
   };
-  const renderSuggestions = () => {
-    const suggestions = data.map(({ place_id, description }) => (
-      <li
-        key={place_id}
-        className="locationListItem"
-        onClick={() => handleClick({ place_id, description })}
-      >
-        <LocationOn />
-        {description}
-      </li>
-    ));
+  // const renderSuggestions = () => {
+  //   const suggestions = data.map(({ place_id, description }) => (
+  //     <li
+  //       key={place_id}
+  //       className="locationListItem"
+  //       onClick={() => handleClick({ place_id, description })}
+  //     >
+  //       <LocationOn />
+  //       {description}
+  //     </li>
+  //   ));
 
-    return (
-      <>
-        {suggestions}
-        <li className="locationListItem">
-          <img
-            src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
-            alt=""
-          />
-        </li>
-      </>
-    );
-  };
-  
-  useOutsideAlerter({ 
-    ref: locationModalContent, 
-    setModalActive: setLocationModalActive 
-  })
+  //   return (
+  //     <>
+  //       {suggestions}
+  //       <li className="locationListItem">
+  //         <img
+  //           src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
+  //           alt=""
+  //         />
+  //       </li>
+  //     </>
+  //   );
+  // };
+
+  useOutsideAlerter({
+    ref: locationModalContent,
+    setModalActive: setLocationModalActive,
+  });
 
   return (
     <div
@@ -91,12 +101,13 @@ const SearchLocationModal = ({
           />
         </div>
 
-        <Wrapper 
-          apiKey={process.env.REACT_APP_MAPS_API_KEY}
-          libraries={["places"]}
-          render={renderMapsApi}
-        >
-          <Combobox
+        {locationModalActive && (
+          <Wrapper
+            apiKey={process.env.REACT_APP_MAPS_API_KEY}
+            libraries={["places"]}
+            render={renderMapsApi}
+          >
+            {/* <Combobox
             onSelect={handleSelect}
             aria-labelledby="demo"
             className="locationModalSearchBox"
@@ -116,8 +127,9 @@ const SearchLocationModal = ({
             <ComboboxList className="locationList">
               {status === "OK" && renderSuggestions()}
             </ComboboxList>
-          </Combobox>
-        </Wrapper>
+          </Combobox> */}
+          </Wrapper>
+        )}
       </div>
     </div>
   );
