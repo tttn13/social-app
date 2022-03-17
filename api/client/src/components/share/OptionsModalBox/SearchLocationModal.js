@@ -1,8 +1,7 @@
 import "@reach/combobox/styles.css";
 import "./SearchLocationModal.css";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { Cancel, LocationOn,Search } from "@mui/icons-material";
-import { Combobox, ComboboxInput, ComboboxList } from "@reach/combobox";
+import { Cancel } from "@mui/icons-material";
 import { useRef } from "react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { useOutsideAlerter } from "../../customHooks/useOutsideAlerter";
@@ -14,12 +13,15 @@ const SearchLocationModal = ({
   locationModalActive,
 }) => {
   const {
+    init,
     ready,
     value,
     suggestions: { status, data },
     setValue,
     clearSuggestions,
-  } = usePlacesAutocomplete();
+  } = usePlacesAutocomplete({
+    initOnMount: false
+  });
 
   const locationModalContent = useRef();
   const handleInput = (e) => {
@@ -38,12 +40,15 @@ const SearchLocationModal = ({
   const ErrorComponent = () => <div>Error</div>;
   const Spinner = () => <div>Spinning</div>;
   const renderMapsApi = (scriptStatus) => {
+    console.log("rendering maps api")
     switch (scriptStatus) {
       case Status.LOADING:
         return <Spinner />;
       case Status.FAILURE:
         return <ErrorComponent />;
       case Status.SUCCESS:
+        console.log("status is success, init-ing")
+        init()
         const results = {
           value: value,
           ready: ready,
@@ -56,30 +61,6 @@ const SearchLocationModal = ({
         return <PlacesSuggestions results={results} />;
     }
   };
-  // const renderSuggestions = () => {
-  //   const suggestions = data.map(({ place_id, description }) => (
-  //     <li
-  //       key={place_id}
-  //       className="locationListItem"
-  //       onClick={() => handleClick({ place_id, description })}
-  //     >
-  //       <LocationOn />
-  //       {description}
-  //     </li>
-  //   ));
-
-  //   return (
-  //     <>
-  //       {suggestions}
-  //       <li className="locationListItem">
-  //         <img
-  //           src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
-  //           alt=""
-  //         />
-  //       </li>
-  //     </>
-  //   );
-  // };
 
   useOutsideAlerter({
     ref: locationModalContent,
@@ -107,27 +88,6 @@ const SearchLocationModal = ({
             libraries={["places"]}
             render={renderMapsApi}
           >
-            {/* <Combobox
-            onSelect={handleSelect}
-            aria-labelledby="demo"
-            className="locationModalSearchBox"
-          >
-            <div className="locationModalSearch">
-              <Search className="locationModalSearchIcon" type="submit" />
-              <ComboboxInput
-                className="locationSearchInput"
-                style={{ width: 300, maxWidth: "90%" }}
-                value={value}
-                onChange={handleInput}
-                placeholder="Where are you ?"
-                disabled={!ready}
-              />
-            </div>
-
-            <ComboboxList className="locationList">
-              {status === "OK" && renderSuggestions()}
-            </ComboboxList>
-          </Combobox> */}
           </Wrapper>
         )}
       </div>
