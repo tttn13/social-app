@@ -10,11 +10,11 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 
 ### ✨ Home Page ✨
 
-![homepage](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/homepage.png)
+![homepage](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/homepage.png)
 
 ### ✨ Profile Page ✨
 
-![profilepage](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/profilepage.png)
+![profilepage](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/profilepage.png)
 
 ## Technologies
 
@@ -58,12 +58,12 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 - You can `login` or `register`. The form is validated, then if the user is authenticated or registration is successful, the user is navigated to the Home Page.
 - For demonstration purpose, newly registered users are friends with existing accounts in database. Users can choose to unfollow them.
 
-![register-form](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/register-form.gif)
+![register-form](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/register-form.gif)
 
 ### Error Handling at Login/Register
 
-![register-error](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/register-error.gif)
-![login-error](https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/login-error.gif)
+![register-error](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/register-error.gif)
+![login-error](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/login-error.gif)
 
 An error message will show up
 
@@ -75,20 +75,20 @@ An error message will show up
 
 - Certain CRUD actions can only be performed with a valid token such as `creating, editing and deleting a post`.
 
-<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/create-post.gif' width = "600" height= '500'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/create-post.gif' width = "600" height= '500'>
 
-<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/edit-post.gif' width = "600" height= '500'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/edit-post.gif' width = "600" height= '500'>
 
 - On the Home Page, you can create a post in which you can also `upload an image, tag friend(s), check in to a location, and add an emoji` that represents your feeling.
 - There are options to edit and `delete` the post if you are the owner of the post. You can `hide` anyone's post from your Feed.
 
-<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/del-post.gif' width = "550" height= '500'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/del-post.gif' width = "550" height= '500'>
 
 - You can leave `likes` and comments on a post. You can also unlike the post.
 
 ### Comment
 
-<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/comment.gif' width = "430" height= '550'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/comment.gif' width = "430" height= '550'>
 
 - You can leave comments on a post. You can also delete it.
 - You can `edit or delete` anyone's comment as long as you are the post creator
@@ -101,7 +101,7 @@ An error message will show up
 
 ### Navbar
 
-<img src='https://github.com/tttn13/social-app/blob/main/api/client/public/assets/screenshots/search-demo.gif' width = "500" height= '550'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/search-demo.gif' width = "500" height= '550'>
 
 - You can `search` for users and posts.
 - All the matching results will be displayed after hitting `Enter`
