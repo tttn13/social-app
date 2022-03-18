@@ -62,26 +62,26 @@ const SearchLocationModal = ({
   };
 
   useEffect(() => {
-    if (Status && locationModalActive) {
+    if (locationModalActive) {
       console.log("init at status and modal active");
-      init()
+      init();
     }
-  }, [Status, locationModalActive])
-  
+  }, [locationModalActive]);
+
   useOutsideAlerter({
     ref: locationModalContent,
     setModalActive: setLocationModalActive,
   });
 
   return (
-    <Wrapper
-      apiKey={process.env.REACT_APP_MAPS_API_KEY}
-      libraries={["places"]}
-      render={renderMapsApi}
+    <div
+      className="locationModal"
+      style={{ display: `${locationModalActive ? "flex" : "none"}` }}
     >
-      <div
-        className="locationModal"
-        style={{ display: `${locationModalActive ? "flex" : "none"}` }}
+      <Wrapper
+        apiKey={process.env.REACT_APP_MAPS_API_KEY}
+        libraries={["places"]}
+        render={renderMapsApi}
       >
         <div ref={locationModalContent} className="locationModalContent">
           <div className="locationModalTop">
@@ -95,8 +95,8 @@ const SearchLocationModal = ({
 
           <PlacesSuggestions results={results} />
         </div>
-      </div>
-    </Wrapper>
+      </Wrapper>
+    </div>
   );
 };
 
