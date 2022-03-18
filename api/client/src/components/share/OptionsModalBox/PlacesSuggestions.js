@@ -1,5 +1,7 @@
+import "./PlacesSuggestions.css";
 import { LocationOn, Search } from "@mui/icons-material";
 import { Combobox, ComboboxInput, ComboboxList } from "@reach/combobox";
+
 
 const PlacesSuggestions = ({ results }) => {
   const { value, ready, status, data, handleInput, handleSelect, handleClick } =
@@ -39,7 +41,6 @@ const PlacesSuggestions = ({ results }) => {
         <Search className="locationModalSearchIcon" type="submit" />
         <ComboboxInput
           className="locationSearchInput"
-          style={{ width: 300, maxWidth: "90%" }}
           value={value}
           onChange={handleInput}
           placeholder="Where are you ?"

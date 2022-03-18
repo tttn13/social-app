@@ -6,17 +6,7 @@
   border: 1px solid #888;
   width: 60%;
   height: 60%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.locationList {
-  padding: 15px
-}
-
-.locationListItem {
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .locationModalTop {
@@ -36,12 +26,6 @@
   justify-content: center;
 }
 
-.locationSearchInput {
-  border: none;
-  background-color: inherit;
-  width: 600px !important;
-}
-
 .friendList {
   padding: 0;
   margin: 0;
@@ -56,29 +40,6 @@
 .friendListHeader {
   color: #5a5c60;
   padding: 10px 0;
-}
-
-.locationModalSearch {
-  width: 90%;
-  height: 30px;
-  background-color: #eef0f3;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-} 
-
-.locationModalSearchBox {
-  padding-left: 15px;
-}
-
-.locationModalSearchIcon {
-  font-size: 20px !important;
-  margin-left: 10px;
-}
-
-.locationSearchInput:focus {
-  outline: none;
 }
 
 .locationModalCloseBtn {
@@ -96,7 +57,7 @@
   list-style-type: none;
   display: flex;
   padding: 0;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   border: solid 1px #acacac;
   min-width: 100%;
   border-radius: 8px;
@@ -104,7 +65,7 @@
 
 .taggedListItem {
   padding: 10px;
-  margin: 10px ;
+  margin: 10px;
   background-color: #e3f1ff;
   color: #176bf0;
   display: inline-flex;

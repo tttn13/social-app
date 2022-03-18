@@ -74,14 +74,14 @@ const SearchLocationModal = ({
   });
 
   return (
-    <div
-      className="locationModal"
-      style={{ display: `${locationModalActive ? "flex" : "none"}` }}
+    <Wrapper
+      apiKey={process.env.REACT_APP_MAPS_API_KEY}
+      libraries={["places"]}
+      render={renderMapsApi}
     >
-      <Wrapper
-        apiKey={process.env.REACT_APP_MAPS_API_KEY}
-        libraries={["places"]}
-        render={renderMapsApi}
+      <div
+        className="locationModal"
+        style={{ display: `${locationModalActive ? "flex" : "none"}` }}
       >
         <div ref={locationModalContent} className="locationModalContent">
           <div className="locationModalTop">
@@ -95,8 +95,8 @@ const SearchLocationModal = ({
 
           <PlacesSuggestions results={results} />
         </div>
-      </Wrapper>
-    </div>
+      </div>
+    </Wrapper>
   );
 };
 

@@ -1,0 +1,37 @@
+.locationList {
+  padding: 15px;
+}
+.locationListItem {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.locationModalSearchBox {
+  padding-left: 15px;
+}
+.locationModalSearch {
+  width: 90%;
+  height: 30px;
+  background-color: #eef0f3;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.locationModalSearchIcon {
+  font-size: 20px !important;
+  margin-left: 10px;
+}
+
+.locationSearchInput {
+  border: none;
+  background-color: inherit;
+  width: 600px !important;
+  max-width: 90%;
+}
+
+.locationSearchInput:focus {
+  outline: none;
+}
