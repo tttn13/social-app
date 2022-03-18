@@ -37,67 +37,62 @@ const SearchLocationModal = ({
     updateLocation(description.toString());
     clearSuggestions();
   };
+  
   const ErrorComponent = () => <div>Error</div>;
   const Spinner = () => <div>Spinning</div>;
   const renderMapsApi = (scriptStatus) => {
-    
     switch (scriptStatus) {
       case Status.LOADING:
-        console.log("rendering maps api loading")
+        console.log("rendering maps api loading");
         return <Spinner />;
       case Status.FAILURE:
-        console.log("rendering maps api failed")
+        console.log("rendering maps api failed");
         return <ErrorComponent />;
       case Status.SUCCESS:
-        console.log("rendering maps api is success")
-        const results = {
-          value: value,
-          ready: ready,
-          status: status,
-          data: data,
-          handleInput,
-          handleSelect,
-          handleClick,
-        };
-        return <PlacesSuggestions results={results} />;
+        console.log("init in success");
+        init();
     }
   };
 
-  useEffect(() => {
-    console.log("init in use effect")
-    init()
-  }, [])
-  
+  const results = {
+    value: value,
+    ready: ready,
+    status: status,
+    data: data,
+    handleInput,
+    handleSelect,
+    handleClick,
+  };
+
   useOutsideAlerter({
     ref: locationModalContent,
     setModalActive: setLocationModalActive,
   });
 
   return (
-    <div
-      className="locationModal"
-      style={{ display: `${locationModalActive ? "flex" : "none"}` }}
+    <Wrapper
+      apiKey={process.env.REACT_APP_MAPS_API_KEY}
+      libraries={["places"]}
+      render={renderMapsApi}
     >
-      <div ref={locationModalContent} className="locationModalContent">
-        <div className="locationModalTop">
-          <h3> Search for location</h3>
-          <Cancel
-            className="locationModalCloseBtn"
-            fontSize="large"
-            onClick={(e) => setLocationModalActive(false)}
-          />
-        </div>
+      <div
+        className="locationModal"
+        style={{ display: `${locationModalActive ? "flex" : "none"}` }}
+      >
+        <div ref={locationModalContent} className="locationModalContent">
+          <div className="locationModalTop">
+            <h3> Search for location</h3>
+            <Cancel
+              className="locationModalCloseBtn"
+              fontSize="large"
+              onClick={(e) => setLocationModalActive(false)}
+            />
+          </div>
 
-        {locationModalActive && (
-          <Wrapper
-            apiKey={process.env.REACT_APP_MAPS_API_KEY}
-            libraries={["places"]}
-            render={renderMapsApi}
-          >
-          </Wrapper>
-        )}
+          <PlacesSuggestions results={results} />
+        </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

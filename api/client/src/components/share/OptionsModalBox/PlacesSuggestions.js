@@ -1,8 +1,9 @@
 import { LocationOn, Search } from "@mui/icons-material";
 import { Combobox, ComboboxInput, ComboboxList } from "@reach/combobox";
 
-const PlacesSuggestions = (results) => {
-  const { value, ready, status, data, handleInput, handleSelect, handleClick } = results;
+const PlacesSuggestions = ({ results }) => {
+  const { value, ready, status, data, handleInput, handleSelect, handleClick } =
+    results;
   const renderSuggestions = () => {
     const suggestions = data.map(({ place_id, description }) => (
       <li
