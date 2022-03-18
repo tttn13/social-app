@@ -48,9 +48,6 @@ const SearchLocationModal = ({
       case Status.FAILURE:
         console.log("rendering maps api failed");
         return <ErrorComponent />;
-      case Status.SUCCESS:
-        console.log("init in success");
-        init();
     }
   };
 
@@ -64,6 +61,13 @@ const SearchLocationModal = ({
     handleClick,
   };
 
+  useEffect(() => {
+    if (Status && locationModalActive) {
+      console.log("init at status and modal active");
+      init()
+    }
+  }, [Status, locationModalActive])
+  
   useOutsideAlerter({
     ref: locationModalContent,
     setModalActive: setLocationModalActive,
