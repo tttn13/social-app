@@ -2,8 +2,8 @@ name: Deploy to Heroku Production
 
 on:
   push:
-    branches:
-      - develop
+    tags:
+      - v*
 
 jobs:
   build:
