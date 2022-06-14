@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import ReactTimeAgo from "react-time-ago";
+
 import { formatAMPM } from "../../utils/utils";
 
 export default function EventCard(item) {
