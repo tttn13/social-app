@@ -11,6 +11,7 @@ const postRoute = require('./routes/posts');
 const commentRoute = require('./routes/comments');
 const path = require('path');
 const cors = require('cors');
+const {XMLParser} = require('fast-xml-parser');
 const axios = require("axios").create({
   baseURL: "https://youtube.googleapis.com/youtube/v3/",
 });
@@ -56,6 +57,25 @@ app.get("/api/videos", async (req, res) => {
     res.status(505).json({ message: err });
   }
 });
+
+//fetching news
+app.get("/api/news", async(req,res) => {
+  try {
+    const url = "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+    const response = await axios.get(url);
+    const options = {
+      ignoreAttributes : false
+    };
+  
+    const parser = new XMLParser(options);
+    let jsonObj = parser.parse(response.data);
+
+    return res.send(jsonObj.rss.channel.item.slice(0,15));
+  } catch (error) {
+    res.status(505).json({ message: err });
+  }
+})
+
 //file uploading
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

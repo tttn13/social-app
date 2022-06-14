@@ -100,3 +100,7 @@ export const updateComment = async (cmtId, userId, body) => {
 export const fetchVids = async () => {
   return axiosInstance.get("/videos");
 };
+
+export const fetchNews = async() => {
+  return axiosInstance.get("/news");
+}

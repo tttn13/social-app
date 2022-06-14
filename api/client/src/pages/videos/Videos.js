@@ -31,7 +31,6 @@ const Videos = () => {
                   <a
                     key={idx}
                     className="videoContainer"
-                    style={{ }}
                     href={youtubeUrl + i.id.videoId}
                     role="button"
                     target="_blank"

@@ -1,0 +1,19 @@
+.newsFeed {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  flex: 5;
+}
+
+.newsHeaderWrapper {
+    padding: 20px
+}
+
+.newsPageContainer {
+  display: flex;
+  width: 100%;
+}
+
+.newsContent {
+  display: flex;
+  flex-wrap: wrap;
+}
