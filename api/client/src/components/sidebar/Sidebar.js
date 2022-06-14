@@ -23,15 +23,6 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebarWrapper">
         <ul className="sidebarList">
-          <Link
-            to={`/findfriends`}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <li className="sidebarListItem">
-              <People className="sidebarIcon" />
-              <span className="sidebarListItemText">Find friends</span>
-            </li>
-          </Link>
           <Link to={`/`} style={{ textDecoration: "none", color: "black" }}>
             <li className="sidebarListItem">
               <RssFeed className="sidebarIcon" />
@@ -49,9 +40,7 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <Link 
-            to={`/news`} 
-            style={{ textDecoration: "none", color: "black" }}>
+          <Link to={`/news`} style={{ textDecoration: "none", color: "black" }}>
             <li className="sidebarListItem">
               <Newspaper className="sidebarIcon" />
               <span className="sidebarListItemText">News</span>
@@ -74,6 +63,15 @@ const Sidebar = () => {
             <li className="sidebarListItem">
               <Event className="sidebarIcon" />
               <span className="sidebarListItemText">Events</span>
+            </li>
+          </Link>
+          <Link
+            to={`/findfriends`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <li className="sidebarListItem">
+              <People className="sidebarIcon" />
+              <span className="sidebarListItemText">Find friends</span>
             </li>
           </Link>
           <hr className="sidebarHr" />
