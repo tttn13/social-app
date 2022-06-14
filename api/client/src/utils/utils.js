@@ -95,3 +95,14 @@ export const combineAllResults = (user, searchInput, friendsList, postsList) => 
   const allResults = friendMatches.concat(postMatches);
   return allResults;
 };
+
+export const formatAMPM = (hrs, mns) => {
+  hrs = parseInt(hrs);
+  mns = parseInt(mns);
+  let ampm = hrs >= 12 ? "pm" : "am";
+  hrs = hrs % 12;
+  hrs = hrs ? hrs : 12;
+  mns = mns.toString().padStart(2, "0");
+  let strTime = hrs + ":" + mns + " " + ampm;
+  return strTime;
+};

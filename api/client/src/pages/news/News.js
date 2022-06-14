@@ -1,13 +1,15 @@
-import { useContext, useState, useEffect, useCallback } from "react";
+import "./news.css";
+
+import { useCallback,useContext, useEffect, useState } from "react";
+
 import Rightbar from "../../components/rightbar/Rightbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import { AuthContext } from "../../context/AuthContext";
+import { fetchNews } from "../../services/user.service";
 import { isEmpty } from "../../utils/utils";
 import Loading from "../Loading";
 import NewsCard from "./NewsCard";
-import { fetchNews } from "../../services/user.service";
-import "./news.css";
 
 const News = () => {
   const user = useContext(AuthContext).user.user;

@@ -1,7 +1,8 @@
-import React from "react";
 import "./newsCard.css";
-import ReactTimeAgo from "react-time-ago";
+
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import React from "react";
+import ReactTimeAgo from "react-time-ago";
 
 export default function NewsCard(item) {
   if ("item" in item && "media:content" in item["item"]) {
