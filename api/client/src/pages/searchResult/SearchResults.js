@@ -10,7 +10,7 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import { AuthContext } from "../../context/AuthContext";
-import { extractSearchQuery,isEmpty } from "../../utils/utils";
+import { extractSearchQuery, isEmpty } from "../../utils/utils";
 import Loading from "../Loading";
 
 const SearchResults = () => {
@@ -23,10 +23,10 @@ const SearchResults = () => {
 
   const ResultsContent = ({ results }) => {
     return (
-      <div className="feed">
-        <div className="feedWrapper">
-          <h2 className="searchResultsHeader">Search Results</h2>
-          <hr className="searchResultsDivider"></hr>
+      <div className="searchPagefeed">
+        <div className="searchPagefeedWrapper">
+          <h2 className="searchPageHeader">Search Results</h2>
+          <hr className="searchPageDivider"></hr>
           {results.length > 0 ? (
             results.map((res) => {
               if (res._id === -100) {
@@ -52,7 +52,6 @@ const SearchResults = () => {
           ) : (
             <div className="loading">
               <Loading />
-              
             </div>
           )}
         </div>
@@ -65,7 +64,7 @@ const SearchResults = () => {
       {!isEmpty(user) && searchResults && (
         <>
           <Topbar />
-          <div className="homeContainer">
+          <div className="resultPageContainer">
             <Sidebar />
             <ResultsContent results={searchResults} />
             <Rightbar currentUser={user} />

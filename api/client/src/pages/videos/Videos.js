@@ -23,7 +23,6 @@ const Videos = () => {
       <div className="videoFeed">
         <div className="videoFeedWrapper">
           <h2 className="videoHeader" >Videos</h2>
-          <hr style={{ padding: "0px 10px" }}></hr>
           <div className="content">
             {results.map((i, idx) => {
               if (i.snippet) {
@@ -62,7 +61,7 @@ const Videos = () => {
       {!isEmpty(user) && (
         <>
           <Topbar />
-          <div className="homeContainer">
+          <div className="videoPageContainer">
             <Sidebar />
             {videosRes ? <VideosRes results={videosRes} /> : <Loading/>}
             <Rightbar currentUser={user} />
