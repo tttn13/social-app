@@ -61,9 +61,10 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 ![register-form](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/register-form.gif)
 
 ### Error Handling at Login/Register
-
-![register-error](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/register-error.gif)
-![login-error](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/login-error.gif)
+<p float="left"> 
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/register-error.gif' width = "365" height= '369'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/login-error.gif' width = "365" height= '369'>
+</p>
 
 An error message will show up
 

@@ -13,6 +13,8 @@ const path = require('path');
 const cors = require('cors');
 const {XMLParser} = require('fast-xml-parser');
 
+//create axios instances
+const axios = require("axios").create({})
 const axiosYoutube = require("axios").create({
   baseURL: "https://youtube.googleapis.com/youtube/v3/",
 });
