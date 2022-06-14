@@ -11,7 +11,12 @@ const postRoute = require('./routes/posts');
 const commentRoute = require('./routes/comments');
 const path = require('path');
 const cors = require('cors');
-
+const axios = require("axios").create({
+  baseURL: "https://youtube.googleapis.com/youtube/v3/",
+});
+const DEFAULT_PARAMS={
+  key: process.env.REACT_APP_YOUTUBE_API,
+};
 mongoose.connect(
   process.env.MONGO_URL,
   {
@@ -35,6 +40,22 @@ app.use('/api/auth', authRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/comments', commentRoute);
 
+//fetching videos 
+app.get("/api/videos", async (req, res) => {
+  try {
+    const params = {
+      part: "snippet",
+      relatedToVideoId: "oZLnHWTfP8I",
+      type: "video",
+      maxResults: 5,
+      ...DEFAULT_PARAMS
+    };
+    const response = await axios.get("/search", { params });
+    return res.send(response.data);
+  } catch (err) {
+    res.status(505).json({ message: err });
+  }
+});
 //file uploading
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

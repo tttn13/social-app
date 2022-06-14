@@ -95,3 +95,8 @@ export const updateComment = async (cmtId, userId, body) => {
     body,
   });
 };
+
+//External service
+export const fetchVids = async () => {
+  return axiosInstance.get("/videos");
+};
