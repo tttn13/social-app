@@ -1,14 +1,15 @@
 import "./sidebar.css";
-import { Link } from "react-router-dom";
+
 import {
   Bookmark,
   Event,
+  People,
   PlayCircleFilledOutlined,
   RssFeed,
-  Newspaper,
-  People,
+  NewspaperOutlined
 } from "@mui/icons-material";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../context/AuthContext";
 import Loading from "../../pages/Loading";
@@ -42,7 +43,7 @@ const Sidebar = () => {
 
           <Link to={`/news`} style={{ textDecoration: "none", color: "black" }}>
             <li className="sidebarListItem">
-              <Newspaper className="sidebarIcon" />
+              <NewspaperOutlined className="sidebarIcon" />
               <span className="sidebarListItemText">News</span>
             </li>
           </Link>
