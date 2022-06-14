@@ -25,7 +25,8 @@ function App() {
   const SearchResults = lazy(() =>
     import('./pages/searchResult/SearchResults')
   );
-
+  const Videos = lazy(() => import ('./pages/videos/Videos'))
+  
   return (
     <Router>
       <Suspense fallback={<Loading />}>
@@ -52,6 +53,11 @@ function App() {
             path="/searchresults"
             userContext={userContext}
             component={SearchResults}
+          />
+          <PrivateRoute
+            path="/videos"
+            userContext={userContext}
+            component={Videos}
           />
           <Route path="/logout">
             {userContext ? <Redirect to="/" /> : <SessionExpired />}
