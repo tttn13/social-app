@@ -12,12 +12,17 @@ const commentRoute = require('./routes/comments');
 const path = require('path');
 const cors = require('cors');
 const {XMLParser} = require('fast-xml-parser');
-const axios = require("axios").create({
+
+const axiosYoutube = require("axios").create({
   baseURL: "https://youtube.googleapis.com/youtube/v3/",
 });
+const axiosEvents = require("axios").create({
+  baseURL: "https://app.ticketmaster.com/discovery/v2/",
+})
 const DEFAULT_PARAMS={
   key: process.env.REACT_APP_YOUTUBE_API,
 };
+
 mongoose.connect(
   process.env.MONGO_URL,
   {
@@ -51,7 +56,7 @@ app.get("/api/videos", async (req, res) => {
       maxResults: 5,
       ...DEFAULT_PARAMS
     };
-    const response = await axios.get("/search", { params });
+    const response = await axiosYoutube.get("/search", { params });
     return res.send(response.data);
   } catch (err) {
     res.status(505).json({ message: err });
@@ -75,6 +80,22 @@ app.get("/api/news", async(req,res) => {
     res.status(505).json({ message: err });
   }
 })
+
+//fetch events from Ticketmaster API
+app.get("/api/events", async (req, res) => {
+  try {
+    const params = {
+      countryCode: "US",
+      page: 0,
+      size: 10,
+      apikey: process.env.REACT_APP_EVENT_API_KEY
+    };
+    const response = await axiosEvents.get("/events.json", { params });
+    return res.send(response.data);
+  } catch (err) {
+    res.status(505).json({ message: err });
+  }
+});
 
 //file uploading
 const storage = multer.diskStorage({

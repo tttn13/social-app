@@ -23,7 +23,7 @@ const Videos = () => {
       <div className="videoFeed">
         <div className="videoFeedWrapper">
           <h2 className="videoHeader" >Videos</h2>
-          <div className="content">
+          <div className="videoFeedContent">
             {results.map((i, idx) => {
               if (i.snippet) {
                 return (

@@ -22,12 +22,16 @@ export default function NewsCard(item) {
               maxHeight: 270,
             }}
           >
-            <CardMedia
-              component="img"
-              height="150"
-              image={item["item"]["media:content"]["@_url"]}
-              alt="media card"
-            />
+            <div className="newsCardMediaContainer">
+              <CardMedia
+                className="newsCardMediaImg"
+                component="img"
+                height="150"
+                image={item["item"]["media:content"]["@_url"]}
+                alt="media card"
+              />
+              <div className="newsCardMediaMiddle"></div>
+            </div>
 
             <CardContent>
               <Typography gutterBottom variant="caption" component="div">

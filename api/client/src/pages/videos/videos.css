@@ -17,7 +17,7 @@
   width: 100%;
 }
 
-.content {
+.videoFeedContent {
   display: flex;
   flex-direction: column;
   padding: 20px;

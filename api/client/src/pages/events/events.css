@@ -1,0 +1,19 @@
+.eventsPageFeed {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  flex: 5;
+}
+
+.eventsPagFeedWrapper {
+  padding: 20px;
+}
+
+.eventsPageContainer {
+  display: flex;
+  width: 100%;
+}
+
+.eventsContent {
+  display: flex;
+  flex-wrap: wrap;
+}

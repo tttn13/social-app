@@ -1,18 +1,19 @@
-.newsContainer {
+.eventCardContainer {
   padding: 30px;
   text-decoration: none;
   color: black;
 }
-.newsCardMediaContainer {
+
+.cardMediaContainer {
   position: relative;
 }
-.newsCardMediaImg {
+.cardMediaImg {
   opacity: 1;
   display: block;
   transition: 0.5s ease;
   backface-visibility: hidden;
 }
-.newsCardMediaMiddle {
+.cardMediaMiddle {
   transition: 0.5s ease;
   opacity: 0;
   position: absolute;
@@ -22,10 +23,10 @@
   -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
-.newsCardMediaContainer:hover .newsCardMediaImg {
+.cardMediaContainer:hover .cardMediaImg {
   opacity: 0.3;
 }
 
-.newsCardMediaContainer:hover .newsCardMediaMiddle {
+.cardMediaContainer:hover .cardMediaMiddle {
   opacity: 1;
 }

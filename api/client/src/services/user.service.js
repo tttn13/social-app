@@ -104,3 +104,7 @@ export const fetchVids = async () => {
 export const fetchNews = async() => {
   return axiosInstance.get("/news");
 }
+
+export const fetchEvents = async () => {
+  return axiosInstance.get("/events");
+};
