@@ -34,6 +34,11 @@ export const handleAddFriendAPI = async({currentUserId, selectedUserId}) => {
     userId: currentUserId,
   });
 }
+export const handleUnFriendAPI = async({currentUserId, selectedUserId}) => {
+  return axiosInstance.put(`/users/${selectedUserId}/unfriend`, {
+    userId: currentUserId,
+  });
+}
 //Posts Services
 export const getTimeline = async (userId) => {
   return axiosInstance.get(`/posts/timeline/${userId}`);

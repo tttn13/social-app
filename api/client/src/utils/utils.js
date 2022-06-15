@@ -107,15 +107,15 @@ export const formatAMPM = (hrs, mns) => {
   return strTime;
 };
 
-export const countMutualFriends = (random, currUser) => {
-  let count = 0
-  const randomFollowings = new Set(random.followings)
-  const currUserFollowers = new Set(currUser.followers)
-  const currUserFollowings = new Set(currUser.followings)
-  for (const id of random.followers) {
-      if (randomFollowings.has(id) && currUserFollowers.has(id) && currUserFollowings.has(id)) {
-          count += 1
-      }
-  }
-  return count
-}
+// export const countMutualFriends = (random, currUser) => {
+//   let count = 0
+//   const randomFollowings = new Set(random.followings)
+//   const currUserFollowers = new Set(currUser.followers)
+//   const currUserFollowings = new Set(currUser.followings)
+//   for (const id of random.followers) {
+//       if (randomFollowings.has(id) && currUserFollowers.has(id) && currUserFollowings.has(id)) {
+//           count += 1
+//       }
+//   }
+//   return count
+// }

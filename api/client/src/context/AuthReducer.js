@@ -42,22 +42,30 @@ const AuthReducer = (state, action) => {
         error_response: null,
       };
     case "ADD_FRIEND":
-      if (
-        !(action.payload in new Set(...state.user.user.followings)) &&
-        !(action.payload in new Set(state.user.user.followers))
-      ) {
-        return {
-          ...state,
+      return {
+        ...state,
+        user: {
+          ...state.user,
           user: {
-            ...state.user,
-            user: {
-              ...state.user.user,
-              followings: [...state.user.user.followings, action.payload],
-              followers: [...state.user.user.followers, action.payload],
-            },
+            ...state.user.user,
+            friends: [...state.user.user.friends, action.payload],
           },
-        };
-      }
+        },
+      };
+
+    case "UNFRIEND":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          user: {
+            ...state.user.user,
+            friends: state.user.user.friends.filter(
+              (fr) => fr !== action.payload
+            ),
+          },
+        },
+      };
 
     case "UPDATE_FOLLOW":
       return {

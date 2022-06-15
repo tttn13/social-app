@@ -6,7 +6,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import { AuthContext } from "../../context/AuthContext";
 import { getAllUsers } from "../../services/user.service";
-import { isEmpty, countMutualFriends } from "../../utils/utils";
+import { isEmpty } from "../../utils/utils";
 import Loading from "../Loading";
 import RequestCard from "./RequestCard";
 
@@ -14,19 +14,18 @@ const FriendRequests = () => {
   const user = useContext(AuthContext).user.user;
   const [reqRes, setReqRes] = useState([]);
 
+  const countMutualFriends = (friend, currUser) => {
+    const friendListIds = friend.friends.map((i) => i._id);
+    const currUserFriendsIds = currUser.friends.map((i) => i._id);
+    return [...new Set([...friendListIds, ...currUserFriendsIds])].length;
+  };
+  
   const getPotentialFriends = async (allUsers, currUser) => {
-    let currUserFollowersIds = new Set(currUser.followers);
-    let currUserFollowingsIds = new Set(currUser.followings);
-    
-    let allUsersIds = allUsers.map((i) => {
-      if (!currUserFollowersIds.has(i) && !currUserFollowingsIds.has(i) && !user.followings.includes(user._id) && !user.followers.includes(user._id)) {
-        return i._id;
-      }
-    });
-    const potentialIds = new Set(allUsersIds);
-    const res = [];
+    let currUserFriendsIds = new Set(currUser.friends);
+    let res = [];
+
     for (const u of allUsers) {
-      if (potentialIds.has(u._id)) {
+      if (!currUserFriendsIds.has(u._id)) {
         const mutualCount = countMutualFriends(u, user);
         res.push({ user: u, mutualFriends: mutualCount });
       }

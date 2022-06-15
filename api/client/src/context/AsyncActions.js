@@ -1,14 +1,15 @@
 import { login, logout, register } from "../services/auth.service";
 import { removeUserFromStorage } from "../services/token.service";
-import { handleFollowsAPI } from "../services/user.service";
+import { handleAddFriendAPI,handleFollowsAPI, handleUnFriendAPI } from "../services/user.service";
 import {
   LoginFailure,
   LoginStart,
   LoginSuccess,
   LogOut,
+  unFriend,
   updateFollows,
-  updateUnfollows,
-} from "./AuthActions";
+  updateFriendsList,
+  updateUnfollows} from "./AuthActions";
 
 export const loginUser = async (userCredentials, dispatch) => {
   removeUserFromStorage();
@@ -70,6 +71,38 @@ export const handleAddFriend = async ({
   try {
     await handleAddFriendAPI(currentUserId, selectedUserId);
     dispatch(updateFriendsList(selectedUserId));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const handleUnfriend = async ({
+  currentUserId,
+  selectedUserId,
+  dispatch,
+}) => {
+  try {
+    await handleUnFriendAPI(currentUserId, selectedUserId);
+    dispatch(unFriend(selectedUserId));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const handleAddFriendBtn = async ({
+  currentUserId,
+  selectedUserId,
+  followedSelectedUser,
+  dispatch,
+}) => {
+
+  try {
+    await handleAddFriendAPI(currentUserId, selectedUserId);
+    if (followedSelectedUser) {
+      dispatch(unFriend(selectedUserId));
+    } else {
+      dispatch(updateFriendsList(selectedUserId));
+    }
   } catch (error) {
     console.error(error);
   }

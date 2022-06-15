@@ -2,7 +2,7 @@ import { Add, Remove } from '@mui/icons-material';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { handleFollow } from '../../context/AsyncActions';
+import { handleAddFriendBtn } from '../../context/AsyncActions';
 import { AuthContext } from '../../context/AuthContext';
 import { useFetchUser } from '../customHooks/useFetchUser';
 import { useGetFriends } from '../customHooks/useGetFriends';
@@ -15,13 +15,13 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
   const { friends: userFriends } = useGetFriends(selectedUser);
 
   useEffect(() => {
-    if (currentUser.followings.includes(selectedUser?._id)) {
+    if (currentUser.friends.includes(selectedUser?._id)) {
       setFollowedSelectedUser(true);
     }
   }, [selectedUser, currentUser]);
 
   const handleClick = async () => {
-    await handleFollow({
+    await handleAddFriendBtn({
       currentUserId: currentUser._id,
       selectedUserId: selectedUser._id,
       followedSelectedUser,
@@ -41,7 +41,7 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
             handleClick(e);
           }}
         >
-          {followedSelectedUser ? 'Unfollow' : 'Follow'}
+          {followedSelectedUser ? 'Unfriend' : 'Friend'}
           {followedSelectedUser ? <Remove /> : <Add />}
         </button>
       )}

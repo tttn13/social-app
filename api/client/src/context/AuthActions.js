@@ -29,3 +29,7 @@ export const updateFriendsList = (userId) => ({
   type: 'ADD_FRIEND',
   payload: userId,
 });
+export const unFriend = (userId) => ({
+  type: 'UNFRIEND',
+  payload: userId,
+});

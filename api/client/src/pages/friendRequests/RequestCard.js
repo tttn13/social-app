@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { handleAddFriend } from "../../context/AsyncActions";
@@ -13,10 +13,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const RequestCard = ({ person, handleDelete, mutualFriends, user }) => {
   const { dispatch } = useContext(AuthContext);
-  const [friended, setFriended] = useState(
-    user.followings.includes(person._id) &&
-    person.followers.includes(user._id)
-  );
+  const [friended, setFriended] = useState(user.friends.includes(person._id));
 
   const handleConfirm = async (personId) => {
     await handleAddFriend({
