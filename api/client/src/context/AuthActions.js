@@ -25,3 +25,7 @@ export const updateUnfollows = (userId) => ({
   type: 'UPDATE_UNFOLLOW',
   payload: userId,
 });
+export const updateFriendsList = (userId) => ({
+  type: 'ADD_FRIEND',
+  payload: userId,
+});

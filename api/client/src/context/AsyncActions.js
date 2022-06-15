@@ -1,6 +1,6 @@
-import { login, logout, register } from '../services/auth.service';
-import { removeUserFromStorage } from '../services/token.service';
-import { handleFollowsAPI } from '../services/user.service';
+import { login, logout, register } from "../services/auth.service";
+import { removeUserFromStorage } from "../services/token.service";
+import { handleFollowsAPI } from "../services/user.service";
 import {
   LoginFailure,
   LoginStart,
@@ -8,7 +8,7 @@ import {
   LogOut,
   updateFollows,
   updateUnfollows,
-} from './AuthActions';
+} from "./AuthActions";
 
 export const loginUser = async (userCredentials, dispatch) => {
   removeUserFromStorage();
@@ -24,7 +24,7 @@ export const loginUser = async (userCredentials, dispatch) => {
 export const registerUser = async ({ user, dispatch, history }) => {
   try {
     await register(user);
-    history.push('/login');
+    history.push("/login");
   } catch (error) {
     dispatch(LoginFailure({ error_response: error.response }));
   }
@@ -35,12 +35,12 @@ export const logoutUser = async (dispatch) => {
     dispatch(LogOut());
     removeUserFromStorage();
   } catch (error) {
-    console.log('dispatching logging out failed', { err: error });
+    console.log("dispatching logging out failed", { err: error });
   }
   try {
     await logout();
   } catch (error) {
-    console.log('calling logging out api failed', { err: error });
+    console.log("calling logging out api failed", { err: error });
   }
 };
 
@@ -62,12 +62,25 @@ export const handleFollow = async ({
   }
 };
 
+export const handleAddFriend = async ({
+  currentUserId,
+  selectedUserId,
+  dispatch,
+}) => {
+  try {
+    await handleAddFriendAPI(currentUserId, selectedUserId);
+    dispatch(updateFriendsList(selectedUserId));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const logOutOnExpired = async (dispatch) => {
   try {
     await logout();
     dispatch(LogOut());
     removeUserFromStorage();
   } catch (error) {
-    console.log('calling logging out api failed', { err: error });
+    console.log("calling logging out api failed", { err: error });
   }
 };

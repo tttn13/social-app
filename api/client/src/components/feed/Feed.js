@@ -76,7 +76,7 @@ const Feed = ({ currentUser }) => {
           <Loading />
         )}
         {currentUserTimeline.length == 0 && (
-          <Loading />
+          <h5 > User hasn't made any new post </h5>
         )}
       </div>
     </div>

@@ -28,6 +28,7 @@ function App() {
   const Videos = lazy(() => import ('./pages/videos/Videos'))
   const News = lazy(() => import ('./pages/news/News'))
   const Events = lazy(() => import ('./pages/events/Events'))
+  const FriendRequests = lazy(() => import ('./pages/friendRequests/FriendRequests'))
 
   return (
     <Router>
@@ -70,6 +71,11 @@ function App() {
             path="/events"
             userContext={userContext}
             component={Events}
+          />
+          <PrivateRoute
+            path="/findfriends"
+            userContext={userContext}
+            component={FriendRequests}
           />
           <Route path="/logout">
             {userContext ? <Redirect to="/" /> : <SessionExpired />}

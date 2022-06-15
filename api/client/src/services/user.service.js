@@ -2,6 +2,9 @@
 import axiosInstance from '../config/config';
 import axiosJWT from './axiosJwtInterceptors';
 //User services
+export const getAllUsers = async () => {
+  return axiosInstance.get("/users/allusers");
+};
 export const getUser = async ({ userId, username }) => {
   if (userId) {
     return axiosInstance.get(`/users?userId=${userId}`);
@@ -26,6 +29,11 @@ export const handleFollowsAPI = async (currentUserId, selectedUserId) => {
     userId: currentUserId,
   });
 };
+export const handleAddFriendAPI = async({currentUserId, selectedUserId}) => {
+  return axiosInstance.put(`/users/${selectedUserId}/addfriend`, {
+    userId: currentUserId,
+  });
+}
 //Posts Services
 export const getTimeline = async (userId) => {
   return axiosInstance.get(`/posts/timeline/${userId}`);

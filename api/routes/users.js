@@ -108,7 +108,34 @@ router.put('/:id/unfollow', async (req, res) => {
     res.status(403).json("You can't unfollow yourself");
   }
 });
-//get all users
+
+router.put('/:id/addfriend', async (req, res) => {
+  if (req.body.userId !== req.params.id) {
+    try {
+      const userToFollow = await User.findById(req.params.id);
+      const currentUser = await User.findById(req.body.userId);
+      if (!userToFollow.followers.includes(req.body.userId) ) {
+        await userToFollow.updateOne({ $push: { followers: req.body.userId } });
+      }
+      if (!userToFollow.followings.includes(req.body.userId)) {
+        await userToFollow.updateOne({ $push: { followings: req.body.userId } });
+      }
+      if (!currentUser.followers.includes(req.params.id) ) {
+        await currentUser.updateOne({ $push: { followings: req.params.id } });
+      } 
+      if (!currentUser.followings.includes(req.params.id)) {
+        await currentUser.updateOne({ $push: { followers: req.params.id } });
+      }
+      res.status(200).json(`You are friends with ${userToFollow.username}`);
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+  } else {
+    res.status(403).json("You can't friend yourself");
+  }
+});
+
+//get all staff
 router.get('/allstaff', async (req, res) => {
   const userId = req.query.userId;
   try {
@@ -117,6 +144,16 @@ router.get('/allstaff', async (req, res) => {
       s.email.includes(process.env.COMP_DOMAIN)
     );
     res.status(200).json(staff);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//get all users
+router.get('/allusers', async (req, res) => {
+  try {
+    const allusers = await User.find();
+    res.status(200).json(allusers);
   } catch (error) {
     res.status(500).json(error);
   }

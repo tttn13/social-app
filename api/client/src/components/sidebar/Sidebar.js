@@ -3,10 +3,10 @@ import "./sidebar.css";
 import {
   Bookmark,
   Event,
+  NewspaperOutlined,
   People,
   PlayCircleFilledOutlined,
   RssFeed,
-  NewspaperOutlined
 } from "@mui/icons-material";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -24,6 +24,15 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebarWrapper">
         <ul className="sidebarList">
+          <Link
+            to={`/findfriends`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <li className="sidebarListItem">
+              <People className="sidebarIcon" />
+              <span className="sidebarListItemText">Find friends</span>
+            </li>
+          </Link>
           <Link to={`/`} style={{ textDecoration: "none", color: "black" }}>
             <li className="sidebarListItem">
               <RssFeed className="sidebarIcon" />
@@ -48,7 +57,7 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <Link
+          {/* <Link
             to={`/saved`}
             style={{ textDecoration: "none", color: "black" }}
           >
@@ -56,7 +65,7 @@ const Sidebar = () => {
               <Bookmark className="sidebarIcon" />
               <span className="sidebarListItemText">Bookmarks</span>
             </li>
-          </Link>
+          </Link> */}
           <Link
             to={`/events`}
             style={{ textDecoration: "none", color: "black" }}
@@ -66,15 +75,7 @@ const Sidebar = () => {
               <span className="sidebarListItemText">Events</span>
             </li>
           </Link>
-          <Link
-            to={`/findfriends`}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <li className="sidebarListItem">
-              <People className="sidebarIcon" />
-              <span className="sidebarListItemText">Find friends</span>
-            </li>
-          </Link>
+
           <hr className="sidebarHr" />
           {currentUserFriends ? (
             <ul className="sidebarFriendList">

@@ -1,0 +1,19 @@
+.reqPageFeed {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  flex: 8;
+}
+
+.reqPageFeedWrapper {
+  padding: 20px;
+}
+
+.reqPageContainer {
+  display: flex;
+  width: 100%;
+}
+
+.reqContent {
+  display: flex;
+  flex-wrap: wrap;
+}

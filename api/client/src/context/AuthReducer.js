@@ -1,6 +1,6 @@
 const AuthReducer = (state, action) => {
   switch (action.type) {
-    case 'LOGIN_START':
+    case "LOGIN_START":
       return {
         ...state,
         user: null,
@@ -8,7 +8,7 @@ const AuthReducer = (state, action) => {
         error: false,
         error_response: null,
       };
-    case 'LOGIN_SUCCESS':
+    case "LOGIN_SUCCESS":
       return {
         ...state,
         user: action.payload,
@@ -17,13 +17,13 @@ const AuthReducer = (state, action) => {
         error: false,
         error_response: null,
       };
-    case 'RESET_ERROR':
+    case "RESET_ERROR":
       return {
         ...state,
         error: false,
         error_response: null,
       };
-    case 'LOGIN_FAILURE':
+    case "LOGIN_FAILURE":
       return {
         ...state,
         user: null,
@@ -32,7 +32,7 @@ const AuthReducer = (state, action) => {
         error: true,
         error_response: action.payload.error_response,
       };
-    case 'LOG_OUT':
+    case "LOG_OUT":
       return {
         ...state,
         user: null,
@@ -41,7 +41,25 @@ const AuthReducer = (state, action) => {
         error: false,
         error_response: null,
       };
-    case 'UPDATE_FOLLOW':
+    case "ADD_FRIEND":
+      if (
+        !(action.payload in new Set(...state.user.user.followings)) &&
+        !(action.payload in new Set(state.user.user.followers))
+      ) {
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            user: {
+              ...state.user.user,
+              followings: [...state.user.user.followings, action.payload],
+              followers: [...state.user.user.followers, action.payload],
+            },
+          },
+        };
+      }
+
+    case "UPDATE_FOLLOW":
       return {
         ...state,
         user: {
@@ -52,7 +70,7 @@ const AuthReducer = (state, action) => {
           },
         },
       };
-    case 'UPDATE_UNFOLLOW':
+    case "UPDATE_UNFOLLOW":
       return {
         ...state,
         user: {
