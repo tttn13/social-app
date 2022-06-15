@@ -54,20 +54,18 @@ export default function EventCard(item) {
             </Typography>
 
             <Typography
-              variant="body2"
+              variant="body2" noWrap
               sx={{ fontWeight: "medium", fontSize: 16 }}
               color="text.primary"
             >
               {item.item.name}
             </Typography>
             <Typography
-              variant="body2"
+              variant="body2" noWrap
               sx={{ fontWeight: "medium", fontSize: 16 }}
               color="text.secondary"
             >
-              {item.item._embedded?.venues?.length == 1
-                ? item.item._embedded?.venues[0].name
-                : item.item._embedded?.venues[0].name + "and more locations"}
+              {item.item._embedded?.venues[0].name}
             </Typography>
           </CardContent>
         </Card>

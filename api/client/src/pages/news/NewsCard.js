@@ -52,9 +52,7 @@ export default function NewsCard(item) {
                 sx={{ fontWeight: "medium", fontSize: 16 }}
                 color="text.secondary"
               >
-                {item["item"]["title"].length <= 90
-                  ? item["item"]["title"]
-                  : item["item"]["title"].slice(0, 91) + "..."}
+                {item["item"]["title"]}
               </Typography>
             </CardContent>
           </Card>
