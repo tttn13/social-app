@@ -42,7 +42,7 @@ const RequestCard = ({ person, handleDelete, mutualFriends, user }) => {
               image={
                 person?.profilePicture?.length > 0
                   ? person.profilePicture
-                  : "person/noAvatar.png"
+                  : 'images/person/noAvatar.png'
               }
               alt="avatar"
             />

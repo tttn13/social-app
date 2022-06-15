@@ -26,11 +26,7 @@ const Profile = () => {
             <div className="profileRightTop">
               <div className="profileCover">
                 <ProfilePicture
-                  coverImage={
-                    selectedUser?.coverPicture.length > 0
-                      ? selectedUser.coverPicture
-                      : 'person/noCover.png'
-                  }
+                  coverImage='person/noCover.png'
                   classname="profileCoverImg"
                 />
                 <ProfilePicture
