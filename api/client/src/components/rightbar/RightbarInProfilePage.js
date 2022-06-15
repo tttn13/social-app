@@ -1,51 +1,53 @@
-import { Add, Remove } from '@mui/icons-material';
-import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Person,PersonAddAlt } from "@mui/icons-material";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { handleAddFriendBtn } from '../../context/AsyncActions';
-import { AuthContext } from '../../context/AuthContext';
-import { useFetchUser } from '../customHooks/useFetchUser';
-import { useGetFriends } from '../customHooks/useGetFriends';
-import ProfilePicture from '../profilePicture/ProfilePicture';
+import { handleAddFriendBtn } from "../../context/AsyncActions";
+import { AuthContext } from "../../context/AuthContext";
+import { useFetchUser } from "../customHooks/useFetchUser";
+import { useGetFriends } from "../customHooks/useGetFriends";
+import ProfilePicture from "../profilePicture/ProfilePicture";
 
 const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
   const { dispatch } = useContext(AuthContext);
+  const { user: currUser } = useFetchUser({ userId: currentUser._id });
   const { user: selectedUser } = useFetchUser({ username: selectedUsername });
-  const [followedSelectedUser, setFollowedSelectedUser] = useState(false);
+  const [friended, setFriended] = useState(
+    currUser?.friends?.includes(selectedUser?._id)
+  );
   const { friends: userFriends } = useGetFriends(selectedUser);
 
   useEffect(() => {
-    console.log(currentUser)
-    if (currentUser?.friends?.includes(selectedUser?._id)) {
-      setFollowedSelectedUser(true);
+    if (currUser?.friends?.includes(selectedUser?._id)) {
+      setFriended(true);
     }
-  }, [selectedUser, currentUser]);
+  }, [selectedUser, currUser]);
 
   const handleClick = async () => {
     await handleAddFriendBtn({
-      currentUserId: currentUser._id,
+      currentUserId: currUser._id,
       selectedUserId: selectedUser._id,
-      followedSelectedUser,
+      followedSelectedUser: friended,
       dispatch,
     });
 
-    setFollowedSelectedUser(!followedSelectedUser);
+    setFriended(!friended);
   };
 
   return (
     <>
-      {selectedUser.username !== currentUser.username && (
+      {selectedUser.username !== currUser.username && (
         <button
-          className="rightbarFollowButton"
-          onClick={(e) => {
-            e.preventDefault();
-            handleClick(e);
-          }}
-        >
-          {followedSelectedUser ? 'Unfriend' : 'Friend'}
-          {followedSelectedUser ? <Remove /> : <Add />}
-        </button>
+        className="rightbarFollowButton"
+        onClick={(e) => {
+          e.preventDefault();
+          handleClick(e);
+        }}
+      >
+        {friended ? <> <Person fontSize="small" />Unfriend</> : <><PersonAddAlt fontSize="small" />Friend</>}
+      </button>
       )}
+      
       <h4 className="rightbarTitle">User information</h4>
       <div className="rightbarInfo">
         <div className="rightbarInfoItem">
@@ -60,10 +62,10 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
           <span className="rightbarInfoKey">Relationship:</span>
           <span className="rightbarInfoValue">
             {selectedUser.relationship === 1
-              ? 'Single'
+              ? "Single"
               : selectedUser.relationship === 2
-              ? 'Married'
-              : '-'}
+              ? "Married"
+              : "-"}
           </span>
         </div>
       </div>
@@ -74,8 +76,8 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
           userFriends.length > 0 &&
           userFriends.map((friend) => (
             <Link
-              to={'/profile/' + friend.username}
-              style={{ textDecoration: 'none' }}
+              to={"/profile/" + friend.username}
+              style={{ textDecoration: "none" }}
               key={friend._id}
             >
               <div className="rightbarFollowing">
@@ -83,7 +85,7 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
                   userImage={
                     friend?.profilePicture
                       ? friend.profilePicture
-                      : 'person/noAvatar.png'
+                      : "person/noAvatar.png"
                   }
                   classname="rightbarFollowingImg"
                 />

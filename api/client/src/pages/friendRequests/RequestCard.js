@@ -1,11 +1,10 @@
-import DoneIcon from "@mui/icons-material/Done";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Button, CardActions } from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { handleAddFriend } from "../../context/AsyncActions";
@@ -13,7 +12,13 @@ import { AuthContext } from "../../context/AuthContext";
 
 const RequestCard = ({ person, handleDelete, mutualFriends, user }) => {
   const { dispatch } = useContext(AuthContext);
-  const [friended, setFriended] = useState(user.friends.includes(person._id));
+  const [friended, setFriended] = useState(user?.friends?.includes(person._id));
+
+  useEffect(() => {
+    if (user?.friends?.includes(person?._id)) {
+      setFriended(true);
+    }
+  }, [person, user]);
 
   const handleConfirm = async (personId) => {
     await handleAddFriend({

@@ -1,6 +1,10 @@
 import { login, logout, register } from "../services/auth.service";
 import { removeUserFromStorage } from "../services/token.service";
-import { handleAddFriendAPI,handleFollowsAPI, handleUnFriendAPI } from "../services/user.service";
+import {
+  handleAddFriendAPI,
+  handleFollowsAPI,
+  handleUnFriendAPI,
+} from "../services/user.service";
 import {
   LoginFailure,
   LoginStart,
@@ -9,7 +13,8 @@ import {
   unFriend,
   updateFollows,
   updateFriendsList,
-  updateUnfollows} from "./AuthActions";
+  updateUnfollows,
+} from "./AuthActions";
 
 export const loginUser = async (userCredentials, dispatch) => {
   removeUserFromStorage();
@@ -69,7 +74,10 @@ export const handleAddFriend = async ({
   dispatch,
 }) => {
   try {
-    await handleAddFriendAPI(currentUserId, selectedUserId);
+    await handleAddFriendAPI({
+      currentUserId: currentUserId,
+      selectedUserId: selectedUserId,
+    });
     dispatch(updateFriendsList(selectedUserId));
   } catch (error) {
     console.error(error);
@@ -82,7 +90,10 @@ export const handleUnfriend = async ({
   dispatch,
 }) => {
   try {
-    await handleUnFriendAPI(currentUserId, selectedUserId);
+    await handleUnFriendAPI({
+      currentUserId: currentUserId,
+      selectedUserId: selectedUserId,
+    });
     dispatch(unFriend(selectedUserId));
   } catch (error) {
     console.error(error);
@@ -95,12 +106,18 @@ export const handleAddFriendBtn = async ({
   followedSelectedUser,
   dispatch,
 }) => {
-
   try {
-    await handleAddFriendAPI(currentUserId, selectedUserId);
     if (followedSelectedUser) {
+      await handleUnFriendAPI({
+        currentUserId: currentUserId,
+        selectedUserId: selectedUserId,
+      });
       dispatch(unFriend(selectedUserId));
     } else {
+      await handleAddFriendAPI({
+        currentUserId: currentUserId,
+        selectedUserId: selectedUserId,
+      });
       dispatch(updateFriendsList(selectedUserId));
     }
   } catch (error) {

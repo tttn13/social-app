@@ -2,6 +2,7 @@ import "./friendRequests.css";
 
 import { useContext, useEffect, useState } from "react";
 
+import { useFetchUser } from "../../components/customHooks/useFetchUser";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import { AuthContext } from "../../context/AuthContext";
@@ -13,6 +14,7 @@ import RequestCard from "./RequestCard";
 const FriendRequests = () => {
   const user = useContext(AuthContext).user.user;
   const [reqRes, setReqRes] = useState([]);
+  const { user: currUser } = useFetchUser({ userId: user._id });
 
   const countMutualFriends = (friend, currUser) => {
     const friendListIds = friend.friends.map((i) => i._id);
@@ -40,12 +42,12 @@ const FriendRequests = () => {
   useEffect(async () => {
     try {
       const res = await getAllUsers();
-      const potentials = await getPotentialFriends(res.data, user);
+      const potentials = await getPotentialFriends(res.data, currUser);
       setReqRes(potentials);
     } catch (error) {
       console.log(error);
     }
-  }, [user?.followings]);
+  }, [currUser?.followings]);
 
   const Requests = ({ results }) => {
     return (
@@ -56,11 +58,11 @@ const FriendRequests = () => {
           </h2>
           <div className="reqContent ">
             {results.map((person, idx) => {
-              if (person.user._id !== user._id) {
+              if (person.user._id !== currUser._id) {
                 return (
                   <RequestCard
                     key={idx}
-                    user={user}
+                    user={currUser}
                     person={person.user}
                     handleDelete={handleDelete}
                     mutualFriends={person.mutualFriends}
@@ -76,7 +78,7 @@ const FriendRequests = () => {
 
   return (
     <>
-      {!isEmpty(user) && (
+      {!isEmpty(currUser) && (
         <>
           <Topbar />
           <div className="reqPageContainer">

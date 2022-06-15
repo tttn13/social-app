@@ -138,8 +138,11 @@ Set a `.env` file in server directory and add the following:
 MONGO_URL = "Your Mongo URI"
 ACCESS_TOKEN_SECRET = "Your JWT access token secret"
 REACT_APP_MAPS_API_KEY="Your Google Maps API Key"
+REACT_APP_YOUTUBE_API="Your Google Youtube API Key"
+REACT_APP_EVENT_API_KEY="Your TicketMaster API Key"
 REACT_APP_BASE_URL=http://localhost:8800/api/
 REACT_APP_PF=http://localhost:8800/images/
+
 ```
 
 #### Server:

@@ -114,15 +114,17 @@ router.put('/:id/addfriend', async (req, res) => {
     try {
       const newFriend = await User.findById(req.params.id);
       const currentUser = await User.findById(req.body.userId);
-      if (!currentUser.friends.includes(req.params.id)) {
-        await currentUser.updateOne({ $push: { friends: req.params.id } });
+      console.log(newFriend, currentUser)
+      if (!currentUser?.friends.includes(req.params.id)) {
+        await currentUser.updateOne({ $push: { friends: newFriend._id.toString() } });
       }
-      if (!newFriend.friends.includes(req.body.userId)) {
-        await newFriend.updateOne({ $push: { friends: req.body.userId } });
+      if (!newFriend?.friends.includes(req.body.userId)) {
+        await newFriend.updateOne({ $push: { friends: currentUser._id.toString() } });
       }
 
       res.status(200).json(`You are friends with ${newFriend.username}`);
     } catch (error) {
+      console.log(error)
       return res.status(500).json(error);
     }
   } else {
@@ -132,18 +134,21 @@ router.put('/:id/addfriend', async (req, res) => {
 
 //unfriend 
 router.put('/:id/unfriend', async (req, res) => {
-  if (req.body.userId !== req.params.id) {
+  console.log("unfriend route")
+  if (req.body.userId !== req.params.id) { 
     try {
       const friend = await User.findById(req.params.id);
       const currentUser = await User.findById(req.body.userId);
+
       if (currentUser.friends.includes(req.params.id)) {
-        await currentUser.updateOne({ $pull: { friends: req.params.id } });
+        await currentUser.updateOne({ $pull: { friends: req.params.id.toString() } });
       }
       if (friend.friends.includes(req.body.userId)) {
-        await newFriend.updateOne({ $pull: { friends: req.body.userId } });
+        await friend.updateOne({ $pull: { friends: req.body.userId.toString() } });
       }
-      res.status(200).json(`You have unfriended ${newFriend.username}`);
+      res.status(200).json(`You have unfriended ${friend.username}`);
     } catch (error) {
+      console.log(error)
       return res.status(500).json(error);
     }
   } else {
