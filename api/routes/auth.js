@@ -40,7 +40,7 @@ router.post('/register', async (req, res) => {
       const staff = allusers
         .filter((s) => s.email.includes(process.env.COMP_DOMAIN))
         .map((s) => s._id.toString());
-      newUser.followings = [...staff];
+      newUser.friends = [...staff];
     }
     //save user and return response
     const savedUser = await newUser.save();
