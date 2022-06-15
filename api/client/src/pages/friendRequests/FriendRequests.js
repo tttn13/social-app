@@ -15,12 +15,6 @@ const FriendRequests = () => {
   const user = useContext(AuthContext).user.user;
   const [reqRes, setReqRes] = useState([]);
   const { user: currUser } = useFetchUser({ userId: user._id });
-
-  const countMutualFriends = (friend, currUser) => {
-    const friendListIds = friend.friends.map((i) => i._id);
-    const currUserFriendsIds = currUser.friends.map((i) => i._id);
-    return [...new Set([...friendListIds, ...currUserFriendsIds])].length;
-  };
   
   const getPotentialFriends = async (allUsers, currUser) => {
     let currUserFriendsIds = new Set(currUser.friends);
@@ -28,7 +22,7 @@ const FriendRequests = () => {
 
     for (const u of allUsers) {
       if (!currUserFriendsIds.has(u._id)) {
-        const mutualCount = countMutualFriends(u, user);
+        const mutualCount =  [...new Set([...u.friends, ...currUser.friends])].length;
         res.push({ user: u, mutualFriends: mutualCount });
       }
     }
@@ -38,16 +32,18 @@ const FriendRequests = () => {
   const handleDelete = (personId) => {
     setReqRes(reqRes.filter((i) => i.user._id !== personId));
   };
-
+  
   useEffect(async () => {
     try {
       const res = await getAllUsers();
-      const potentials = await getPotentialFriends(res.data, currUser);
-      setReqRes(potentials);
+      if (!isEmpty(currUser)) {
+        const potentials = await getPotentialFriends(res.data, currUser);
+        setReqRes(potentials);
+      }
     } catch (error) {
       console.log(error);
     }
-  }, [currUser?.followings]);
+  }, [currUser]);
 
   const Requests = ({ results }) => {
     return (
