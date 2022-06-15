@@ -15,7 +15,8 @@ const RightbarInProfilePage = ({ selectedUsername, currentUser }) => {
   const { friends: userFriends } = useGetFriends(selectedUser);
 
   useEffect(() => {
-    if (currentUser.friends.includes(selectedUser?._id)) {
+    console.log(currentUser)
+    if (currentUser?.friends?.includes(selectedUser?._id)) {
       setFollowedSelectedUser(true);
     }
   }, [selectedUser, currentUser]);
