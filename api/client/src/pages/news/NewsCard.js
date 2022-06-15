@@ -17,10 +17,8 @@ export default function NewsCard(item) {
         >
           <Card
             sx={{
-              minWidth: 345,
-              maxWidth: 345,
-              minHeight: 270,
-              maxHeight: 270,
+              width: 300,
+              height: 280,
             }}
           >
             <div className="newsCardMediaContainer">

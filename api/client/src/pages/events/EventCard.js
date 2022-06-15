@@ -32,7 +32,7 @@ export default function EventCard(item) {
         rel="noopener noreferrer"
       >
         <Card
-          sx={{ minWidth: 345, maxWidth: 345, minHeight: 270, maxHeight: 270 }}
+          sx={{ width: 300, height: 280 }}
         >
           <div className="cardMediaContainer"> 
           <CardMedia
