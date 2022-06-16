@@ -72,15 +72,15 @@ An error message will show up:
 ### Post
 
 - Certain CRUD actions can only be performed with a valid token such as `creating, editing and deleting a post`.
-
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/create-post.gif' width = "600" height= '500'>
-
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/edit-post.gif' width = "600" height= '500'>
+<p float="left"> 
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/create-post.gif' width = "480" height= '382'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/edit-post.gif' width = "480" height= '382'>
+</p>
 
 - On the Home Page, you can create a post in which you can also `upload an image, tag friend(s), check in to a location, and add an emoji` that represents your feeling.
 - There are options to edit and `delete` the post if you are the owner of the post. You can `hide` anyone's post from your Feed.
 
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/del-post.gif' width = "550" height= '500'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/del-post.gif' width = "480" height= '382'>
 
 - You can leave `likes` and comments on a post. You can also unlike the post.
 
