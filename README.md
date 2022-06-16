@@ -73,8 +73,8 @@ An error message will show up:
 
 - Certain CRUD actions can only be performed with a valid token such as `creating, editing and deleting a post`.
 <p float="left"> 
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/create-post.gif' width = "480" height= '382'>
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/edit-post.gif' width = "480" height= '382'>
+  <img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/create-post.gif' width = "430" height= '352'>
+  <img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/edit-post.gif' width = "430" height= '352'>
 </p>
 
 - On the Home Page, you can create a post in which you can also `upload an image, tag friend(s), check in to a location, and add an emoji` that represents your feeling.
