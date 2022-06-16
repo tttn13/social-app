@@ -53,24 +53,21 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 
 ## Functionality
 
-### Login / Register
+### Login / Register and Error Handling
 
 - You can `login` or `register`. The form is validated, then if the user is authenticated or registration is successful, the user is navigated to the Home Page.
-- For demonstration purpose, newly registered users are friends with existing accounts in database. Users can choose to unfollow them.
+- For demonstration purpose, newly registered users are friends with existing users in database. Users can choose to unfriend them.
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/register-form.gif' width = "365" height= '369'>
 
-![register-form](https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/register-form.gif)
-
-### Error Handling at Login/Register
+An error message will show up: 
 <p float="left"> 
 <img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/register-error.gif' width = "365" height= '369'>
 <img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/login-error.gif' width = "365" height= '369'>
 </p>
 
-An error message will show up
-
 - when user signs up with an email already existed in MySocial's database
 - logged in with incorrect credentials
-- internal network is not responding
+- internal server is not responding
 
 ### Post
 
@@ -87,20 +84,22 @@ An error message will show up
 
 - You can leave `likes` and comments on a post. You can also unlike the post.
 
-### Comment
+### Create, Edit and Delete Comment
 
 <img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/comment.gif' width = "430" height= '550'>
 
 - You can leave comments on a post. You can also delete it.
 - You can `edit or delete` anyone's comment as long as you are the post creator
 
-### Profile Header
+### Add Friend / Unfriend 
 
-- You can `follow or unfollow` an user.
+- You can `add friend or unfriend` an user. Changes will be reflected on both selected user's friend list and your friend's list.
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/addfriend.gif' width = "408" height= '207'>
+
 - The profile shows an user's information such as their current city, home town and relationship.
 - You can see a user's profile picture and cover picture.
 
-### Navbar
+### Search friends and posts
 
 <img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/search-demo.gif' width = "500" height= '550'>
 
@@ -109,18 +108,34 @@ An error message will show up
 - You can view your Profile Page or `log out` of the account by clicking on your avatar image at the top right corner of Navbar
 - Go back to Homepage by clicking on `MySocial logo` at the top left corner of Navbar.
 
-### Feed
+### Friend Requests 
+- User can accept friend requests or delete from the UI 
+- Upon accepting, friend request notification on top bar will reflect the change
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/friendreq.gif' width = "408" height= '207'>
 
-- The Feed contains all posts from the user's friends, which you can interact with.
+
+### Feed of Videos, News, Events
+- User can see related videos, top news and top events (default location is US)
+<p float="left"> 
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/videos.gif' width = "408" height= '207'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/news.gif' width = "408" height= '207'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/events.gif' width = "408" height= '207'>
+
+</p>
+
 
 ### Page
 
 ##### Home Page
 
 - Navbar
-- Sidebar and Right Bar show your friends.
+- Sidebar and Right Bar that show friends list.
 - Share a post
 - Feed
+- Find friends 
+- Videos 
+- News
+- Events
 
 ##### Profile Page
 
