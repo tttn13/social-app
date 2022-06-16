@@ -31,14 +31,14 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 
 ### Back-end
 
-- Runtime environment for JS: `Express` app in `Node.js` runtime 
+- Runtime environment for JS: `Node.js `
 - The NoSQL database to store document-based data: `MongoDB`
 - MongoDB object modeling for node.js: `mongoose`
 - Authentication and authorization of HTTP requests: `jsonwebtoken`
 - Handling image uploads: `multer`
 - Hashing passwords: `bcrypt`
 - Load environment variables from .env file: `dotenv`
-- Making HTTP requests and API calls from node.js: `axios`
+- Making HTTP requests from node.js: `axios`
 
 ## Key Features
 
@@ -46,10 +46,10 @@ MySocial is a full-stack MERN app that is essentially a clone of the real Facebo
 - Authentication and authorization of user
 - Logged out user when session is expired or token is invalid
 - Form validation
-- Redirect to an user's profile page when clicking on their avatar image
+- Redirect to an user's profile page when clicking on their avatar image.
 - Loading spinners for relevant fetching processes
-- Fetching location from Google Maps Places API, videos from Google Youtube API, top news stories from the RSS Feed of NY times (then using a XML parser), and events info from the Ticketmaster API. All data are presented on the UI as Feed and linked to the external url (components are clickable)
-- Heroku Deployment using github workflows
+- Fetching location from Google Maps Places API
+- Heroku Deployment using github actions workflows
 
 ## Functionality
 
@@ -72,15 +72,15 @@ An error message will show up:
 ### Post
 
 - Certain CRUD actions can only be performed with a valid token such as `creating, editing and deleting a post`.
-<p float="left"> 
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/create-post.gif' width = "480" height= '382'>
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/edit-post.gif' width = "480" height= '382'>
-</p>
+
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/create-post.gif' width = "600" height= '500'>
+
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/edit-post.gif' width = "600" height= '500'>
 
 - On the Home Page, you can create a post in which you can also `upload an image, tag friend(s), check in to a location, and add an emoji` that represents your feeling.
 - There are options to edit and `delete` the post if you are the owner of the post. You can `hide` anyone's post from your Feed.
 
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/del-post.gif' width = "480" height= '382'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/del-post.gif' width = "550" height= '500'>
 
 - You can leave `likes` and comments on a post. You can also unlike the post.
 
@@ -101,7 +101,7 @@ An error message will show up:
 
 ### Search friends and posts
 
-<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/search-demo.gif' width = "440" height= '480'>
+<img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/search-demo.gif' width = "500" height= '550'>
 
 - You can `search` for users and posts.
 - All the matching results will be displayed after hitting `Enter`
@@ -115,7 +115,7 @@ An error message will show up:
 
 
 ### Feed of Videos, News, Events
-- User can see related videos, top news and top events (default location is US). Each item is clickable, which means user will be redirected to the corrensponding url provided in the API response.
+- User can see related videos, top news and top events (default location is US)
 <p float="left"> 
 <img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/videos.gif' width = "408" height= '207'>
 <img src='https://github.com/tttn13/social-app/blob/develop/api/client/public/assets/screenshots/news.gif' width = "408" height= '207'>
