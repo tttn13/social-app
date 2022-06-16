@@ -1,12 +1,12 @@
-const router = require('express').Router();
-const User = require('../models/User');
-const Comment = require('../models/Comment');
-const Post = require('../models/Post');
-const bcrypt = require('bcrypt');
-const auth = require('../middleware/auth');
-require('dotenv').config();
+const router = require("express").Router();
+const User = require("../models/User");
+const Comment = require("../models/Comment");
+const Post = require("../models/Post");
+const bcrypt = require("bcrypt");
+const auth = require("../middleware/auth");
+require("dotenv").config();
 //update user
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
     if (req.body.password) {
       try {
@@ -21,17 +21,17 @@ router.put('/:id', async (req, res) => {
       const user = await User.findByIdAndUpdate(req.params.id, {
         $set: req.body,
       });
-      res.status(200).json('account has been updated');
+      res.status(200).json("account has been updated");
     } catch (error) {
       return res.status(500).json(err);
     }
   } else {
-    return res.status(403).json('You can update only your account ');
+    return res.status(403).json("You can update only your account ");
   }
 });
 
 //get user
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   const userId = req.query.userId;
   const username = req.query.username;
   try {
@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
 });
 
 //get friends
-router.get('/friends/:userId', async (req, res) => {
+router.get("/friends/:userId", async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     const userFriends = await Promise.all(
@@ -65,8 +65,35 @@ router.get('/friends/:userId', async (req, res) => {
   }
 });
 
+//get friend requests
+router.get("/:userId/friendRequest", async (req, res) => {
+  try {
+    const allUsers = await User.find();
+    const currUser = await User.findById(req.params.userId);
+    const userFriends = await Promise.all(
+      currUser.friends.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+
+    let currUserFriendsIds = new Set(userFriends.map((i) => i._id.toString()));
+    let ans = [];
+    for (const u of allUsers) {
+      if (!currUserFriendsIds.has(u._id.toString()) && u._id.toString() !== req.params.userId) {
+        const mutualCount = [...new Set([...u.friends, ...userFriends])].length;
+          ans.push({ user: u, mutualFriends: mutualCount });
+      }
+    }
+
+    res.status(200).json(ans);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+
 //follow user
-router.put('/:id/follow', async (req, res) => {
+router.put("/:id/follow", async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
       const userToFollow = await User.findById(req.params.id);
@@ -78,7 +105,7 @@ router.put('/:id/follow', async (req, res) => {
       } else {
         await userToFollow.updateOne({ $pull: { followers: req.body.userId } });
         await currentUser.updateOne({ $pull: { friends: req.params.id } });
-        res.status(200).json('user has been unfollowed');
+        res.status(200).json("user has been unfollowed");
       }
     } catch (error) {
       return res.status(500).json(error);
@@ -89,7 +116,7 @@ router.put('/:id/follow', async (req, res) => {
 });
 
 //unfollow user
-router.put('/:id/unfollow', async (req, res) => {
+router.put("/:id/unfollow", async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
       const user = await User.findById(req.params.id);
@@ -97,7 +124,7 @@ router.put('/:id/unfollow', async (req, res) => {
       if (user.followers.includes(req.body.userId)) {
         await user.updateOne({ $pull: { followers: req.body.userId } });
         await currentUser.updateOne({ $pull: { friends: req.params.id } });
-        res.status(200).json('user has been unfollowed');
+        res.status(200).json("user has been unfollowed");
       } else {
         res.status(403).json("You don't follow this user");
       }
@@ -109,22 +136,26 @@ router.put('/:id/unfollow', async (req, res) => {
   }
 });
 //add friend
-router.put('/:id/addfriend', async (req, res) => {
+router.put("/:id/addfriend", async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
       const newFriend = await User.findById(req.params.id);
       const currentUser = await User.findById(req.body.userId);
-      console.log(newFriend, currentUser)
+      console.log(newFriend, currentUser);
       if (!currentUser?.friends.includes(req.params.id)) {
-        await currentUser.updateOne({ $push: { friends: newFriend._id.toString() } });
+        await currentUser.updateOne({
+          $push: { friends: newFriend._id.toString() },
+        });
       }
       if (!newFriend?.friends.includes(req.body.userId)) {
-        await newFriend.updateOne({ $push: { friends: currentUser._id.toString() } });
+        await newFriend.updateOne({
+          $push: { friends: currentUser._id.toString() },
+        });
       }
 
       res.status(200).json(`You are friends with ${newFriend.username}`);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return res.status(500).json(error);
     }
   } else {
@@ -132,23 +163,27 @@ router.put('/:id/addfriend', async (req, res) => {
   }
 });
 
-//unfriend 
-router.put('/:id/unfriend', async (req, res) => {
-  console.log("unfriend route")
-  if (req.body.userId !== req.params.id) { 
+//unfriend
+router.put("/:id/unfriend", async (req, res) => {
+  console.log("unfriend route");
+  if (req.body.userId !== req.params.id) {
     try {
       const friend = await User.findById(req.params.id);
       const currentUser = await User.findById(req.body.userId);
 
       if (currentUser.friends.includes(req.params.id)) {
-        await currentUser.updateOne({ $pull: { friends: req.params.id.toString() } });
+        await currentUser.updateOne({
+          $pull: { friends: req.params.id.toString() },
+        });
       }
       if (friend.friends.includes(req.body.userId)) {
-        await friend.updateOne({ $pull: { friends: req.body.userId.toString() } });
+        await friend.updateOne({
+          $pull: { friends: req.body.userId.toString() },
+        });
       }
       res.status(200).json(`You have unfriended ${friend.username}`);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return res.status(500).json(error);
     }
   } else {
@@ -157,7 +192,7 @@ router.put('/:id/unfriend', async (req, res) => {
 });
 
 //get all staff
-router.get('/allstaff', async (req, res) => {
+router.get("/allstaff", async (req, res) => {
   const userId = req.query.userId;
   try {
     const allusers = await User.find();
@@ -171,7 +206,7 @@ router.get('/allstaff', async (req, res) => {
 });
 
 //get all users
-router.get('/allusers', async (req, res) => {
+router.get("/allusers", async (req, res) => {
   try {
     const allusers = await User.find();
     res.status(200).json(allusers);

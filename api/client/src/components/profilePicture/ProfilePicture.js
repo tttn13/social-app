@@ -8,7 +8,7 @@ const ProfilePicture = ({
   handleClickFn,
 }) => {
   const { PF } = env_config;
-
+  
   return (
     <>
       {userImage && (

@@ -5,6 +5,9 @@ import axiosJWT from './axiosJwtInterceptors';
 export const getAllUsers = async () => {
   return axiosInstance.get("/users/allusers");
 };
+export const getFriendReqsAPI = async (userId) => {
+  return axiosInstance.get(`/users/${userId}/friendRequest`);
+};
 export const getUser = async ({ userId, username }) => {
   if (userId) {
     return axiosInstance.get(`/users?userId=${userId}`);
