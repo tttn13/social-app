@@ -1,6 +1,6 @@
 # MySocial
 
-![MySocial](https://github.com/tttn13/social-app/actions/workflows/heroku-staging.yml/badge.svg?branch=develop)
+![MySocial](https://github.com/tttn13/social-app/actions/workflows/heroku-production.yml/badge.svg?branch=develop)
 
 ### [Live Demo](https://mysocialappmsa.herokuapp.com/)
 
